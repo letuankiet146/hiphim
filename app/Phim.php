@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Phim extends Model
 {
+    protected $attributes = array(
+        'luotxem' => 0
+      );
+
     public function danhmuc(){
         return $this->belongsTo('App\DanhMuc','danhmucs_id');
     }

@@ -16,6 +16,9 @@ class CreatePhimsTable extends Migration
         Schema::create('phims', function (Blueprint $table) {
             $table->id();
             $table->string('tenphim');
+            $table->string('poster');
+            $table->string('background');
+            $table->longText('mota',2083);
             $table->integer('danhmucs_id');
             $table->longText('url',2083);
             $table->longText('fb',2083);

@@ -4,14 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\VideoStream;
-use App\Film;
+use App\Phim;
+use App\DanhMuc;
+use App\TheLoai;
+use App\TagTheLoai;
 use DB;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function admin()
     {
-        return view('home');
+        $danhmucs = DanhMuc::all();
+        $theloais = TheLoai::all();
+        $danhmucArray=[];
+        foreach($danhmucs as $danhmuc){
+            $danhmucArray[$danhmuc->id] = $danhmuc->tendanhmuc;
+        }
+        $danhmucKeys = array_keys($danhmucArray);
+        $theloaiArray = [];
+        foreach($theloais as $theloai){
+            $theloaiArray[$theloai->id] = $theloai->tentheloai;
+        }
+        $theloaiKeys = array_keys($theloaiArray);
+
+        return view('admin',compact('danhmucArray'
+                                    ,'danhmucKeys'
+                                    ,'theloaiArray'
+                                    ,'theloaiKeys'));
     }
 
     function get_string_between($string, $start, $end){
@@ -37,9 +56,10 @@ class HomeController extends Controller
 
     public function live()
     {
-        $films = Film::all();
+        $linkarray=[];
+        $films = Phim::all();
         foreach($films as $film){
-            $name = $film->title;
+            $name = $film->tenphim;
             $url  = $film->url;
             $linkarray[$name] = $url;
         };
@@ -48,12 +68,32 @@ class HomeController extends Controller
     }
 
     public function insertFilm(Request $request){
-        $film = new Film();
-        $film->title = $request->title;
-        $film->url = $request->url;
-        $film->fb = $request->fb;
-        $film->save();
-        return redirect('/');
+
+        $poster = $request->file('poster');
+        $posterName = $poster->getClientOriginalName();
+        $poster->move(public_path('img'), $posterName);
+
+        $bg = $request->file('bg');
+        $bgName = $bg->getClientOriginalName();
+        $bg->move(public_path('img'), $bgName);
+
+        $phim = new Phim();
+        $phim->tenphim = $request->tenphim;
+        $phim->poster = $posterName;
+        $phim->background = $bgName;
+        $phim->mota = $request->mota;
+        $phim->danhmucs_id = $request->danhmucId;
+        $phim->url = $request->url;
+        $phim->fb = $request->fb;
+        $phim->imdb = $request->imdb;
+        $phim->ngaytao=date("yy-m-d");
+        $phim->save();
+        $tagTheLoai = new TagTheLoai();
+        $tagTheLoai->phims_id =$phim->id;
+        $tagTheLoai->the_loais_id = $request->theloaiId;
+        $tagTheLoai->save();
+
+        return redirect('/admin');
     }
 
     public function updateFilm(Request $request){
@@ -67,23 +107,36 @@ class HomeController extends Controller
     }
 
     public function searchFilm(Request $request){
+
         $title = $request->title;
         if(strcmp($title ,"*")==0){
-            $films = Film::all();
+            $films = Phim::all();
         } else {
-            $films = DB::table('film')
-            ->where('title', 'LIKE', "%".$title."%")
+            $films = DB::table('phims')
+            ->where('tenphim', 'LIKE', "%".$title."%")
             ->get();
         }
 
-        return view('home',[
+        return view('admin',[
             'films'=>$films
         ]);
     }
 
     public function deleteFilm($id){
-        $film = Film::find($id);
+        $film = Phim::find($id);
         $film->delete();
-        return redirect('/');
+        return redirect('/admin');
+    }
+
+    public function ui(){
+        return view("index");
+    }
+
+    public function detail (){
+        return view("detail");
+    }
+
+    public function xemphim (){
+        return view("xemphim");
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Film;
+use App\Phim;
 
 class TestLinkController extends Controller
 {
@@ -34,10 +34,10 @@ class TestLinkController extends Controller
 
     public function testlink(){
         $isAllGood = true;
-        $films = Film::all();
+        $films = Phim::all();
         foreach($films as $film ){
             $id = $film->id;
-            $name = $film->title;
+            $name = $film->tenphim;
             $url  = $film->url;
             $status = TestLinkController::pingLink($url);
             if( strcmp($status ,"GOOD")==0){
@@ -54,7 +54,7 @@ class TestLinkController extends Controller
     }
 
     public function updateURL($id){
-        $film = Film::find($id);
+        $film = Phim::find($id);
         return view("update",[
             'film'=>$film
         ]);
