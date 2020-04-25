@@ -7,6 +7,10 @@ use App\Phim;
 
 class TestLinkController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     static function get_string_between($string, $start, $end){
         $string = ' ' . $string;
         $ini = strpos($string, $start);
