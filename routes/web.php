@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/create', 'MessageController@create');
 Route::get('/message/{id}', 'MessageController@view');
 
-Route::get('/ui', 'HiPhimController@ui');
+Route::get('/', 'HiPhimController@ui');
 Route::get('/detail', 'HiPhimController@detail');
 Route::get('/xemphim', 'HiPhimController@xemphim');
 

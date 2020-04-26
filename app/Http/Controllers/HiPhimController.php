@@ -12,7 +12,11 @@ use DB;
 class HiPhimController extends Controller
 {
     public function ui(){
-        return view("index");
+        $sliderTop = [];
+        $phims = DB::table('phims')
+        ->where('danhmucs_id', '=', "4")
+        ->get();
+        return view("index" ,compact('phims'));
     }
 
     public function detail (){

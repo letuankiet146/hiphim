@@ -47,6 +47,7 @@
         <input type="text" name="title"  placeholder="Search film name"/><br>
         <button type="submit">Search</button>
     </form>
+
     <?php
 
         if(isset($films)){
