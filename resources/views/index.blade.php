@@ -21,7 +21,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
 	<link rel="stylesheet" href="https://bongngo.tv/assets/bongngo/css/v3.min.css?v=5.0" />
 	<link rel="stylesheet" href="https://bongngo.tv/assets/bongngo/css/custom.css?v=1.0" />
-	<!--[if lt IE 9]> <script src="https://bongngo.tv/assets/bongngo/js/html5shiv.min.js"></script> <script src="https://bongngo.tv/assets/bongngo/js/respond.min.js"></script> <![endif]-->
 	<script>
 		var isRealUser=!1;setTimeout(function(){isRealUser=!0},1e4);var async=async||[];function loadScript(i){var e=btoa(i);if(document.getElementById(e)||document.write('<script id="'.concat(e,'"><\/script>')),!isRealUser)return setTimeout(function(){loadScript(i)},100),!0;console.log(i),setTimeout(function(){!function(e,t){var n,r=e.getElementById(t);if(r&&r.src)return;(n=e.createElement("script")).id=t,n.src=i,n.setAttribute("defer","defer"),n.setAttribute("async","async"),r.parentNode.replaceChild(n,r)}(document,e)},0)}async.push(["ready",function(){$(document).on("scroll mousemove",function(){if(isRealUser)return!0;setTimeout(function(){isRealUser=!0},500)})}]);
 	</script>
@@ -148,11 +147,6 @@
 			</div>
 			<div class="group-film group-film-category" id="cat-phim-chieu-rap" data-page="2" data-slug="">
 				<h2><a title="Phim Đang Chiếu Rạp" href="https://bongngo.tv/phim-chieu-rap/">phim chiếu rạp<i class="fa fa-caret-right" aria-hidden="true"></i></a></h2>
-				<!-- <ul class="sapxep">
-					<li><a href="javascript:;" onclick="phim_chieu_rap('', 1, '');" title="Ngày cập nhật" class="active">Ngày cập nhật</a></li>
-					<li><a href="javascript:;" onclick="phim_chieu_rap('', 1, 'imdb');" title="IMDB">IMDB</a></li>
-					<li><a href="javascript:;" onclick="phim_chieu_rap('', 1, 'name');" title="Tên phim">Tên phim</a></li>
-				</ul> -->
 				<a href="https://bongngo.tv/phim-chieu-rap/" class="more"></a> <span class="line-ngang"></span>
                 <div class="phimdecu-slider">
                             <?php
@@ -180,11 +174,6 @@
 					<li><a href="javascript:;" onclick="phim_bo('trung-quoc', 1, '');" title="Phim bộ Trung Quốc">Trung Quốc</a></li>
 					<li><a href="javascript:;" onclick="phim_bo('au-my', 1, '');" title="Phim bộ Âu - Mỹ">Phim Mỹ</a></li>
 				</ul>
-				<!-- <ul class="sapxep">
-					<li><a href="javascript:;" onclick="phim_bo('', 1, '');" title="Ngày cập nhật" class="active">Ngày cập nhật</a></li>
-					<li><a href="javascript:;" onclick="phim_bo('', 1, 'imdb');" title="IMDB">IMDB</a></li>
-					<li><a href="javascript:;" onclick="phim_bo('', 1, 'name');" title="Tên phim">Tên phim</a></li>
-				</ul> -->
 				<a href="https://bongngo.tv/phim-bo/" class="more"></a> <span class="line-ngang"></span>
 				<div class="group-film-small">
                     <?php
