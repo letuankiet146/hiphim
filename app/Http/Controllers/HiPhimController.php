@@ -19,11 +19,16 @@ class HiPhimController extends Controller
         return view("index" ,compact('phims'));
     }
 
-    public function detail (){
-        return view("detail");
+    public function detail ($id){
+        $phim = Phim::find($id);
+        $theloais = $phim->theloais;
+        return view("detail",compact('phim','theloais'));
     }
 
-    public function xemphim (){
-        return view("xemphim");
+    public function xemphim ($id){
+        $phim = Phim::find($id);
+        return view("xemphim",[
+            'phim' => $phim
+        ]);
     }
 }

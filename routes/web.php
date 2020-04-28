@@ -17,8 +17,8 @@ Route::post('/create', 'MessageController@create');
 Route::get('/message/{id}', 'MessageController@view');
 
 Route::get('/', 'HiPhimController@ui');
-Route::get('/detail', 'HiPhimController@detail');
-Route::get('/xemphim', 'HiPhimController@xemphim');
+Route::get('/detail/{id}', 'HiPhimController@detail');
+Route::get('/xemphim/{id}', 'HiPhimController@xemphim');
 
 Route::get('/admin', 'HomeController@admin');
 Route::get('/live','HomeController@live');

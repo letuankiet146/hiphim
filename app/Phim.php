@@ -21,4 +21,11 @@ class Phim extends Model
     public function binhluans(){
         return $this->belongsToMany('App\BinhLuan','tag_binh_luans','phims_id','binh_luans_id');
     }
+    // ten tieng anh
+    // ,jw url
+    // ,dien vien
+    // , Phu de hay thuyet minh
+    //, thoi luong
+    //, Quoc gia
+    // Tao lai the loai fields -> multiple the loai
 }

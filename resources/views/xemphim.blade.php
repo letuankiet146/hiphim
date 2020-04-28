@@ -22,7 +22,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="https://bongngo.tv/assets/bongngo/css/v3.min.css?v=4.2" />
     <link rel="stylesheet" href="https://bongngo.tv/assets/bongngo/css/custom.css?v=1.0" />
-    <!--[if lt IE 9]> <script src="https://bongngo.tv/assets/bongngo/js/html5shiv.min.js"></script> <script src="https://bongngo.tv/assets/bongngo/js/respond.min.js"></script> <![endif]-->
     <script>
         var isRealUser=!1;setTimeout(function(){isRealUser=!0},1e4);var async=async||[];function loadScript(i){var e=btoa(i);if(document.getElementById(e)||document.write('<script id="'.concat(e,'"><\/script>')),!isRealUser)return setTimeout(function(){loadScript(i)},100),!0;console.log(i),setTimeout(function(){!function(e,t){var n,r=e.getElementById(t);if(r&&r.src)return;(n=e.createElement("script")).id=t,n.src=i,n.setAttribute("defer","defer"),n.setAttribute("async","async"),r.parentNode.replaceChild(n,r)}(document,e)},0)}async.push(["ready",function(){$(document).on("scroll mousemove",function(){if(isRealUser)return!0;setTimeout(function(){isRealUser=!0},500)})}]);
     </script>
@@ -161,11 +160,9 @@
                         <meta itemprop="director" content="<a href=" https: bongngo.tv tags choi-won-sub " rel="follow, index" title="Xem Phim CHOI Won-sub">CHOI Won-sub</a>, " />
                         <meta itemprop="name" content="Sát Thủ Vô Cùng Cực (Hitman: Agent Jun 2020)" /> </div>
                         <!-- source film -->
-                        <div itemscope itemtype="https://schema.org/VideoObject">
-                            <meta itemprop="uploadDate" content="2020-04-13T10:02:21+00:00"/>
-                            <meta itemprop="name" content="Nhung ga trai hu"/>
-                            <script src="https://cdn.jwplayer.com/players/7PSnfRvH-FZvnAKp0.js"></script>
-                        </div>
+                        <?php
+                            echo "$phim->url";
+                        ?>
 
                         <h1 class="title-film-detail-1" itemprop="name">Sát Thủ Vô Cùng Cực </h1>
                         <h2 class="title-film-detail-2">Hitman: Agent Jun (2020)</h2>

@@ -140,7 +140,7 @@
             <?php
                     foreach($phims as $phim){
                         echo "<div class='item' style='float:left'>";
-                        echo"<a class='lazy' href='$phim->url' title='$phim->tenphim'><img src='http://homestead.test/img/$phim->background' alt='' style='background-size: cover;background-repeat:no-repeat;width: inherit;height: inherit;'></a>";
+                        echo"<a class='lazy' href='http://homestead.test/detail/$phim->id' title='$phim->tenphim'><img src='http://homestead.test/img/$phim->background' alt='' style='background-size: cover;background-repeat:no-repeat;width: inherit;height: inherit;'></a>";
                         echo"</div>";
                     }
                 ?>
