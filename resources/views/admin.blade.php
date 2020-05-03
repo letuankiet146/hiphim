@@ -124,10 +124,11 @@
                 }
             </script>
             <select name="dienviens[]" id="dienvien" form="insertFilmFrom"  multiple="multiple" style="width:100%" class="select2-multi-col">
-
+                @if(isset($dienvienKeys ))
                     @foreach ($dienvienKeys as $key)
                         <option value={{$key}}>{{$dienvienArray[$key]}}</option>
                     @endforeach
+                @endif
             </select>
             </div>
 
