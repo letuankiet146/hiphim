@@ -161,7 +161,7 @@
                         <meta itemprop="name" content="Sát Thủ Vô Cùng Cực (Hitman: Agent Jun 2020)" /> </div>
                         <!-- source film -->
                         <?php
-                            echo "$phim->url";
+                            echo "$phim->jwurl";
                         ?>
 
                         <h1 class="title-film-detail-1" itemprop="name">Sát Thủ Vô Cùng Cực </h1>

@@ -13,9 +13,7 @@ class HiPhimController extends Controller
 {
     public function ui(){
         $sliderTop = [];
-        $phims = DB::table('phims')
-        ->where('danhmucs_id', '=', "4")
-        ->get();
+        $phims = Phim::all();
         return view("index" ,compact('phims'));
     }
 

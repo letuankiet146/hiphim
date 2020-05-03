@@ -119,7 +119,8 @@
       <div class="container khoi-body">
          <div class="khoi-trai">
             <div class="group-detail" itemscope itemtype="https://schema.org/Movie">
-               <a href="/xemphim/{{$phim->id}}" class="big-img-film-detail" style="background: url({{asset('img/'.$phim->background.'')}} ">
+               <a href="/xemphim/{{$phim->id}}" class="big-img-film-detail" style="background: url({{asset('img/'.$phim->background.'')}});background-repeat:no-repeat; background-size:contain; background-position:center;
+ ">
                   <div><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                </a>
                <h1 class="title-film-detail-1" itemprop="name">{{$phim->tenphim}}</h1>
