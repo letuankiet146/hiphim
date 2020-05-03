@@ -17,6 +17,9 @@ Route::post('/create', 'MessageController@create');
 Route::get('/message', 'MessageController@view');
 
 Route::get('/', 'HiPhimController@ui');
+Route::get('/lien-he-quang-cao',function(){
+    return view('lien-he-quang-cao');
+});
 Route::get('/detail/{id}', 'HiPhimController@detail');
 Route::get('/xemphim/{id}', 'HiPhimController@xemphim');
 

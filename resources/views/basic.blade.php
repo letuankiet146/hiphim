@@ -140,9 +140,7 @@
             <div class="footer1">
                 <a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="https://bongngo.tv/" style="background-image:url({{asset('img/bongngo-bot.png')}}"></a>
                 <ul>
-                    <li><a href="https://bongngo.tv/pages/ban-quyen-va-trach-nhiem-noi-dung.html">Bản quyền và trách nhiệm nội dung</a></li>
-                    <li><a href="https://bongngo.tv/pages/nguyen-tac-cong-dong.html">Nguyên tắc Cộng Đồng</a></li>
-                    <li><a href="https://bongngo.tv/pages/lien-he-quang-cao.html">Liên hệ Quảng Cáo</a></li>
+                    <li><a href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
                 </ul>
                 <div>Copyright ©2019 BongNgoTV. All Rights Reserved.</div>
             </div>
