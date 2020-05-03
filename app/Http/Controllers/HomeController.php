@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Phim;
 use App\DanhMuc;
 use App\TheLoai;
+use App\QuocGia;
+use App\DienVien;
+use App\TagDienVien;
 use App\TagTheLoai;
 use DB;
 
@@ -35,21 +38,41 @@ class HomeController extends Controller
     {
         $danhmucs = DanhMuc::all();
         $theloais = TheLoai::all();
+        $quocgias = QuocGia::all();
+        $dienviens = DienVien::all();
+
         $danhmucArray=[];
         foreach($danhmucs as $danhmuc){
             $danhmucArray[$danhmuc->id] = $danhmuc->tendanhmuc;
         }
         $danhmucKeys = array_keys($danhmucArray);
+
         $theloaiArray = [];
         foreach($theloais as $theloai){
             $theloaiArray[$theloai->id] = $theloai->tentheloai;
         }
         $theloaiKeys = array_keys($theloaiArray);
 
+        $dienvienArray = [];
+        foreach($dienviens as $dienvien){
+            $dienvienArray[$dienvien->id] = $dienvien->tendienvien;
+        }
+        $dienvienKeys = array_keys($dienvienArray);
+
+        $quocgiaArray = [];
+        foreach($quocgias as $quocgia){
+            $quocgiaArray[$quocgia->id] = $quocgia->tenquocgia;
+        }
+        $quocgiaKeys = array_keys($quocgiaArray);
+
         return view('admin',compact('danhmucArray'
                                     ,'danhmucKeys'
                                     ,'theloaiArray'
-                                    ,'theloaiKeys'));
+                                    ,'theloaiKeys'
+                                    ,'dienvienArray'
+                                    ,'dienvienKeys'
+                                    ,'quocgiaArray'
+                                    ,'quocgiaKeys'));
     }
 
     function get_string_between($string, $start, $end){
@@ -98,19 +121,33 @@ class HomeController extends Controller
 
         $phim = new Phim();
         $phim->tenphim = $request->tenphim;
+        $phim->tenphim_en = $request->tenphim_en;
         $phim->poster = $posterName;
         $phim->background = $bgName;
         $phim->mota = $request->mota;
         $phim->danhmucs_id = $request->danhmucId;
+        $phim->jwurl = $request->jwurl;
         $phim->url = $request->url;
         $phim->fb = $request->fb;
         $phim->imdb = $request->imdb;
+        $phim->thoiluong = $request->thoiluong;
+        $phim->quocgias_id = $request->quocgiaId;
         $phim->ngaytao=date("yy-m-d");
         $phim->save();
-        $tagTheLoai = new TagTheLoai();
-        $tagTheLoai->phims_id =$phim->id;
-        $tagTheLoai->the_loais_id = $request->theloaiId;
-        $tagTheLoai->save();
+        foreach($request->theloais as $theloai){
+            $tagTheLoai = new TagTheLoai();
+            $tagTheLoai->phims_id =$phim->id;
+            $tagTheLoai->the_loais_id = $theloai;
+            $tagTheLoai->save();
+        }
+
+        foreach($request->dienviens as $dienvien){
+            $tagDienVien = new TagDienVien();
+            $tagDienVien->phims_id= $phim->id;
+            $tagDienVien->dien_viens_id = $dienvien;
+            $tagDienVien->save();
+        }
+
 
         return redirect('/admin');
     }
@@ -157,5 +194,35 @@ class HomeController extends Controller
 
     public function xemphim (){
         return view("xemphim");
+    }
+
+    public function dienvien (Request $request){
+        $dienviens = DB::table("dien_viens")
+                    ->orderBy('updated_at','desc')
+                    ->get();
+
+        return view("dienvien",[
+            "dienviens" => $dienviens
+        ]);
+    }
+
+    public function themdienvien(Request $request){
+        $newDienVien = new DienVien();
+        $newDienVien->tendienvien = trim($request->tendienvien);
+        $newDienVien->save();
+        return redirect('/dienvien');
+    }
+
+    public function reloadDienvien(){
+        $dienviens = DB::table("dien_viens")
+                    ->orderBy('updated_at','desc')
+                    ->get();
+        $dienvienArray = [];
+        foreach($dienviens as $dienvien){
+            $dienvienArray[$dienvien->id] = $dienvien->tendienvien;
+        }
+        $dienvienKeys = array_keys($dienvienArray);
+        return response()->json(["dienvienKeys"=>$dienvienKeys
+                                ,"dienvienArray"=>$dienvienArray],200);
     }
 }

@@ -14,13 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/create', 'MessageController@create');
-Route::get('/message/{id}', 'MessageController@view');
+Route::get('/message', 'MessageController@view');
 
 Route::get('/', 'HiPhimController@ui');
 Route::get('/detail/{id}', 'HiPhimController@detail');
 Route::get('/xemphim/{id}', 'HiPhimController@xemphim');
 
 Route::get('/admin', 'HomeController@admin');
+
+Route::get('/dienvien','HomeController@dienvien');
+Route::post('/themdienvien','HomeController@themdienvien');
+Route::get('/reload-dien-vien','HomeController@reloadDienvien');
+
 Route::get('/live','HomeController@live');
 Route::get('/testlink', 'TestLinkController@testlink');
 Route::post("/insertFilm","HomeController@insertFilm");

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -14,29 +15,26 @@
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-
-    <title>Document</title>
+    <title>Diễn Viên</title>
 </head>
 <body>
     <div class="container">
         <div class="form-group">
-                <label for="users">Select user</label>
-                <select name="user_id" id="users" class="form-control" multiple="multiple">
-                        <option value="1">Ho Chi Minh</option>
-                        <option value="2">Ha noi</option>
-                        <option value="3">Buon me thuoc</option>
-                        <option value="4">Quang Ninh</option>
-                        <option value="5">Tay bac</option>
-                        <option value="6">Dong Nai</option>
-                </select>
+            <form  action="/themdienvien"  method="post">
+                {{csrf_field()}}
+                <input  class="form-control" type="text" name="tendienvien"  placeholder="Tên diễn viên"/>
+                <button class="btn btn-success" type="submit">Thêm vào</button>
+            </form>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            $('#users').select2({
-                placeholder: "Select a state or many…",
-            });
-        });
-    </script>
-   </body>
+    <div class="form-group">
+        @if(isset($dienviens))
+            <ul>
+                @foreach($dienviens as $dienvien)
+                <li>{{$dienvien->tendienvien}}</li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
+</body>
 </html>
