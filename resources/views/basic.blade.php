@@ -5,8 +5,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
 	<meta http-equiv="Content-Language" content="vi-VN" />
-	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{asset('img/mvc.png')}}" />
-	<link rel="apple-touch-icon" type="image/png" href="{{asset('img/mvc.png')}}" />
 	<title>@yield("title")</title>
 	<meta name="keywords" content="Phim, xem phim, xem phim online, phim online, xem phim hd, phim hd, phim bongngo,  phim khoai, bongngotv, Bỏng Ngô TV" />
 	<meta name="description" content="Xem phim hay online miễn phí, Tuyển tập những bộ phim online mới chất lượng cao, BongngoTV cập nhật liên tục các bộ phim hành động thuyết minh, hàn quốc lồng tiếng, võ thuật đang HOT nhất, xem phim chất lượng HD miễn phí" />
@@ -40,7 +38,7 @@
 
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span class="icon-bar"> </span> <span class="icon-bar"> </span> </button>
-				<a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" class="navbar-brand" href="https://bongngo.tv/"><img src="{{asset('img/logo.png')}}" alt="BongngoTV"> </a>
+				<a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" class="navbar-brand" href="/"><img src="{{asset('img/logo.png')}}" alt="HiPhim"> </a>
 			</div>
 
 			<div class="collapse navbar-collapse col-md-9" id="bs-example-navbar-collapse-1">
@@ -119,7 +117,7 @@
 
 			<ul class="nav navbar-nav navbar-right custom-search">
 				<li>
-					<form class="navbar-form" enctype="application/x-www-form-urlencoded" role="search" id="search-block" method="get" action="https://bongngo.tv/tim-kiem/">
+					<form class="navbar-form" enctype="application/x-www-form-urlencoded" role="search" id="search-block" method="get" action="#">
 						<div class="form-group search-form-group">
 							<input type="text" class="form-control" id="query_search" placeholder="Search" name="keyword" maxlength="100" autocomplete="off" />
 							<button type="submit" class="btn btn-default" id="btn-search"> <span class="glyphicon glyphicon-search"> </span> </button>
@@ -138,11 +136,11 @@
         @yield('content')
         <footer>
             <div class="footer1">
-                <a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="https://bongngo.tv/" style="background-image:url({{asset('img/bongngo-bot.png')}}"></a>
+                <a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="/" style="background-image:url({{asset('img/bongngo-bot.png')}}"></a>
                 <ul>
                     <li><a href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
                 </ul>
-                <div>Copyright ©2019 BongNgoTV. All Rights Reserved.</div>
+                <div>Copyright ©2020 HiPhim. All Rights Reserved.</div>
             </div>
         </footer>
         <script>

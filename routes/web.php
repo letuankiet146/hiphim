@@ -20,6 +20,8 @@ Route::get('/', 'HiPhimController@ui');
 Route::get('/lien-he-quang-cao',function(){
     return view('lien-he-quang-cao');
 });
+Route::get('/more/{category}/{data}','HiPhimController@more');
+
 Route::get('/detail/{id}', 'HiPhimController@detail');
 Route::get('/xemphim/{id}', 'HiPhimController@xemphim');
 

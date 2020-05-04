@@ -11,7 +11,7 @@ class Phim extends Model
       );
 
     public function danhmuc(){
-        return $this->belongsTo('App\DanhMuc','danhmucs_id');
+        return $this->belongsTo('App\DanhMuc');
     }
 
     public function quocgia(){
