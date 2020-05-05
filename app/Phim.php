@@ -29,4 +29,8 @@ class Phim extends Model
     public function binhluans(){
         return $this->belongsToMany('App\BinhLuan','tag_binh_luans','phims_id','binh_luans_id');
     }
+
+    //phim bo -> so tap
+    //viet sub + thuyet minh
+    //Phim sap chieu
 }

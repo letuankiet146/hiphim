@@ -32,7 +32,7 @@
       <ul class='page-category'>
         <!-- <li><a class='actived'>1</a></li> -->
         @for($i=1 ; $i<=count($pageLink) ; $i++)
-            @if($i == $currentPageNumber)
+            @if(isset($currentPageNumber) && $i == $currentPageNumber)
                 <li><a class="actived" title="Trang {{$i}}" href="{{$pageLink[$i]}}" data="2">{{$i+1}}</a></li>
             @else
                 <li><a class="next page-numbers" title="Trang {{$i}}" href="{{$pageLink[$i]}}" data="2">{{$i+1}}</a></li>
