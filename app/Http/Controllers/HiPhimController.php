@@ -54,14 +54,38 @@ class HiPhimController extends Controller
     public function detail ($id){
         $phim = Phim::find($id);
         $theloais = $phim->theloais;
-        return view("detail",compact('phim','theloais'));
+        $dienviens = $phim->dienviens;
+        $quocgia = $phim->quocgia;
+        $danhmuctitle = "phim-le";
+        switch ($phim->danhmucs_id) {
+            case 1:
+                $danhmuctitle = "phim-le-theo-quoc-gia";
+            break;
+            case 2:
+                $danhmuctitle = "phim-bo";
+            break;
+        }
+
+        $theloaiPhim = $phim->theloais;
+        $phimLienQuan = null;
+        foreach($theloaiPhim as $theloai){
+            $tentheloai = $theloai->tentheloai;
+            $theloais  = TheLoai::from('the_loais')
+                ->where('tentheloai', 'LIKE', "%".$tentheloai."%");
+                if($theloais->exists()){
+                    $phimLienQuan = $theloais->first()->phims;
+                }
+        }
+
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan'));
     }
 
     public function xemphim ($id){
         $phim = Phim::find($id);
-        return view("xemphim",[
-            'phim' => $phim
-        ]);
+        $theloais = $phim->theloais;
+        $dienviens = $phim->dienviens;
+        $quocgia = $phim->quocgia;
+        return view("xemphim",compact('phim','theloais','dienviens','quocgia'));
     }
 
     public function more($category, $data){
@@ -112,6 +136,22 @@ class HiPhimController extends Controller
                             ->where('quocgias_id','=',$quocgia->id)
                             ->paginate(PAGEINATE);
                     $title = "Phim Bộ ".$quocgia->tenquocgia;
+
+                }
+            break;
+            case 'phim-le-theo-quoc-gia':
+                $quocgia = QuocGia::from('quoc_gias')
+                    ->where('tenquocgia', 'LIKE', "%".urldecode($data)."%")
+                    ->first();
+
+                $danhmucs = DanhMuc::from('danh_mucs')
+                            ->where('tendanhmuc','LIKE',"Phim Lẻ");
+                if($danhmucs->exists()){
+                    $phims = $danhmucs->first()
+                            ->phims()
+                            ->where('quocgias_id','=',$quocgia->id)
+                            ->paginate(PAGEINATE);
+                    $title = "Phim Lẻ ".$quocgia->tenquocgia;
 
                 }
             break;

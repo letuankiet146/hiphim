@@ -126,9 +126,14 @@ class HomeController extends Controller
         $phim->background = $bgName;
         $phim->mota = $request->mota;
         $phim->danhmucs_id = $request->danhmucId;
+        if(isset($request->phude)){
+            $phim->phude = $request->phude;
+        }
+        if(isset($request->sapchieu)){
+            $phim->sapchieu = $request->sapchieu;
+        }
         $phim->jwurl = $request->jwurl;
         $phim->url = $request->url;
-        $phim->fb = $request->fb;
         $phim->imdb = $request->imdb;
         $phim->thoiluong = $request->thoiluong;
         $phim->quocgias_id = $request->quocgiaId;

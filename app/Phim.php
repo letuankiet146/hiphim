@@ -11,7 +11,7 @@ class Phim extends Model
       );
 
     public function danhmuc(){
-        return $this->belongsTo('App\DanhMuc');
+        return $this->belongsTo('App\DanhMuc','danhmucs_id');
     }
 
     public function quocgia(){
@@ -30,7 +30,7 @@ class Phim extends Model
         return $this->belongsToMany('App\BinhLuan','tag_binh_luans','phims_id','binh_luans_id');
     }
 
-    //phim bo -> so tap
-    //viet sub + thuyet minh
-    //Phim sap chieu
+    public function sotaps(){
+        return $this->hasMany('App\SoTap','sotaps_id');
+    }
 }

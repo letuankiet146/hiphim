@@ -23,9 +23,6 @@
             <textarea class="form-control"  name="url" form="insertFilmFrom" rows=4 cols=50  placeholder="Movie link"></textarea>
             </div>
             <div class="form-group">
-            <textarea class="form-control"  name="fb" form="insertFilmFrom" rows=4 cols=50  placeholder="FB link"></textarea>
-            </div>
-            <div class="form-group">
             <select id="danhmuc" name="danhmucId"  form="insertFilmFrom" class="form-control">
                 <?php
                 if(isset($danhmucKeys)){
@@ -36,6 +33,13 @@
                 }
                 ?>
             </select>
+            </div>
+            <div class="form-group">
+            <input class="form-check-input" type="checkbox" id="phude" name="phude" value="1">
+            <label class="form-check-label" for="phude">Phụ đề</label>
+            <br>
+            <input class="form-check-input" type="checkbox" id="sapchieu" name="sapchieu" value="1">
+            <label class="form-check-label" for="sapchieu">Sắp chiếu</label>
             </div>
             <script>
                 $("#danhmuc").select2({
