@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Phim;
 use App\DanhMuc;
 use App\TheLoai;
@@ -51,8 +52,23 @@ class HiPhimController extends Controller
         return view("index" ,compact('phims','phimChieuRap','phimChieuBo','phimChieuLe','phimTv'));
     }
 
+    private function activeLink($gofileUrl) {
+        $downloadLength = strlen("download/");
+        preg_match('/download/', $gofileUrl, $startMatch, PREG_OFFSET_CAPTURE);
+        $start = $startMatch[0][1];
+        $end = strrpos($gofileUrl,'/');
+        $gofileId = substr($gofileUrl, $start+$downloadLength,$end-($start+$downloadLength));
+
+        $serverResponse = Http::get('https://apiv2.gofile.io/getServer?c='.$gofileId.'');
+        $serverJson = $serverResponse->json();
+        $serverArr = $serverJson["data"];
+        $serverName =  $serverArr["server"];
+        $response = Http::get('https://'.$serverName.'.gofile.io/getUpload?c='.$gofileId.'');
+    }
+
     public function detail ($id){
         $phim = Phim::find($id);
+        $this->activeLink($phim->url);
         $theloais = $phim->theloais;
         $dienviens = $phim->dienviens;
         $quocgia = $phim->quocgia;
@@ -85,7 +101,28 @@ class HiPhimController extends Controller
         $theloais = $phim->theloais;
         $dienviens = $phim->dienviens;
         $quocgia = $phim->quocgia;
-        return view("xemphim",compact('phim','theloais','dienviens','quocgia'));
+        $danhmuctitle = "phim-le";
+        switch ($phim->danhmucs_id) {
+            case 1:
+                $danhmuctitle = "phim-le-theo-quoc-gia";
+            break;
+            case 2:
+                $danhmuctitle = "phim-bo";
+            break;
+        }
+
+        $theloaiPhim = $phim->theloais;
+        $phimLienQuan = null;
+        foreach($theloaiPhim as $theloai){
+            $tentheloai = $theloai->tentheloai;
+            $theloais  = TheLoai::from('the_loais')
+                ->where('tentheloai', 'LIKE', "%".$tentheloai."%");
+                if($theloais->exists()){
+                    $phimLienQuan = $theloais->first()->phims;
+                }
+        }
+
+        return view("xemphim",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan'));
     }
 
     public function more($category, $data){

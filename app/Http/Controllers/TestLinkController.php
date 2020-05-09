@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use App\Phim;
 
 class TestLinkController extends Controller
@@ -19,6 +21,19 @@ class TestLinkController extends Controller
         $len = strpos($string, $end, $ini) - $ini;
         return substr($string, $ini, $len);
     }
+    // private function activeLink($gofileUrl){
+    //     $downloadLength = strlen("download/");
+    //     preg_match('/download/', $gofileUrl, $startMatch, PREG_OFFSET_CAPTURE);
+    //     $start = $startMatch[0][1];
+    //     $end = strrpos($gofileUrl,'/');
+    //     $gofileId = substr($gofileUrl, $start+$downloadLength,$end-($start+$downloadLength));
+
+    //     $serverResponse = Http::get('https://apiv2.gofile.io/getServer?c='.$gofileId.'');
+    //     $serverJson = $serverResponse->json();
+    //     $serverArr = $serverJson["data"];
+    //     $serverName =  $serverArr["server"];
+    //     $response = Http::get('https://'.$serverName.'.gofile.io/getUpload?c='.$gofileId.'');
+    // }
 
     static function pingLink($domain){
         if(!isset($domain) || empty($domain)){
@@ -30,6 +45,7 @@ class TestLinkController extends Controller
         //   }
           $get_http_response_code = substr($headers[0], 9, 3);
           if ( strcmp($get_http_response_code ,"200")==0 || strcmp($get_http_response_code ,"302")==0) {
+
             return "GOOD";
           } else  {
             return "BAD";
