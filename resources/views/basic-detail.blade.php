@@ -81,50 +81,5 @@
       </div>
    </div>
 </div>
-<div class="khoi-phai">
-   <div class="topphim-doc">
-      <h3>top phim lẻ</h3>
-      <ul class="film">
-         <?php
-            for ($i=0 ; $i<=4 ; $i++){
-                echo "<li>";
-                echo "<a href='https://bongngo.tv/qua-nhanh-qua-nguy-hiem-9-6954.html' title='Quá Nhanh Quá Nguy Hiểm 9 - Fast & Furious Presents: Hobbs & Shaw'>";
-                echo "<div class='image lazy' style='background-image:url(http://homestead.test/img/poster_canh-sat-thanh-pho.jpg'></div>";
-                echo "<div class='info'>";
-                echo "<b class='title-film'>Quá Nhanh Quá Nguy Hiểm 9</b>";
-                echo "<p>Fast & Furious Presents: Hobbs & Shaw (2019)</p>";
-                echo "<span class='luotxem'>Lượt xem: 38,454</span> <span class='imdb'>IMDB 7.0</span>";
-                echo "</div>";
-                echo "</a>";
-                echo "</li>";
-            }
-            ?>
-      </ul>
-   </div>
-   <div id="widget_top_film_country_by_type_phim-bo" class="topphim-ngang">
-      <h3>Top phim bộ</h3>
-      <ul class="phanloai">
-         <li><a href="javascript:;" class="actived" onclick="top_view_country_by_type('my','phim-bo','week')">Mỹ</a></li>
-         <li><a href="javascript:;" onclick="top_view_country_by_type('han-quoc', 'phim-bo','week')">Hàn Quốc</a></li>
-         <li><a href="javascript:;" onclick="top_view_country_by_type('trung-quoc','phim-bo','week')">Trung Quốc</a></li>
-      </ul>
-      <ul id="blog1" class="film active">
-         <?php
-            for ($i=0 ; $i<=4 ; $i++){
-                echo "<li>";
-                echo "<a href='https://bongngo.tv/qua-nhanh-qua-nguy-hiem-9-6954.html' title='Quá Nhanh Quá Nguy Hiểm 9 - Fast & Furious Presents: Hobbs & Shaw'>";
-                echo "<div class='image lazy' style='background-image:url(http://homestead.test/img/poster_canh-sat-thanh-pho.jpg'></div>";
-                echo "<span class='imdb'>IMDb <br> <b>8.5</b></span>";
-                echo "<div class='info'>";
-                echo "<b class='title-film'>Quá Nhanh Quá Nguy Hiểm 9</b>";
-                echo "<p>Fast & Furious Presents: Hobbs & Shaw (2019)</p>";
-                echo "</div>";
-                echo "</a>";
-                echo "</li>";
-            }
-            ?>
-      </ul>
-   </div>
-</div>
 </div>
 @endsection
