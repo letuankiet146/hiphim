@@ -65,6 +65,7 @@ class HiPhimController extends Controller
         $response = Http::get('https://'.$serverName.'.gofile.io/getUpload?c='.$gofileId.'');
     }
 
+    //keep the same code with xemphim
     public function detail ($id){
         $phim = Phim::find($id);
         $theloais = $phim->theloais;
@@ -83,8 +84,14 @@ class HiPhimController extends Controller
         }
         $phimLienQuan = [];
         foreach($theloais as $theloai){
+            if(count($phimLienQuan)>=15){
+                break;
+            }
             $otherPhims = $theloai->phims;
             foreach($otherPhims as $otherPhim){
+                if(count($phimLienQuan)>=15){
+                    break;
+                }
                 if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id){
                     array_push($phimLienQuan,$otherPhim);
                 }
@@ -112,8 +119,14 @@ class HiPhimController extends Controller
         }
         $phimLienQuan = [];
         foreach($theloais as $theloai){
+            if(count($phimLienQuan)>=15){
+                break;
+            }
             $otherPhims = $theloai->phims;
-            foreach($otherPhims as $otherPhim){
+                foreach($otherPhims as $otherPhim){
+                if(count($phimLienQuan)>=15){
+                    break;
+                }
                 if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id){
                     array_push($phimLienQuan,$otherPhim);
                 }

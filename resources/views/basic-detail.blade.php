@@ -7,6 +7,7 @@
    <div class="group-detail" itemscope itemtype="https://schema.org/Movie">
       @yield("detail")
       <h1 class="title-film-detail-1" itemprop="name">{{$phim->tenphim}}</h1>
+      <h2 class="title-film-detail-2">{{$phim->tenphim_en}}({{$phim->nam}})</h2>
       <div class="imdb">IMDB {{$phim->imdb}}</div>
       <span class="rated-text">{{$phim->luotxem}} lượt xem</span> <span class="hd">HD</span>
       <br> <a href="/xemphim/{{$phim->id}}" title="{{$phim->tenphim}}" class="play-film" style="background:#77c282;color:#000000;font-weight: bold;">Xem Phim<i class="fa fa-caret-right" aria-hidden="true"></i></a>
@@ -74,7 +75,7 @@
             </div>
             <div class='title-film-small'>
             <b class='title-film'>{{$phimlq->tenphim}}</b>
-            <p>{{$phimlq->tenphim_en}}</p>
+            <p>{{$phimlq->tenphim_en}}({{$phimlq->nam}})</p>
             </div>
         </a>
         @endforeach

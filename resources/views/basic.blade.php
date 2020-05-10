@@ -38,71 +38,46 @@
 				<ul class="nav navbar-nav">
 					<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Thể Loại <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
+                            @if(count($theloais)==0)
+                                <li><i>Hiện tại đang cập nhật</i></li>
+                            @endif
+                            @foreach($theloais as $theloai )
+							    <li><a href="#">Phim {{$theloai->tentheloai}}</a></li>
+                            @endforeach
 
-							<li><a href="#">Phim Hành Động</a></li>
-							<li><a href="#">Phim Phiêu Lưu</a></li>
-							<li><a href="#">Phim Kinh Dị</a></li>
-							<li><a href="#">Phim Tình Cảm</a></li>
-							<li><a href="#">Phim Hoạt Hình</a></li>
-							<li><a href="#">Phim Hài Hước</a></li>
-							<li><a href="#">Phim Thần Thoại</a></li>
-							<li><a href="#">Phim Thể Thao</a></li>
-							<li><a href="#">Phim Kiếm Hiệp</a></li>
-							<li><a href="#">Phim Tâm Lý</a></li>
-							<li><a href="#">Gia Đình - Học Đường</a></li>
-							<li><a href="#">Phim Chiến Tranh</a></li>
-							<li><a href="#">Phim Hình Sự</a></li>
-							<li><a href="#">Phim Âm Nhạc</a></li>
-							<li><a href="#">Phim Võ Thuật</a></li>
-							<li><a href="#">Phim Viễn Tưởng</a></li>
-							<li><a href="#">Phim Dã Sử</a></li>
-							<li><a href="#">Phim TV Show</a></li>
 						</ul>
 					</li>
 					<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quốc Gia <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Phim Trung Quốc</a></li>
-							<li><a href="#">Phim Âu Mỹ</a></li>
-							<li><a href="#">Phim Hồng Kông</a></li>
-							<li><a href="#">Phim Hàn Quốc</a></li>
-							<li><a href="#">Phim Thái Lan</a></li>
-							<li><a href="#">Phim Ấn Độ</a></li>
-							<li><a href="#">Phim Nhật Bản</a></li>
-							<li><a href="#">Phim Đài Loan</a></li>
-
-							<li><a href="#">Phim Đức</a></li>
-							<li><a href="#">Phim Pháp</a></li>
-							<li><a href="#">Phim Philippin</a></li>
-							<li><a href="#">Phim Anh</a></li>
-							<li><a href="#">Phim Châu Âu</a></li>
-							<li><a href="#">Phim Châu Á</a></li>
+                            @if(count($quocgias)==0)
+                                <li><i>Hiện tại đang cập nhật</i></li>
+                            @endif
+							@foreach($quocgias as $quocgia )
+							    <li><a href="#">Phim {{$quocgia->tenquocgia}}</a></li>
+                            @endforeach
 						</ul>
 					</li>
 					<li class="dropdown"> <a title="Phim Lẻ" href="#" class="dropdown-toggle" role="button" aria-expanded="false">Phim Lẻ <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">2018</a></li>
-							<li><a href="#">2017</a></li>
-							<li><a href="#">2016</a></li>
-							<li><a href="#">2015</a></li>
-							<li><a href="#">2014</a></li>
-							<li><a href="#">2013</a></li>
-							<li><a href="#">2012</a></li>
-							<li><a href="#">2011</a></li>
+                            @if(count($nams)==0)
+                                <li><i>Hiện tại đang cập nhật</i></li>
+                            @endif
+							@foreach($nams as $nam )
+							    <li><a href="#">{{$nam}}</a></li>
+                            @endforeach
 						</ul>
 					</li>
 					<li class="dropdown"> <a title="Phim Bộ" href="#" class="dropdown-toggle" role="button" aria-expanded="false">Phim Bộ<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Phim Bộ Trung Quốc</a></li>
-							<li><a href="#">Phim Bộ Hàn Quốc</a></li>
-							<li><a href="#">Phim Bộ Thái Lan</a></li>
-							<li><a href="#">Phim Bộ Ấn Độ</a></li>
-							<li><a href="#">Phim Bộ Nhật Bản</a></li>
-							<li><a href="#">Phim Bộ Philippin</a></li>
-							<li><a href="#">Phim Bộ Đài Loan</a></li>
-							<li><a href="#">Phim Bộ Việt Nam</a></li>
+                            @if(count($phimsBoQuocGia)==0)
+                                <li><i>Hiện tại đang cập nhật</i></li>
+                            @endif
+							@foreach($phimsBoQuocGia as $phimsBoQuocGia )
+							    <li><a href="#">Phim {{$phimsBoQuocGia->tenquocgia}}</a></li>
+                            @endforeach
 						</ul>
 					</li>
-					<li> <a href="#" title="Phim Đề Cử">Phim mới</a></li>
+					<li> <a href="#" title="Phim mới">Phim mới</a></li>
 					<li> <a href="#" title="Phim Chiếu Rạp">Phim Chiếu Rạp</a></li>
 					<li> <a href="#" title="Phim TOP IMDb" class="napvip">TOP IMDb</a> </li>
 				</ul>
@@ -119,7 +94,12 @@
 					</form>
 
 
-					<button type="button" class="nut-dangnhap" onclick="javascript:window.location='#'"> Đăng nhập </button>
+                    <button type="button" class="nut-dangnhap" onclick="xinloi()"> Đăng nhập </button>
+                    <script>
+                        function xinloi(){
+                            alert("Xin lỗi! Chức năng này đang được phát triển");
+                        }
+                    </script>
 				</li>
 			</ul>
 		</div>

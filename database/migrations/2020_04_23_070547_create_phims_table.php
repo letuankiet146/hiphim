@@ -17,6 +17,7 @@ class CreatePhimsTable extends Migration
             $table->id();
             $table->string('tenphim');
             $table->string('tenphim_en');
+            $table->smallInteger('nam')->nullable();
 
             $table->boolean('phude')->default(0);
             $table->boolean('sapchieu')->default(0);

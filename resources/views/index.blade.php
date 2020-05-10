@@ -22,7 +22,7 @@
             <a title={{$phim->tenphim}} href='/detail/{{$phim->id}}' style='background-image:url(/img/{{$phim->poster}}' tabindex='0'>
                 <div class='black-gradient'>
                     <b class='title-film'>{{$phim->tenphim}}</b>
-                    <p>{{$phim->tenphim_en}}</p>
+                    <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
                     <ul class='tag-film'>
                         <li>
                             <div class='hd'>{{$phim->imdb}}</div>
@@ -58,7 +58,7 @@
             </div>
             <div class='title-film-small'>
                 <b class='title-film'>{{$phim->tenphim}}</b>
-                <p>{{$phim->tenphim_en}}</p>
+                <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
             </div>
         </a>
        @endforeach
@@ -83,7 +83,7 @@
                     </div>
                     <div class='title-film-small'>
                         <b class='title-film'>{{$phim->tenphim}}</b>
-                        <p>{{$phim->tenphim_en}}</p>
+                        <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
                     </div>
                 </a>
                 @endforeach
@@ -101,7 +101,7 @@
                     </div>
                     <div class='title-film-small'>
                         <b class='title-film'>{{$phim->tenphim}}</b>
-                        <p>{{$phim->tenphim_en}}</p>
+                        <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
                     </div>
                 </a>
                 @endforeach
