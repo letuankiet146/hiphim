@@ -13,7 +13,6 @@ use DB;
 class HiPhimController extends Controller
 {
     public function ui(){
-        $sliderTop = [];
         $phims = Phim::all();
 
         //Load phim chieu rap
@@ -68,12 +67,13 @@ class HiPhimController extends Controller
 
     public function detail ($id){
         $phim = Phim::find($id);
-        $this->activeLink($phim->url);
         $theloais = $phim->theloais;
+        $this->activeLink($phim->url);
         $dienviens = $phim->dienviens;
         $quocgia = $phim->quocgia;
+        $danhmucId = $phim->danhmucs_id;
         $danhmuctitle = "phim-le";
-        switch ($phim->danhmucs_id) {
+        switch ($danhmucId) {
             case 1:
                 $danhmuctitle = "phim-le-theo-quoc-gia";
             break;
@@ -81,16 +81,14 @@ class HiPhimController extends Controller
                 $danhmuctitle = "phim-bo";
             break;
         }
-
-        $theloaiPhim = $phim->theloais;
-        $phimLienQuan = null;
-        foreach($theloaiPhim as $theloai){
-            $tentheloai = $theloai->tentheloai;
-            $theloais  = TheLoai::from('the_loais')
-                ->where('tentheloai', 'LIKE', "%".$tentheloai."%");
-                if($theloais->exists()){
-                    $phimLienQuan = $theloais->first()->phims;
+        $phimLienQuan = [];
+        foreach($theloais as $theloai){
+            $otherPhims = $theloai->phims;
+            foreach($otherPhims as $otherPhim){
+                if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id){
+                    array_push($phimLienQuan,$otherPhim);
                 }
+            }
         }
 
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan'));
@@ -99,10 +97,12 @@ class HiPhimController extends Controller
     public function xemphim ($id){
         $phim = Phim::find($id);
         $theloais = $phim->theloais;
+        $this->activeLink($phim->url);
         $dienviens = $phim->dienviens;
         $quocgia = $phim->quocgia;
+        $danhmucId = $phim->danhmucs_id;
         $danhmuctitle = "phim-le";
-        switch ($phim->danhmucs_id) {
+        switch ($danhmucId) {
             case 1:
                 $danhmuctitle = "phim-le-theo-quoc-gia";
             break;
@@ -110,16 +110,14 @@ class HiPhimController extends Controller
                 $danhmuctitle = "phim-bo";
             break;
         }
-
-        $theloaiPhim = $phim->theloais;
-        $phimLienQuan = null;
-        foreach($theloaiPhim as $theloai){
-            $tentheloai = $theloai->tentheloai;
-            $theloais  = TheLoai::from('the_loais')
-                ->where('tentheloai', 'LIKE', "%".$tentheloai."%");
-                if($theloais->exists()){
-                    $phimLienQuan = $theloais->first()->phims;
+        $phimLienQuan = [];
+        foreach($theloais as $theloai){
+            $otherPhims = $theloai->phims;
+            foreach($otherPhims as $otherPhim){
+                if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id){
+                    array_push($phimLienQuan,$otherPhim);
                 }
+            }
         }
 
         return view("xemphim",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan'));

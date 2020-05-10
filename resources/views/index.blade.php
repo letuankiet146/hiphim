@@ -107,27 +107,6 @@
                 @endforeach
       </div>
    </div>
-   <div class="group-film group-film-category" id="cat-phim-sap-chieu" data-page="1" data-slug="">
-      <h2><a title="Phim Đang Chiếu Rạp" href="/">Phim Sắp Chiếu<i class="fa fa-caret-right" aria-hidden="true"></i></a></h2>
-      <div class="phimdecu-slider">
-            @foreach($phims as $phim)
-            <div class='item'>
-            <a title={{$phim->tenphim}} href='/detail/{{$phim->id}}' style='background-image:url(/img/{{$phim->poster}}' tabindex='0'>
-                <div class='black-gradient'>
-                    <b class='title-film'>{{$phim->tenphim}}</b>
-                    <p>{{$phim->tenphim_en}}</p>
-                    <ul class='tag-film'>
-                        <li>
-                        <div class='hd'>N/A</div>
-                        </li>
-                    </ul>
-                </div>
-                <div class='play'></div>
-            </a>
-            </div>
-            @endforeach
-
-   </div>
    <div class="quangcao">
    </div>
 </div>
