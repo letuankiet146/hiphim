@@ -51,25 +51,17 @@ class HiPhimController extends Controller
         return view("index" ,compact('phims','phimChieuRap','phimChieuBo','phimChieuLe','phimTv'));
     }
 
-    private function activeLink($gofileUrl) {
-        $downloadLength = strlen("download/");
-        preg_match('/download/', $gofileUrl, $startMatch, PREG_OFFSET_CAPTURE);
-        $start = $startMatch[0][1];
-        $end = strrpos($gofileUrl,'/');
-        $gofileId = substr($gofileUrl, $start+$downloadLength,$end-($start+$downloadLength));
-
-        $serverResponse = Http::get('https://apiv2.gofile.io/getServer?c='.$gofileId.'');
+    private function getPublicUrl($oriUrl) {
+        $serverResponse = Http::get($oriUrl);
         $serverJson = $serverResponse->json();
-        $serverArr = $serverJson["data"];
-        $serverName =  $serverArr["server"];
-        $response = Http::get('https://'.$serverName.'.gofile.io/getUpload?c='.$gofileId.'');
+        $downloadUrl = $serverJson["@content.downloadUrl"];
+        return $downloadUrl;
     }
 
-    //keep the same code with xemphim
     public function detail ($id){
+
         $phim = Phim::find($id);
         $theloais = $phim->theloais;
-        $this->activeLink($phim->url);
         $dienviens = $phim->dienviens;
         $quocgia = $phim->quocgia;
         $danhmucId = $phim->danhmucs_id;
@@ -97,43 +89,9 @@ class HiPhimController extends Controller
                 }
             }
         }
-
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan'));
-    }
-
-    public function xemphim ($id){
-        $phim = Phim::find($id);
-        $theloais = $phim->theloais;
-        $this->activeLink($phim->url);
-        $dienviens = $phim->dienviens;
-        $quocgia = $phim->quocgia;
-        $danhmucId = $phim->danhmucs_id;
-        $danhmuctitle = "phim-le";
-        switch ($danhmucId) {
-            case 1:
-                $danhmuctitle = "phim-le-theo-quoc-gia";
-            break;
-            case 2:
-                $danhmuctitle = "phim-bo";
-            break;
-        }
-        $phimLienQuan = [];
-        foreach($theloais as $theloai){
-            if(count($phimLienQuan)>=15){
-                break;
-            }
-            $otherPhims = $theloai->phims;
-                foreach($otherPhims as $otherPhim){
-                if(count($phimLienQuan)>=15){
-                    break;
-                }
-                if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id){
-                    array_push($phimLienQuan,$otherPhim);
-                }
-            }
-        }
-
-        return view("xemphim",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan'));
+        $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
+        $publicUrl = $this->getPublicUrl($oriUrl);
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl'));
     }
 
     public function more($category, $data){
