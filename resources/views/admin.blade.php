@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','Homepage')
+@section('title','Thêm phim')
 
 @section('content')
 <div class="container">
@@ -8,25 +8,33 @@
         <form  action="/insertFilm" id="insertFilmFrom" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group">
-            <input class="form-control" type="text" name="tenphim"  placeholder="Tên Phim"/>
+            <input class="form-control" type="text" name="tenphim"  placeholder="Tên Phim" required/>
             </div>
             <div class="form-group">
-            <input class="form-control" type="text" name="tenphim_en"  placeholder="Tên Phim ENG"/>
+            <input class="form-control" type="text" name="tenphim_en"  placeholder="Tên Phim ENG" required/>
             </div>
             <div class="form-group">
             <input class="form-control" type="number" step="1" min="0" name="nam"  placeholder="Năm phát hành"/>
             </div>
             <div class="form-group">
-            <textarea class="form-control"  name="mota" form="insertFilmFrom" rows=4 cols=50  placeholder="Mô tả"></textarea>
+            <textarea class="form-control"  name="mota" form="insertFilmFrom" rows=4 cols=50  placeholder="Mô tả" required></textarea>
             </div>
             <div class="form-group">
-            <textarea class="form-control"  name="jwurl" form="insertFilmFrom" rows=4 cols=50  placeholder="JW Player link"></textarea>
+            <textarea class="form-control"  name="url" form="insertFilmFrom" rows=4 cols=50  placeholder="CODE ID (e.g: A5731D3943FE39D3!....)" required></textarea>
             </div>
             <div class="form-group">
-            <textarea class="form-control"  name="url" form="insertFilmFrom" rows=4 cols=50  placeholder="Movie link"></textarea>
-            </div>
-            <div class="form-group">
-            <select id="danhmuc" name="danhmucId"  form="insertFilmFrom" class="form-control">
+            <script>
+                function displayBoPhim(){
+                    var x = document.getElementById("tap-1");
+                    if(document.getElementById('danhmuc').value == "2")
+                    {
+                        x.style.display = "block";
+                    }else {
+                        x.style.display = "none";
+                    }
+                }
+            </script>
+            <select id="danhmuc" name="danhmucId" onchange="displayBoPhim()" form="insertFilmFrom" class="form-control">
                 <?php
                 if(isset($danhmucKeys)){
                     foreach ($danhmucKeys as $key) {
@@ -35,14 +43,18 @@
                     }
                 }
                 ?>
+
             </select>
             </div>
+            <div class="form-group" id="tap-1" style="display:none">
+            <label for="danhmuc" class="btn btn-success disabled">Tập 1</label>
+            <a href="/themphimbo" class="btn btn-success">Tập khác</a>
+            </div>
+
+
             <div class="form-group">
             <input class="form-check-input" type="checkbox" id="phude" name="phude" value="1">
             <label class="form-check-label" for="phude">Phụ đề</label>
-            <br>
-            <input class="form-check-input" type="checkbox" id="sapchieu" name="sapchieu" value="1">
-            <label class="form-check-label" for="sapchieu">Sắp chiếu</label>
             </div>
             <script>
                 $("#danhmuc").select2({
@@ -51,7 +63,7 @@
             </script>
 
             <div class="form-group">
-            <select id="quocgia" name="quocgiaId"  form="insertFilmFrom" class="form-control">
+            <select id="quocgia" name="quocgiaId"  form="insertFilmFrom" class="form-control" required>
                     @if(isset($quocgiaKeys))
                         @foreach ($quocgiaKeys as $key)
                             <option value={{$key}}>{{$quocgiaArray[$key]}}</option>
@@ -66,7 +78,7 @@
             </script>
 
             <div class="form-group">
-            <select name="theloais[]" id="theloai" form="insertFilmFrom"  multiple="multiple" style="width:100%" class="select2-multi-col">
+            <select name="theloais[]" id="theloai" form="insertFilmFrom"  multiple="multiple" style="width:100%" class="select2-multi-col" required>
                     @if(isset($theloaiKeys))
                         @foreach ($theloaiKeys as $key)
                             <option value={{$key}}>{{$theloaiArray[$key]}}</option>
@@ -81,8 +93,8 @@
             </script>
 
             <div class="form-group">
-            <input class="form-control" type="number" step="0.01" name="imdb"  placeholder="IMDB" min="0" max="9.9"/>
-            <input class="form-control" type="number" name="thoiluong"  placeholder="Thời lượng" min="0" />
+            <input class="form-control" type="number" step="0.01" name="imdb"  placeholder="IMDB" min="0" max="9.9" required/>
+            <input class="form-control" type="number" name="thoiluong"  placeholder="Thời lượng" min="0" required/>
             </div>
 
             <div class="form-group">
@@ -130,7 +142,7 @@
                     });
                 }
             </script>
-            <select name="dienviens[]" id="dienvien" form="insertFilmFrom"  multiple="multiple" style="width:100%" class="select2-multi-col">
+            <select name="dienviens[]" id="dienvien" form="insertFilmFrom"  multiple="multiple" style="width:100%" class="select2-multi-col" required>
                 @if(isset($dienvienKeys ))
                     @foreach ($dienvienKeys as $key)
                         <option value={{$key}}>{{$dienvienArray[$key]}}</option>
@@ -147,11 +159,11 @@
 
             <div class="form-group">
             <label for="poster">Poster img:</label>
-            <input class="custom-file-input" id="poster" type="file" name="poster" />
+            <input class="custom-file-input" id="poster" type="file" name="poster" required/>
             </div>
             <div class="form-group">
             <label for="bg">Background img:</label>
-            <input class="custom-file-input" id="bg" type="file" name="bg" />
+            <input class="custom-file-input" id="bg" type="file" name="bg" required/>
             </div>
             <button class="btn btn-danger"  type="submit">Save</button>
         </form>

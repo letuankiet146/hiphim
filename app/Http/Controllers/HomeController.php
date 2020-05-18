@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Phim;
+use App\SoTap;
 use App\DanhMuc;
 use App\TheLoai;
 use App\QuocGia;
@@ -34,12 +35,27 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function themphimbo(){
+        define('DANH_MUC_PHIM_BO',2);
+        $phimsBo = Phim::from('phims')
+        ->where('danhmucs_id','=',DANH_MUC_PHIM_BO)->get();
+        $phimArray = [];
+        foreach($phimsBo as $phim){
+            $phimArray[$phim->id] = $phim->tenphim;
+        }
+        $phimKeys = array_keys($phimArray);
+        return view('themphimbo',compact('phimArray'
+                                        ,'phimKeys'));
+    }
+
     public function admin()
     {
         $danhmucs = DanhMuc::all();
         $theloais = TheLoai::all();
         $quocgias = QuocGia::all();
         $dienviens = DienVien::all();
+        $phimsBo = Phim::from('phims')
+        ->where('danhmucs_id','=',2)->get();
 
         $danhmucArray=[];
         foreach($danhmucs as $danhmuc){
@@ -65,6 +81,12 @@ class HomeController extends Controller
         }
         $quocgiaKeys = array_keys($quocgiaArray);
 
+        $phimArray = [];
+        foreach($phimsBo as $phim){
+            $phimArray[$phim->id] = $phim->tenphim;
+        }
+        $phimKeys = array_keys($phimArray);
+
         return view('admin',compact('danhmucArray'
                                     ,'danhmucKeys'
                                     ,'theloaiArray'
@@ -72,7 +94,9 @@ class HomeController extends Controller
                                     ,'dienvienArray'
                                     ,'dienvienKeys'
                                     ,'quocgiaArray'
-                                    ,'quocgiaKeys'));
+                                    ,'quocgiaKeys'
+                                    ,'phimArray'
+                                    ,'phimKeys'));
     }
 
     function get_string_between($string, $start, $end){
@@ -109,6 +133,15 @@ class HomeController extends Controller
         return view("live",compact('linkarray','keys'));
     }
 
+    public function insertphimbo(Request $request){
+        $sotap = new SoTap();
+        $sotap->phims_id = $request->phimbo;
+        $sotap->tap = $request->tap;
+        $sotap->url = $request->url;
+        $sotap->save();
+        return redirect('/themphimbo');
+    }
+
     public function insertFilm(Request $request){
 
         $poster = $request->file('poster');
@@ -132,13 +165,22 @@ class HomeController extends Controller
         if(isset($request->sapchieu)){
             $phim->sapchieu = $request->sapchieu;
         }
-        $phim->jwurl = $request->jwurl;
         $phim->url = $request->url;
         $phim->imdb = $request->imdb;
         $phim->thoiluong = $request->thoiluong;
         $phim->quocgias_id = $request->quocgiaId;
         $phim->ngaytao=date("yy-m-d");
         $phim->save();
+
+        //tao phim bo
+        if( $request->danhmucId == 2){
+            $sotap = new SoTap();
+            $sotap->phims_id = $phim->id;
+            $sotap->tap = 1;
+            $sotap->url = $phim->url;
+            $sotap->save();
+        }
+
         foreach($request->theloais as $theloai){
             $tagTheLoai = new TagTheLoai();
             $tagTheLoai->phims_id =$phim->id;

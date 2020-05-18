@@ -14,13 +14,11 @@ class CreateSoTapsTable extends Migration
     public function up()
     {
         Schema::create('so_taps', function (Blueprint $table) {
-            $table->id();
+            $table->integer('phims_id');
             $table->integer('tap');
-            $table->longText('jwurl',2083);
             $table->longText('url',2083);
-            $table->smallInteger('thoiluong')->nullable();
-            $table->date('ngaytao');
             $table->timestamps();
+            $table->primary(['phims_id','tap']);
         });
     }
 
