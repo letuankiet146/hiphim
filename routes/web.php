@@ -24,6 +24,7 @@ Route::get('/more/{category}/{data}','HiPhimController@more');
 Route::get('/phim-le/{data}','HiPhimController@phimLe');
 
 Route::get('/detail/{id}', 'HiPhimController@detail');
+Route::get('/detail/{id}/tap-{tap}', 'HiPhimController@detailTap');
 
 Route::get('/admin', 'HomeController@admin');
 Route::get('/themphimbo', 'HomeController@themphimbo');

@@ -11,6 +11,24 @@
       <div class="imdb">IMDB {{$phim->imdb}}</div>
       <span class="rated-text">{{$phim->luotxem}} lượt xem</span> <span class="hd">HD</span>
       <p class="custom-error" style="display:none;"></p>
+        @if($phim->danhmucs_id==2)
+        <div class="episode-film">
+            <div id="episode-all" class="episode-main">
+                <div class="episode-server-name">
+                @if($phim->phude == 1)
+                    Phụ đề
+                @else
+                    Thuyết minh
+                @endif
+                </div>
+                <ul>
+                    @foreach($sotaps as $tap)
+                    <li data-episode-id="BLthEcl"><a class="btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        @endif
       <ul class="infomation-film">
          <li class="title">Thông tin:</li>
          <li>Đang phát :

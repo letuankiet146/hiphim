@@ -66,12 +66,14 @@ class HiPhimController extends Controller
         $quocgia = $phim->quocgia;
         $danhmucId = $phim->danhmucs_id;
         $danhmuctitle = "phim-le";
+        $sotaps = null;
         switch ($danhmucId) {
             case 1:
                 $danhmuctitle = "phim-le-theo-quoc-gia";
             break;
             case 2:
                 $danhmuctitle = "phim-bo";
+                $sotaps = $phim->sotaps;
             break;
         }
         $phimLienQuan = [];
@@ -91,7 +93,51 @@ class HiPhimController extends Controller
         }
         $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
         $publicUrl = $this->getPublicUrl($oriUrl);
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl'));
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps'));
+    }
+
+    public function detailTap ($id, $tap){
+
+        $phim = Phim::find($id);
+        $theloais = $phim->theloais;
+        $dienviens = $phim->dienviens;
+        $quocgia = $phim->quocgia;
+        $danhmucId = $phim->danhmucs_id;
+        $danhmuctitle = "phim-le";
+        $sotaps = null;
+        switch ($danhmucId) {
+            case 1:
+                $danhmuctitle = "phim-le-theo-quoc-gia";
+            break;
+            case 2:
+                $danhmuctitle = "phim-bo";
+                $sotaps = $phim->sotaps;
+            break;
+        }
+        $phimLienQuan = [];
+        foreach($theloais as $theloai){
+            if(count($phimLienQuan)>=15){
+                break;
+            }
+            $otherPhims = $theloai->phims;
+            foreach($otherPhims as $otherPhim){
+                if(count($phimLienQuan)>=15){
+                    break;
+                }
+                if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id){
+                    array_push($phimLienQuan,$otherPhim);
+                }
+            }
+        }
+        $publicUrl =  null;
+        foreach($sotaps as $sotap){
+            $tapdangxem = $sotap["tap"];
+            if($tap == $tapdangxem){
+                $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$sotap->url."?select=id%2C%40content.downloadUrl";
+                $publicUrl = $this->getPublicUrl($oriUrl);
+            }
+        }
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps'));
     }
 
     public function more($category, $data){
