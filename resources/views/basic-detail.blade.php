@@ -23,7 +23,11 @@
                 </div>
                 <ul>
                     @foreach($sotaps as $tap)
-                    <li data-episode-id="BLthEcl"><a class="btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
+                        @if((!isset($taphientai) && $tap->tap == 1) || (isset($taphientai) && $tap->tap == $taphientai))
+                            <li data-episode-id="BLthEcl"><a  class="actived btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
+                        @else
+                            <li data-episode-id="BLthEcl"><a  class="btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
+                        @endif
                     @endforeach
                 </ul>
             </div>

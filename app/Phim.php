@@ -33,6 +33,4 @@ class Phim extends Model
     public function sotaps(){
         return $this->hasMany('App\SoTap','phims_id');
     }
-
-    // Highlight tap phim
 }

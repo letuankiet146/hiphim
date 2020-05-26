@@ -137,7 +137,8 @@ class HiPhimController extends Controller
                 $publicUrl = $this->getPublicUrl($oriUrl);
             }
         }
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps'));
+        $taphientai = $tap;
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
     }
 
     public function more($category, $data){
