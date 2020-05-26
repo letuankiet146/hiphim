@@ -172,7 +172,11 @@ class HiPhimController extends Controller
             break;
             case 'top-imdb':
                 $phims = Phim::from('phims')
-                ->where('imdb','>',$data)
+                ->orWhere(function($query) {
+                    $query->where('danhmucs_id', '1')
+                        ->orwhere('danhmucs_id', '3');
+                })
+                ->where('imdb','>','7')
                 ->paginate(PAGEINATE);
                 $title = "Top IMDB";
             break;
@@ -208,8 +212,20 @@ class HiPhimController extends Controller
 
                 }
             break;
+            case 'phim-moi':
+                $phims = Phim::from('phims')
+                ->where('nam','=',$data)
+                ->paginate(PAGEINATE);
+            break;
             case 'phim-le':
                 if(is_numeric($data)){
+                    $phims = Phim::from('phims')
+                                ->orWhere(function($query) {
+                                    $query->where('danhmucs_id', '1')
+                                        ->orwhere('danhmucs_id', '3');
+                                })
+                                ->where('nam','=',$data)
+                                ->paginate(PAGEINATE);
 
                 }else{
                     $danhmuc = DanhMuc::from('danh_mucs')

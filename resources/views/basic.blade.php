@@ -43,7 +43,7 @@
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
                             @foreach($theloais as $theloai )
-							    <li><a href="#">Phim {{$theloai->tentheloai}}</a></li>
+							    <li><a href="/more/the-loai/{{$theloai->tentheloai}}">Phim {{$theloai->tentheloai}}</a></li>
                             @endforeach
 
 						</ul>
@@ -54,7 +54,7 @@
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
 							@foreach($quocgias as $quocgia )
-							    <li><a href="#">Phim {{$quocgia->tenquocgia}}</a></li>
+							    <li><a href="/more/quoc-gia/{{$quocgia->tenquocgia}}">Phim {{$quocgia->tenquocgia}}</a></li>
                             @endforeach
 						</ul>
 					</li>
@@ -64,7 +64,7 @@
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
 							@foreach($nams as $nam )
-							    <li><a href="#">{{$nam}}</a></li>
+							    <li><a href="/more/phim-le/{{$nam}}">{{$nam}}</a></li>
                             @endforeach
 						</ul>
 					</li>
@@ -74,13 +74,13 @@
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
 							@foreach($phimsBoQuocGia as $phimsBoQuocGia )
-							    <li><a href="#">Phim {{$phimsBoQuocGia->tenquocgia}}</a></li>
+							    <li><a href="/more/phim-bo/{{$phimsBoQuocGia->tenquocgia}}">Phim {{$phimsBoQuocGia->tenquocgia}}</a></li>
                             @endforeach
 						</ul>
 					</li>
-					<li> <a href="#" title="Phim mới">Phim mới</a></li>
-					<li> <a href="#" title="Phim Chiếu Rạp">Phim Chiếu Rạp</a></li>
-					<li> <a href="#" title="Phim TOP IMDb" class="napvip">TOP IMDb</a> </li>
+					<li> <a href="/more/phim-moi/{{date('Y')}}" title="Phim mới">Phim mới</a></li>
+					<li> <a href="/more/danh-muc/Phim Chiếu Rạp" title="Phim Chiếu Rạp">Phim Chiếu Rạp</a></li>
+					<li> <a href="/more/top-imdb/top" title="Phim TOP IMDb" class="napvip">TOP IMDb</a> </li>
 				</ul>
 			</div>
 
