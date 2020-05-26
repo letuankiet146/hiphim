@@ -86,14 +86,20 @@
 
 			<ul class="nav navbar-nav navbar-right custom-search">
 				<li>
-					<form class="navbar-form" enctype="application/x-www-form-urlencoded" role="search" id="search-block" method="get" action="#">
+					<form class="navbar-form" enctype="application/x-www-form-urlencoded" role="search" id="search-block" method="get" onsubmit="makeUrl()">
 						<div class="form-group search-form-group">
-							<input type="text" class="form-control" id="query_search" placeholder="Search" name="keyword" maxlength="100" autocomplete="off" />
+							<input type="text" class="form-control" id="query_search" placeholder="Tìm kiếm có dấu" maxlength="100" autocomplete="off" />
 							<button type="submit" class="btn btn-default" id="btn-search"> <span class="glyphicon glyphicon-search"> </span> </button>
 						</div>
 						<div class="search-hint" id="search-hint"> </div>
 					</form>
-
+                    <script>
+                    function makeUrl(){
+                        var action_src = "/more/tim-tat-ca/" + document.getElementById("query_search").value;
+                        var your_form = document.getElementById('search-block');
+                        your_form.action = action_src ;
+                    }
+                    </script>
 
                     <button type="button" class="nut-dangnhap" onclick="xinloi()"> Đăng nhập </button>
                     <script>

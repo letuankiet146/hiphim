@@ -146,6 +146,13 @@ class HiPhimController extends Controller
         $phims=null;
         $title = "Hi Phim";
         switch ($category) {
+            case 'tim-tat-ca':
+                $phims =  Phim::from('phims')
+                            ->where('tenphim','LIKE',"%".urldecode($data)."%")
+                            ->orwhere('tenphim_en','LIKE',"%".urldecode($data)."%")
+                            ->paginate(PAGEINATE);
+                $title = "Kết quả tìm kiếm";
+            break;
             case 'the-loai':
                 $theloais  = TheLoai::from('the_loais')
                 ->where('tentheloai', 'LIKE', "%".urldecode($data)."%");
@@ -216,6 +223,7 @@ class HiPhimController extends Controller
                 $phims = Phim::from('phims')
                 ->where('nam','=',$data)
                 ->paginate(PAGEINATE);
+                $title = "Phim mới";
             break;
             case 'phim-le':
                 if(is_numeric($data)){
@@ -226,7 +234,7 @@ class HiPhimController extends Controller
                                 })
                                 ->where('nam','=',$data)
                                 ->paginate(PAGEINATE);
-
+                    $title = "Phim lẻ năm ".$data;
                 }else{
                     $danhmuc = DanhMuc::from('danh_mucs')
                                 ->where('tendanhmuc','LIKE',"Phim Lẻ")
