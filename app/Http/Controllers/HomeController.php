@@ -160,6 +160,7 @@ class HomeController extends Controller
         $phim->background = $bgName;
         $phim->mota = $request->mota;
         $phim->danhmucs_id = $request->danhmucId;
+        $phim->tongsotap = $request->tongsotap;
         if(isset($request->phude)){
             $phim->phude = $request->phude;
         }

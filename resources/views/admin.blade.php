@@ -47,6 +47,7 @@
             </select>
             </div>
             <div class="form-group" id="tap-1" style="display:none">
+            <input class="form-control" type="number" step="1" name="tongsotap"  placeholder="Tổng số tập" min="1"/>
             <label for="danhmuc" class="btn btn-success disabled">Tập 1</label>
             <a href="/themphimbo" class="btn btn-success">Tập khác</a>
             </div>
@@ -93,7 +94,7 @@
             </script>
 
             <div class="form-group">
-            <input class="form-control" type="number" step="0.01" name="imdb"  placeholder="IMDB" min="0" max="9.9" required/>
+            <input class="form-control" type="number" step="0.01" name="imdb"  placeholder="IMDB" min="0" max="9.9"/>
             <input class="form-control" type="number" name="thoiluong"  placeholder="Thời lượng" min="0" required/>
             </div>
 
