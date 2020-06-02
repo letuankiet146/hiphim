@@ -8,6 +8,7 @@ use App\Phim;
 use App\DanhMuc;
 use App\TheLoai;
 use App\QuocGia;
+use App\UserIp;
 use DB;
 
 class HiPhimController extends Controller
@@ -58,6 +59,29 @@ class HiPhimController extends Controller
         return $downloadUrl;
     }
 
+    private function allowCount($phimId){
+        $clientIP = \Request::ip();
+        $userIp  = UserIp::from('user_ips')
+        ->where('phims_id','=' ,$phimId)
+        ->where('user_ip','=' ,$clientIP)
+        ->first();
+        if($userIp != null){
+            if($userIp->ngayhethan >= date("yy-m-d")){
+                return false;
+            }
+            UserIp::where('phims_id','=' ,$phimId)
+            ->where('user_ip','=' ,$clientIP)
+            ->update(['ngayhethan' => date("yy-m-d")]);
+        } else {
+            $newUserIp = new UserIp();
+            $newUserIp->phims_id = $phimId;
+            $newUserIp->user_ip = $clientIP;
+            $newUserIp->ngayhethan = date("yy-m-d");
+            $newUserIp->save();
+        }
+        return true;
+    }
+
     public function detail ($id){
 
         $phim = Phim::find($id);
@@ -93,6 +117,10 @@ class HiPhimController extends Controller
         }
         $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
         $publicUrl = $this->getPublicUrl($oriUrl);
+        if($this->allowCount($id)){
+            $phim->luotxem = $phim->luotxem+1;
+            $phim->update();
+        }
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps'));
     }
 

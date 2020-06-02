@@ -33,5 +33,5 @@ class Phim extends Model
     public function sotaps(){
         return $this->hasMany('App\SoTap','phims_id');
     }
-    //bao cao link loi, luot xem,  phimbo.imdb -> total esp, limit slide homepage
+    //bao cao link loi,
 }
