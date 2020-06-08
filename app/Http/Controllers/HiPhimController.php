@@ -101,6 +101,7 @@ class HiPhimController extends Controller
             break;
         }
         $phimLienQuan = [];
+        $phimIds = [];
         foreach($theloais as $theloai){
             if(count($phimLienQuan)>=15){
                 break;
@@ -110,8 +111,9 @@ class HiPhimController extends Controller
                 if(count($phimLienQuan)>=15){
                     break;
                 }
-                if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id){
-                    array_push($phimLienQuan,$otherPhim);
+                if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id && !in_array($otherPhim->id, $phimIds) ){
+                    array_push($phimIds, $otherPhim->id);
+                    array_push($phimLienQuan, $otherPhim);
                 }
             }
         }
