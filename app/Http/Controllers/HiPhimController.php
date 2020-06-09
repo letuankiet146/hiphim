@@ -9,6 +9,7 @@ use App\DanhMuc;
 use App\TheLoai;
 use App\QuocGia;
 use App\UserIp;
+use App\DienVien;
 use DB;
 
 class HiPhimController extends Controller
@@ -176,6 +177,14 @@ class HiPhimController extends Controller
         $phims=null;
         $title = "Hi Phim";
         switch ($category) {
+            case 'dien-vien':
+                $dienvens = DienVien::from('dien_viens')
+                ->where('tendienvien', 'LIKE', "%".urldecode($data)."%");
+                if($dienvens->exists()){
+                    $title = $dienvens->first()->tentheloai;
+                    $phims = $dienvens->first()->phims()->paginate(PAGEINATE);
+                }
+            break;
             case 'tim-tat-ca':
                 $phims =  Phim::from('phims')
                             ->where('tenphim','LIKE',"%".urldecode($data)."%")
@@ -270,15 +279,25 @@ class HiPhimController extends Controller
                                 ->where('tendanhmuc','LIKE',"Phim Lẻ")
                                 ->first();
 
+                    $quocgia = QuocGia::from('quoc_gias')
+                                ->where('tenquocgia', 'LIKE', "%".urldecode($data)."%")
+                                ->first();
+
                     $theloai = TheLoai::from('the_loais')
                     ->where('tentheloai', 'LIKE', "%".urldecode($data)."%")
                     ->first();
 
-                    if($danhmuc->exists() && $theloai->exists()){
+                    if(isset($danhmuc) && isset($theloai) && $danhmuc->exists() && $theloai->exists()){
                         $phims = $theloai->phims()
                         ->where('danhmucs_id','=',$danhmuc->id)
                         ->paginate(PAGEINATE);
                         $title = "Phim ".$theloai->tentheloai;
+
+                    }else if(isset($danhmuc) && isset($quocgia) && $danhmuc->exists() && $quocgia->exists()){
+                        $phims = $quocgia->phims()
+                        ->where('danhmucs_id','=',$danhmuc->id)
+                        ->paginate(PAGEINATE);
+                        $title = "Phim ".$quocgia->tenquocgia;
                     }
                 }
             break;
@@ -298,7 +317,11 @@ class HiPhimController extends Controller
                 }
             break;
         }
-        $hasPage = $phims->hasPages();
+        if(method_exists($phims,"hasPages") ){
+            $hasPage = $phims->hasPages();
+        }else{
+            $hasPage = false;
+        }
         $pageLink=null;
         $currentPageNumber=null;
         if($hasPage){

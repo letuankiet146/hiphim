@@ -54,7 +54,7 @@
          <li>Thời lượng: <span>{{$phim->thoiluong}} phút</span></li>
          <li>Diễn viên:
              @foreach($dienviens as $dienvien)
-                <a href="#">{{$dienvien->tendienvien}}</a><span>,</span>
+                <a href="/more/dien-vien/{{$dienvien->tendienvien}}">{{$dienvien->tendienvien}}</a><span>,</span>
              @endforeach
          </li>
          <li>Thể loại:
