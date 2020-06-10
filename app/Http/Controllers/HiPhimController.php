@@ -124,7 +124,8 @@ class HiPhimController extends Controller
             $phim->luotxem = $phim->luotxem+1;
             $phim->update();
         }
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps'));
+        $taphientai = 1;
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
     }
 
     public function detailTap ($id, $tap){

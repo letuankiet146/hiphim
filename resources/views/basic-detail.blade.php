@@ -1,6 +1,12 @@
 @extends('basic')
 
-@section('title',$phim->tenphim)
+@if($phim->danhmucs_id !== 2)
+    @section('title',$phim->tenphim)
+@elseif( !isset($taphientai) )
+    @section('title','[Tập 1]'.$phim->tenphim)
+@else
+    @section('title','[Tập '.$taphientai.'] '.$phim->tenphim)
+@endif
 
 @section('content')
 <div class="khoi-trai">
