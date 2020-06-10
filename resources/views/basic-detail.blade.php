@@ -30,9 +30,9 @@
                 <ul>
                     @foreach($sotaps as $tap)
                         @if((!isset($taphientai) && $tap->tap == 1) || (isset($taphientai) && $tap->tap == $taphientai))
-                            <li data-episode-id="BLthEcl"><a  class="actived btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
+                            <li data-episode-id="BLthEcl"><a  hreflang="vi" class="actived btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
                         @else
-                            <li data-episode-id="BLthEcl"><a  class="btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
+                            <li data-episode-id="BLthEcl"><a  hreflang="vi" class="btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a> </li>
                         @endif
                     @endforeach
                 </ul>
@@ -61,7 +61,7 @@
          <li>Diễn viên:
              @foreach($dienviens as $dienvien)
                 @if(strcmp($dienvien->tendienvien,"N/A") != 0)
-                    <a href="/more/dien-vien/{{$dienvien->tendienvien}}">{{$dienvien->tendienvien}}</a><span>,</span>
+                    <a hreflang="vi" href="/more/dien-vien/{{$dienvien->tendienvien}}">{{$dienvien->tendienvien}}</a><span>,</span>
                 @endif
              @endforeach
          </li>
@@ -72,7 +72,7 @@
                }
                ?>
          </li>
-         <li>Quốc gia: <a href="/more/{{$danhmuctitle}}/{{$quocgia->tenquocgia}}" title="Phim Hàn Quốc">{{$quocgia->tenquocgia}}</a> </li>
+         <li>Quốc gia: <a hreflang="vi" href="/more/{{$danhmuctitle}}/{{$quocgia->tenquocgia}}" title="Phim Hàn Quốc">{{$quocgia->tenquocgia}}</a> </li>
       </ul>
    </div>
    <div class="group-ndfilm-detail" itemprop="description">
@@ -86,7 +86,7 @@
       <span class="line-ngang"></span>
       <div class="group-film-small">
         @foreach($phimLienQuan as $phimlq)
-        <a href='../detail/{{$phimlq->id}}' title='{{$phimlq->tenphim}}' class='film-small '>
+        <a hreflang="vi" href='../detail/{{$phimlq->id}}' title='{{$phimlq->tenphim}}' class='film-small '>
             <div class='poster-film-small lazy' style='background-image:url(/img/{{$phimlq->poster}}'>
             <div class='sotap'>
                 <span>

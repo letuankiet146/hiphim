@@ -14,7 +14,8 @@
 	<meta property="og:description" content="Xem phim hay online miễn phí, Tuyển tập những bộ phim online mới chất lượng cao, HiPhim.org cập nhật liên tục các bộ phim hành động thuyết minh, hàn quốc lồng tiếng, võ thuật đang HOT nhất, xem phim chất lượng HD miễn phí" />
 	<meta property="og:image" content="{{asset('img/homepage-bn.jpg')}}" />
 	<meta property="og:type" content="website" />
-	<meta name="referrer" content="always" />
+    <meta name="referrer" content="always" />
+    <link rel="alternate" href="http://hiphim.org/" hreflang="vi" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/v3.min.css?v=5.0')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css?v=1.0')}}">
@@ -32,55 +33,55 @@
 
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span class="icon-bar"> </span> <span class="icon-bar"> </span> </button>
-				<a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" class="navbar-brand" href="/"><img src="{{asset('img/logo.png')}}" alt="HiPhim"> </a>
+				<a hreflang="vi" title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" class="navbar-brand" href="/"><img src="{{asset('img/logo.png')}}" alt="HiPhim"> </a>
 			</div>
 
 			<div class="collapse navbar-collapse col-md-9" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Thể Loại <span class="caret"></span></a>
+					<li class="dropdown"> <a hreflang="vi" href="#" class="dropdown-toggle" data-toggle="dropdown">Thể Loại <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
                             @if(count($theloais)==0)
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
                             @foreach($theloais as $theloai )
-							    <li><a href="/more/the-loai/{{$theloai->tentheloai}}">Phim {{$theloai->tentheloai}}</a></li>
+							    <li><a hreflang="vi" href="/more/the-loai/{{$theloai->tentheloai}}">Phim {{$theloai->tentheloai}}</a></li>
                             @endforeach
 
 						</ul>
 					</li>
-					<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quốc Gia <span class="caret"></span></a>
+					<li class="dropdown"> <a hreflang="vi" href="#" class="dropdown-toggle" data-toggle="dropdown">Quốc Gia <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
                             @if(count($quocgias)==0)
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
 							@foreach($quocgias as $quocgia )
-							    <li><a href="/more/quoc-gia/{{$quocgia->tenquocgia}}">Phim {{$quocgia->tenquocgia}}</a></li>
+							    <li><a hreflang="vi"href="/more/quoc-gia/{{$quocgia->tenquocgia}}">Phim {{$quocgia->tenquocgia}}</a></li>
                             @endforeach
 						</ul>
 					</li>
-					<li class="dropdown"> <a title="Phim Lẻ" href="#" class="dropdown-toggle" role="button" aria-expanded="false">Phim Lẻ <span class="caret"></span></a>
+					<li class="dropdown"> <a hreflang="vi" title="Phim Lẻ" href="#" class="dropdown-toggle" role="button" aria-expanded="false">Phim Lẻ <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
                             @if(count($nams)==0)
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
 							@foreach($nams as $nam )
-							    <li><a href="/more/phim-le/{{$nam}}">{{$nam}}</a></li>
+							    <li><a hreflang="vi" href="/more/phim-le/{{$nam}}">{{$nam}}</a></li>
                             @endforeach
 						</ul>
 					</li>
-					<li class="dropdown"> <a title="Phim Bộ" href="#" class="dropdown-toggle" role="button" aria-expanded="false">Phim Bộ<span class="caret"></span></a>
+					<li class="dropdown"> <a hreflang="vi" title="Phim Bộ" href="#" class="dropdown-toggle" role="button" aria-expanded="false">Phim Bộ<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
                             @if(count($phimsBoQuocGia)==0)
                                 <li><i>Hiện tại đang cập nhật</i></li>
                             @endif
 							@foreach($phimsBoQuocGia as $phimsBoQuocGia )
-							    <li><a href="/more/phim-bo/{{$phimsBoQuocGia->tenquocgia}}">Phim {{$phimsBoQuocGia->tenquocgia}}</a></li>
+							    <li><a hreflang="vi" href="/more/phim-bo/{{$phimsBoQuocGia->tenquocgia}}">Phim {{$phimsBoQuocGia->tenquocgia}}</a></li>
                             @endforeach
 						</ul>
 					</li>
-					<li> <a href="/more/phim-moi/{{date('Y')}}" title="Phim mới">Phim mới</a></li>
-					<li> <a href="/more/danh-muc/Phim Chiếu Rạp" title="Phim Chiếu Rạp">Phim Chiếu Rạp</a></li>
-					<li> <a href="/more/top-imdb/top" title="Phim TOP IMDb" class="napvip">TOP IMDb</a> </li>
+					<li> <a hreflang="vi" href="/more/phim-moi/{{date('Y')}}" title="Phim mới">Phim mới</a></li>
+					<li> <a hreflang="vi" href="/more/danh-muc/Phim Chiếu Rạp" title="Phim Chiếu Rạp">Phim Chiếu Rạp</a></li>
+					<li> <a hreflang="vi" href="/more/top-imdb/top" title="Phim TOP IMDb" class="napvip">TOP IMDb</a> </li>
 				</ul>
 			</div>
 
@@ -116,9 +117,9 @@
         @yield('content')
         <footer>
             <div class="footer1">
-                <a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="/" style="background-image:url({{asset('img/hiphim-bottom.png')}}"></a>
+                <a hreflang="vi" title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="/" style="background-image:url({{asset('img/hiphim-bottom.png')}}"></a>
                 <ul>
-                    <li><a href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
+                    <li><a hreflang="vi" href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
                 </ul>
                 <div>Copyright ©2020 HiPhim. All Rights Reserved.</div>
             </div>
