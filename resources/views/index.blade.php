@@ -56,7 +56,7 @@
        @foreach($phimChieuBo as $phim)
        <a title={{$phim->tenphim}} href='/detail/{{$phim->id}}' class='film-small lazy'>
             <div class='poster-film-small ' style='background-image:url(/img/{{$phim->poster}}'>
-                <div class='sotap'>Tập 1/{{$phim->tongsotap}}</div>
+                <div class='sotap'>{{count($phim->sotaps)}}/{{$phim->tongsotap}}</div>
                 <ul class='tag-film'>
                     <li>
                         <div class='hd'>HD</div>
