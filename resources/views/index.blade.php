@@ -9,7 +9,7 @@
         $phims = $phims->sortByDesc('ngaytao');
         $i = 0;
       foreach($phims as $phim){
-          if($phim->danhmucs_id == 1){
+          if($phim->danhmucs_id == 3){
             echo "<div class='item' style='float:left'>";
             echo"<a class='lazy' href='/detail/$phim->id' title='$phim->tenphim'><img src='/img/$phim->background' alt='' style='background-size: cover;background-repeat:no-repeat;width: inherit;height: inherit;'></a>";
             echo"</div>";
