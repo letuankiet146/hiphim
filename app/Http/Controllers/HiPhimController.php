@@ -183,14 +183,13 @@ class HiPhimController extends Controller
                 ->where('tendienvien', 'LIKE', "%".urldecode($data)."%");
                 if($dienvens->exists()){
                     $title = $dienvens->first()->tentheloai;
-                    $phims = $dienvens->first()->phims()->paginate(PAGEINATE);
+                    $phims = $dienvens->first()->phims();
                 }
             break;
             case 'tim-tat-ca':
                 $phims =  Phim::from('phims')
                             ->where('tenphim','LIKE',"%".urldecode($data)."%")
-                            ->orwhere('tenphim_en','LIKE',"%".urldecode($data)."%")
-                            ->paginate(PAGEINATE);
+                            ->orwhere('tenphim_en','LIKE',"%".urldecode($data)."%");
                 $title = "Kết quả tìm kiếm";
             break;
             case 'the-loai':
@@ -198,7 +197,7 @@ class HiPhimController extends Controller
                 ->where('tentheloai', 'LIKE', "%".urldecode($data)."%");
                 if($theloais->exists()){
                     $title = $theloais->first()->tentheloai;
-                    $phims = $theloais->first()->phims()->paginate(PAGEINATE);
+                    $phims = $theloais->first()->phims();
                 }
             break;
             case 'danh-muc':
@@ -206,7 +205,7 @@ class HiPhimController extends Controller
                 ->where('tendanhmuc','LIKE',"%".urldecode($data)."%");
                 if($danhmucs->exists()){
                     $title = $danhmucs->first()->tendanhmuc;
-                    $phims = $danhmucs->first()->phims()->paginate(PAGEINATE);
+                    $phims = $danhmucs->first()->phims();
                 }
             break;
             case 'quoc-gia':
@@ -214,7 +213,7 @@ class HiPhimController extends Controller
                 ->where('tenquocgia', 'LIKE', "%".urldecode($data)."%");
                 if($quocgias->exists()){
                     $title = $quocgias->first()->tenquocgia;
-                    $phims = $quocgias->first()->phims()->paginate(PAGEINATE);
+                    $phims = $quocgias->first()->phims();
                 }
             break;
             case 'top-imdb':
@@ -223,8 +222,7 @@ class HiPhimController extends Controller
                     $query->where('danhmucs_id', '1')
                         ->orwhere('danhmucs_id', '3');
                 })
-                ->where('imdb','>','7')
-                ->paginate(PAGEINATE);
+                ->where('imdb','>','7');
                 $title = "Top IMDB";
             break;
             case 'phim-bo':
@@ -237,8 +235,7 @@ class HiPhimController extends Controller
                 if($danhmucs->exists()){
                     $phims = $danhmucs->first()
                             ->phims()
-                            ->where('quocgias_id','=',$quocgia->id)
-                            ->paginate(PAGEINATE);
+                            ->where('quocgias_id','=',$quocgia->id);
                     $title = "Phim Bộ ".$quocgia->tenquocgia;
 
                 }
@@ -253,16 +250,14 @@ class HiPhimController extends Controller
                 if($danhmucs->exists()){
                     $phims = $danhmucs->first()
                             ->phims()
-                            ->where('quocgias_id','=',$quocgia->id)
-                            ->paginate(PAGEINATE);
+                            ->where('quocgias_id','=',$quocgia->id);
                     $title = "Phim Lẻ ".$quocgia->tenquocgia;
 
                 }
             break;
             case 'phim-moi':
                 $phims = Phim::from('phims')
-                ->where('nam','=',$data)
-                ->paginate(PAGEINATE);
+                ->where('nam','=',$data);
                 $title = "Phim mới";
             break;
             case 'phim-le':
@@ -272,8 +267,7 @@ class HiPhimController extends Controller
                                     $query->where('danhmucs_id', '1')
                                         ->orwhere('danhmucs_id', '3');
                                 })
-                                ->where('nam','=',$data)
-                                ->paginate(PAGEINATE);
+                                ->where('nam','=',$data);
                     $title = "Phim lẻ năm ".$data;
                 }else{
                     $danhmuc = DanhMuc::from('danh_mucs')
@@ -290,14 +284,12 @@ class HiPhimController extends Controller
 
                     if(isset($danhmuc) && isset($theloai) && $danhmuc->exists() && $theloai->exists()){
                         $phims = $theloai->phims()
-                        ->where('danhmucs_id','=',$danhmuc->id)
-                        ->paginate(PAGEINATE);
+                        ->where('danhmucs_id','=',$danhmuc->id);
                         $title = "Phim ".$theloai->tentheloai;
 
                     }else if(isset($danhmuc) && isset($quocgia) && $danhmuc->exists() && $quocgia->exists()){
                         $phims = $quocgia->phims()
-                        ->where('danhmucs_id','=',$danhmuc->id)
-                        ->paginate(PAGEINATE);
+                        ->where('danhmucs_id','=',$danhmuc->id);
                         $title = "Phim ".$quocgia->tenquocgia;
                     }
                 }
@@ -308,8 +300,7 @@ class HiPhimController extends Controller
                             ->where('tendanhmuc','LIKE',"Phim Truyền Hình");
                     if($danhmucs->exists()){
                         $phims = $danhmucs->first()
-                                ->phims()
-                                ->paginate(PAGEINATE);
+                                ->phims();
                         $title = "TV shows";
 
                     }
@@ -317,6 +308,16 @@ class HiPhimController extends Controller
                     die;
                 }
             break;
+        }
+        $endPage = PAGEINATE;
+        if(isset($phims)){
+            $phimList = $phims->get();
+            if(count($phimList)%PAGEINATE>0){
+                $endPage = bcdiv(count($phimList), PAGEINATE, 0) + 1;
+            }else{
+                $endPage = bcdiv(count($phimList), PAGEINATE, 0);
+            }
+            $phims = $phims->paginate(PAGEINATE);
         }
         if(method_exists($phims,"hasPages") ){
             $hasPage = $phims->hasPages();
@@ -326,7 +327,7 @@ class HiPhimController extends Controller
         $pageLink=null;
         $currentPageNumber=null;
         if($hasPage){
-            $pageLink = $phims->getUrlRange(1,$phims->perPage());
+            $pageLink = $phims->getUrlRange(1,$endPage);
             $currentPageNumber = $phims->currentPage();
         }
         return view('more',[
