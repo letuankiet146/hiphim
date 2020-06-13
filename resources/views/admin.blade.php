@@ -49,7 +49,7 @@
             <div class="form-group" id="tap-1" style="display:none">
             <input class="form-control" type="number" step="1" name="tongsotap"  placeholder="Tổng số tập" min="1"/>
             <label for="danhmuc" class="btn btn-success disabled">Tập 1</label>
-            <a href="/themphimbo" class="btn btn-success">Tập khác</a>
+            <a href="/themphimbo/0" class="btn btn-success">Tập khác</a>
             </div>
 
 

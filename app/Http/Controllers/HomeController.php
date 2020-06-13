@@ -35,7 +35,20 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function themphimbo(){
+    public function themphimbo($id){
+        $defaultId = $id;
+        $tapketiep = null;
+        $tapmoinhat= null;
+        if($id!==00){
+            $sotap = SoTap::from('so_taps')
+                ->where('phims_id','=',$id)
+                ->whereRaw('tap = (select max(`tap`) from so_taps where phims_id='.$id.')')
+                ->first();
+            if(isset($sotap)){
+                $tapmoinhat= $sotap->tap;
+                $tapketiep = $tapmoinhat + 1;
+            }
+        }
         define('DANH_MUC_PHIM_BO',2);
         $phimsBo = Phim::from('phims')
         ->where('danhmucs_id','=',DANH_MUC_PHIM_BO)->get();
@@ -44,8 +57,9 @@ class HomeController extends Controller
             $phimArray[$phim->id] = $phim->tenphim;
         }
         $phimKeys = array_keys($phimArray);
+
         return view('themphimbo',compact('phimArray'
-                                        ,'phimKeys'));
+                                        ,'phimKeys','defaultId','tapmoinhat','tapketiep'));
     }
 
     public function admin()
@@ -139,7 +153,7 @@ class HomeController extends Controller
         $sotap->tap = $request->tap;
         $sotap->url = $request->url;
         $sotap->save();
-        return redirect('/themphimbo');
+        return redirect('/themphimbo/'.$sotap->phims_id);
     }
 
     public function insertFilm(Request $request){

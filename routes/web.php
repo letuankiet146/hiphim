@@ -27,7 +27,7 @@ Route::get('/detail/{id}', 'HiPhimController@detail');
 Route::get('/detail/{id}/tap-{tap}', 'HiPhimController@detailTap');
 
 Route::get('/admin', 'HomeController@admin');
-Route::get('/themphimbo', 'HomeController@themphimbo');
+Route::get('/themphimbo/{id}', 'HomeController@themphimbo');
 
 Route::get('/dienvien','HomeController@dienvien');
 Route::post('/themdienvien','HomeController@themdienvien');

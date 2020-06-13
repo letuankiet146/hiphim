@@ -33,5 +33,5 @@ class Phim extends Model
     public function sotaps(){
         return $this->hasMany('App\SoTap','phims_id');
     }
-    //bao cao link loi,
+    //auto chon id phim bo, tap hien tai, bao cao link loi,
 }
