@@ -25,6 +25,8 @@
         <h2>
             <a title="Phim Đang Chiếu Rạp" href="/more/danh-muc/Phim+Chiếu+Rạp">phim chiếu rạp<i class="fa fa-caret-right" aria-hidden="true"></i></a>
         </h2>
+        <a href="/more/danh-muc/Phim+Chiếu+Rạp" class="more" ></a>
+        <span class="line-ngang"></span>
         <div class="phimdecu-slider">
             @foreach($phimChieuRap as $phim)
             <div class='item'>
@@ -54,6 +56,8 @@
             <li><a href="/more/phim-bo/Hàn+Quốc" title="Phim bộ Hàn Quốc">Hàn Quốc</a></li>
             <li><a href="/more/phim-bo/Mỹ" title="Phim bộ Mỹ">Mỹ</a></li>
         </ul>
+        <a href="/more/danh-muc/Phim+Bộ" class="more"></a>
+        <span class="line-ngang"></span>
         <div class="group-film-small">
             @foreach($phimChieuBo as $phim)
             <a title='{{$phim->tenphim}}' href='/detail/{{$phim->id}}' class='film-small lazy'>
@@ -83,7 +87,8 @@
             <li><a href="/more/phim-le/Hài+Hước" title="Phim lẻ Hài">Hài hước</a></li>
             <li><a href="/more/phim-le/Kinh+dị" title="Phim lẻ Kinh dị">Kinh dị</a></li>
         </ul>
-
+        <a href="/more/danh-muc/Phim+Lẻ" class="more" ></a>
+        <span class="line-ngang"></span>
         <div class="group-film-small">
             @foreach($phimChieuLe as $phim)
             <a title='{{$phim->tenphim}}' href='/detail/{{$phim->id}}' class='film-small lazy'>
@@ -104,6 +109,8 @@
         <h2>
             <a href="/more/tv-show/all">TV Shows<i class="fa fa-caret-right" aria-hidden="true"></i></a>
         </h2>
+        <a href="/more/tv-show/all" class="more" ></a>
+        <span class="line-ngang"></span>
         <div class="group-film-small">
             @foreach($phimTv as $phim)
             <a title='{{$phim->tenphim}}' href='/detail/{{$phim->id}}' class='film-small lazy'>
