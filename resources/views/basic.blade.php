@@ -104,13 +104,6 @@
                         your_form.action = action_src ;
                     }
                     </script>
-
-                    <button type="button" class="nut-dangnhap" onclick="xinloi()"> Đăng nhập </button>
-                    <script>
-                        function xinloi(){
-                            alert("Xin lỗi! Chức năng này đang được phát triển");
-                        }
-                    </script>
 				</li>
 			</ul>
 		</div>
