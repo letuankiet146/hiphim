@@ -125,7 +125,7 @@
                 </ul>
             </div> -->
             <div class="topphim-doc">
-                <h3>top phim lẻ</h3>
+                <h3>top phim</h3>
                 <ul class="film mCustomScrollbar _mCS_1 ">
                     <div id="mCSB_1" class="mCustomScrollBox mCS-inset-2-dark mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
                         <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y " style="position: relative; top: 0; left: 0;" dir="ltr">

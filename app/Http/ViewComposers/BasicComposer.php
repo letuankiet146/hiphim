@@ -5,6 +5,7 @@
  use App\TheLoai;
  use App\QuocGia;
  use App\DanhMuc;
+ use App\Phim;
 
  class BasicComposer
  {
@@ -55,16 +56,16 @@
         if($bo->exists()){
             $phimChieuBo = $bo->first()->phims()->get();
         }
+        $topPhimChieuBo = $phimChieuBo->sortByDesc('luotxem')->slice(0,10);
 
          //Load phim le
          $phimChieuLe = null;
-         $le = DanhMuc::from('danh_mucs')
-                 ->where('tendanhmuc','LIKE',"%Phim Lẻ%");
-         if($le->exists()){
-             $phimChieuLe = $le->first()->phims()->get();
-         }
+         $phimChieuLe = Phim::from('phims')
+                ->where('danhmucs_id',1)
+                ->orwhere('danhmucs_id',3)
+                ->get();
+
         $topPhimChieuLe = $phimChieuLe->sortByDesc('luotxem')->slice(0,5);
-        $topPhimChieuBo = $phimChieuBo->sortByDesc('luotxem')->slice(0,10);
 
         $view->with('theloais', $theloais);
         $view->with('quocgias', $quocgias);
