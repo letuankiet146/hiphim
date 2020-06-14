@@ -48,9 +48,29 @@
             }
         }
 
+        //Load phim bo
+        $phimChieuBo = null;
+        $bo = DanhMuc::from('danh_mucs')
+                ->where('tendanhmuc','LIKE',"%Phim Bộ%");
+        if($bo->exists()){
+            $phimChieuBo = $bo->first()->phims()->get();
+        }
+
+         //Load phim le
+         $phimChieuLe = null;
+         $le = DanhMuc::from('danh_mucs')
+                 ->where('tendanhmuc','LIKE',"%Phim Lẻ%");
+         if($le->exists()){
+             $phimChieuLe = $le->first()->phims()->get();
+         }
+        $topPhimChieuLe = $phimChieuLe->sortByDesc('luotxem')->slice(0,5);
+        $topPhimChieuBo = $phimChieuBo->sortByDesc('luotxem')->slice(0,10);
+
         $view->with('theloais', $theloais);
         $view->with('quocgias', $quocgias);
         $view->with('nams', $nams);
         $view->with('phimsBoQuocGia', $phimsBoQuocGia);
+        $view->with('topPhimChieuLe', $topPhimChieuLe);
+        $view->with('topPhimChieuBo', $topPhimChieuBo);
      }
  }

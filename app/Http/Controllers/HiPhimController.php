@@ -49,7 +49,9 @@ class HiPhimController extends Controller
                $phimTv = $tv->first()->phims()->get();
            }
 
-
+        $phimChieuBo = $phimChieuBo->slice(0,10);
+        $phimChieuLe = $phimChieuLe->slice(0,10);
+        $phimTv = $phimTv->slice(0,10);
         return view("index" ,compact('phims','phimChieuRap','phimChieuBo','phimChieuLe','phimTv'));
     }
 
@@ -125,6 +127,7 @@ class HiPhimController extends Controller
             $phim->update();
         }
         $taphientai = 1;
+
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
     }
 

@@ -117,17 +117,69 @@
 
 	</nav>
 	<div class="container khoi-body">
-        @yield('content')
-        <footer>
-            <div class="footer1">
-                <a hreflang="vi" title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="/" style="background-image:url({{asset('img/hiphim-bottom.png')}}"></a>
-                <ul>
-                    <li><a hreflang="vi" href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
-                </ul>
-                <div>Copyright ©2020 HiPhim. All Rights Reserved.</div>
-            </div>
-        </footer>
 
+        <div class="khoi-trai">
+            @yield('content')
+        </div>
+        <div class="khoi-phai">
+            <!-- <div class="chudehot">
+                <h4>Quảng cáo</h4>
+                <ul>
+                    <li>
+                        <a title="Quảng cáo" href="/lien-he-quang-cao" style="background-image: url({{asset('img/ads.jpg')}}); background-size: cover;"></a>
+                    </li>
+                </ul>
+            </div> -->
+            <div class="topphim-doc">
+                <h3>top phim lẻ</h3>
+                <ul class="film mCustomScrollbar _mCS_1 ">
+                    <div id="mCSB_1" class="mCustomScrollBox mCS-inset-2-dark mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                        <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y " style="position: relative; top: 0; left: 0;" dir="ltr">
+                            <li>
+                                @foreach($topPhimChieuLe as $phim)
+                                <a href='/detail/{{$phim->id}}' title='{{$phim->tenphim}}'>
+                                    <div class="image lazy" style='background-image:url(/img/{{$phim->poster}}'></div>
+                                    <div class="info">
+                                        <b class="title-film">{{$phim->tenphim}}</b>
+                                        <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
+                                        <span class="luotxem">Lượt xem: {{$phim->luotxem}}</span>
+                                        <span class="imdb">{{$phim->imdb}}</span>
+                                    </div>
+                                </a>
+                                @endforeach
+                            </li>
+                        </div>
+
+                    </div>
+                </ul>
+            </div>
+            <div id="widget_top_film_country_by_type_phim-bo" class="topphim-ngang">
+                <h3>Top phim bộ</h3>
+
+                <ul id="blog1" class="film active mCustomScrollbar _mCS_2">
+                    <div id="mCSB_2" class="mCustomScrollBox mCS-inset-2-dark mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
+                        <div id="mCSB_2_container" class="mCSB_container" style="position: relative; top: 0; left: 0;" dir="ltr">
+                            @foreach($topPhimChieuBo as $phim)
+                            <li>
+                                <a href='/detail/{{$phim->id}}' title='{{$phim->tenphim}}'>
+                                    <div class="image lazy" style='background-image:url(/img/{{$phim->background}});'></div>
+                                    <span class="imdb">
+                                        IMDb <br />
+                                        <b>{{$phim->imdb}}</b>
+                                    </span>
+                                    <div class="info">
+                                        <b class="title-film">{{$phim->tenphim}}</b>
+                                        <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
+                                    </div>
+                                </a>
+                            </li>
+                            @endforeach
+                        </div>
+                    </div>
+                </ul>
+            </div>
+
+        </div>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js" defer></script>
         <script>
             var async = async || [];
@@ -140,5 +192,14 @@
             }]);
         </script>
     </div>
+    <footer>
+        <div class="footer1">
+            <a hreflang="vi" title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="/" style="background-image:url({{asset('img/hiphim-bottom.png')}}"></a>
+            <ul>
+                <li><a hreflang="vi" href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
+            </ul>
+            <div>Copyright ©2020 HiPhim. All Rights Reserved.</div>
+        </div>
+    </footer>
 </body>
 </html>
