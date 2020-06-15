@@ -49,6 +49,10 @@ class HiPhimController extends Controller
                $phimTv = $tv->first()->phims()->get();
            }
 
+        $phimChieuBo = $phimChieuBo->sortByDesc('ngaytao');
+        $phimChieuLe = $phimChieuLe->sortByDesc('ngaytao');
+        $phimTv = $phimTv->sortByDesc('ngaytao');
+
         $phimChieuBo = $phimChieuBo->slice(0,10);
         $phimChieuLe = $phimChieuLe->slice(0,10);
         $phimTv = $phimTv->slice(0,10);
@@ -177,7 +181,7 @@ class HiPhimController extends Controller
     }
 
     public function more($category, $data){
-        define("PAGEINATE", 10);
+        define("PAGEINATE", 30);
         $phims=null;
         $title = "Hi Phim";
         switch ($category) {
@@ -333,6 +337,7 @@ class HiPhimController extends Controller
             $pageLink = $phims->getUrlRange(1,$endPage);
             $currentPageNumber = $phims->currentPage();
         }
+        $phims = $phims->sortByDesc('ngaytao');
         return view('more',[
             "phims"=>$phims,
             "title"=>$title,
