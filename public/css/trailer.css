@@ -1,0 +1,30 @@
+body {margin:2rem;}
+
+.modal-dialog {
+      max-width: 800px;
+      margin: 30px auto;
+      height: 379px;
+  }
+
+
+
+.modal-body {
+  position:relative;
+  padding:0px;
+  height: 379px;
+}
+
+.modal-content{
+    height: 379px;
+}
+
+.close {
+  position:absolute;
+  right:10px;
+  top:0;
+  z-index:999;
+  font-size:3rem;
+  font-weight: bold;
+  color:#4fda2c;
+  opacity:1;
+}

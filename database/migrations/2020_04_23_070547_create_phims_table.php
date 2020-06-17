@@ -32,6 +32,7 @@ class CreatePhimsTable extends Migration
             $table->integer('quocgias_id');
             $table->longText('jwurl',2083);
             $table->longText('url',2083);
+            $table->longText('trailer',2083);
             $table->integer('luotxem')->default(0);
             $table->decimal('imdb',2,1)->nullable();
             $table->date('ngaytao');

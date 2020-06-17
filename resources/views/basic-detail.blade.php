@@ -8,13 +8,46 @@
     @section('title','[Tập '.$taphientai.'] '.$phim->tenphim)
 @endif
 
+@section('add-css')
+    <link rel="stylesheet" href="{{asset('css/trailer.css')}}" />
+@endsection
+@section('add-js')
+    <script type="text/javascript" src="{{asset('js/trailer.js')}}"></script>
+@endsection
+
 @section('content')
 <div class="group-detail" itemscope itemtype="https://schema.org/Movie">
     @yield("detail")
+    @if(isset($phim->trailer))
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary video-btn btn-info btn-lg play-film" data-toggle="modal" data-src="https://www.youtube.com/embed/{{$phim->trailer}}" data-target="#myModal">
+        Trailer
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="100%" height="379" class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @endif
+
     <h1 class="title-film-detail-1" itemprop="name">{{$phim->tenphim}}</h1>
     <h2 class="title-film-detail-2">{{$phim->tenphim_en}}({{$phim->nam}})</h2>
     <div class="imdb">IMDB {{$phim->imdb}}</div>
     <span class="rated-text">{{$phim->luotxem}} lượt xem</span> <span class="hd">HD</span>
+    <br>
     <p class="custom-error" style="display: none;"></p>
     @if($phim->danhmucs_id==2)
     <div class="episode-film">
