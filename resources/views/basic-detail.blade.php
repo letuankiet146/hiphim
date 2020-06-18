@@ -1,11 +1,11 @@
 @extends('basic')
 
 @if($phim->danhmucs_id !== 2)
-    @section('title',$phim->tenphim)
+    @section('title','Xem Phim '.$phim->tenphim.' ('.$phim->tenphim_en.') '.$phim->nam)
 @elseif( !isset($taphientai) )
-    @section('title','[Tập 1]'.$phim->tenphim)
+    @section('title','Xem Phim '.$phim->tenphim.' [Tập 1]'.' ('.$phim->tenphim_en.') '.$phim->nam)
 @else
-    @section('title','[Tập '.$taphientai.'] '.$phim->tenphim)
+    @section('title','Xem Phim '.$phim->tenphim.' [Tập '.$taphientai.'] '.' ('.$phim->tenphim_en.') '.$phim->nam)
 @endif
 
 @section('add-css')

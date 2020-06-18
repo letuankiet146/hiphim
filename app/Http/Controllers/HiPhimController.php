@@ -183,13 +183,13 @@ class HiPhimController extends Controller
     public function more($category, $data){
         define("PAGEINATE", 30);
         $phims=null;
-        $title = "Hi Phim";
+        $title = "Xem phim HiPhimORG";
         switch ($category) {
             case 'dien-vien':
                 $dienvens = DienVien::from('dien_viens')
                 ->where('tendienvien', 'LIKE', "%".urldecode($data)."%");
                 if($dienvens->exists()){
-                    $title = $dienvens->first()->tentheloai;
+                    $title = "Diễn viên: ".$dienvens->first()->tendienvien;
                     $phims = $dienvens->first()->phims();
                 }
             break;
@@ -203,7 +203,7 @@ class HiPhimController extends Controller
                 $theloais  = TheLoai::from('the_loais')
                 ->where('tentheloai', 'LIKE', "%".urldecode($data)."%");
                 if($theloais->exists()){
-                    $title = $theloais->first()->tentheloai;
+                    $title = "Phim ".$theloais->first()->tentheloai;
                     $phims = $theloais->first()->phims();
                 }
             break;
@@ -219,7 +219,7 @@ class HiPhimController extends Controller
                 $quocgias = QuocGia::from('quoc_gias')
                 ->where('tenquocgia', 'LIKE', "%".urldecode($data)."%");
                 if($quocgias->exists()){
-                    $title = $quocgias->first()->tenquocgia;
+                    $title = "Phim ".$quocgias->first()->tenquocgia;
                     $phims = $quocgias->first()->phims();
                 }
             break;
@@ -230,7 +230,7 @@ class HiPhimController extends Controller
                         ->orwhere('danhmucs_id', '3');
                 })
                 ->where('imdb','>','7');
-                $title = "Top IMDB";
+                $title = "Phim Top IMDB";
             break;
             case 'phim-bo':
                 $quocgia = QuocGia::from('quoc_gias')

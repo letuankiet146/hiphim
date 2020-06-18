@@ -1,6 +1,6 @@
 @extends('basic')
 
-@section('title','Hi Phim | Phim Mới | Phim hay | Xem phim nhanh | Xem phim online | Phim HD')
+@section('title','Xem phim nhanh | Xem phim online | Xem phim miễn phí')
 
 @section('content')
 <!-- <div class="khoi-trai"> -->
