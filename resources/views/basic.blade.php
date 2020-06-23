@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="vi" dir="LTR"
 <head>
+    <title>@yield("title")</title>
     <meta property="fb:app_id" content="1551945181775918"/>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
 	<meta http-equiv="Content-Language" content="vi-VN" />
-	<title>@yield("title")</title>
-	<meta name="keywords" content="Phim, xem phim, xem phim online, phim online, xem phim hd, phim hd, hiphim, hi phim, hiphim.org" />
-	<meta name="description" content="Xem phim hay online miễn phí, Tuyển tập những bộ phim online mới chất lượng cao, HiPhim.org cập nhật liên tục các bộ phim hành động thuyết minh, hàn quốc lồng tiếng, võ thuật đang HOT nhất, xem phim chất lượng HD miễn phí" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    <meta name="referrer" content="always" />
+    @yield("add-meta-data")
+
+    <meta property="og:type" content="video.movie"/>
+    <meta property="og:url" content="http://hiphim.org" />
+    <meta property="og:locale" content="vi_VN"/>
+    @yield("add-og-data")
+
+
+
+
     <link rel="canonical" href="http://hiphim.org/" />
     <link rel="icon" href="{{asset('img/favicon.png')}}">
-	<meta property="og:url" content="http://hiphim.org" />
-	<meta property="og:title" content="Xem phim online, xem phim VietSub, phim thuyết minh lồng tiếng mới nhất - HiPhim.org" />
-	<meta property="og:description" content="Xem phim hay online miễn phí, Tuyển tập những bộ phim online mới chất lượng cao, HiPhim.org cập nhật liên tục các bộ phim hành động thuyết minh, hàn quốc lồng tiếng, võ thuật đang HOT nhất, xem phim chất lượng HD miễn phí" />
-	<meta property="og:image" content="{{asset('img/homepage-bn.jpg')}}" />
-	<meta property="og:type" content="website" />
-    <meta name="referrer" content="always" />
     <link rel="alternate" href="http://hiphim.org/" hreflang="vi" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/v3.min.css?v=5.0')}}">

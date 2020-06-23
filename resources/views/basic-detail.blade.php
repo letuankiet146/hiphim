@@ -8,6 +8,22 @@
     @section('title','Xem Phim '.$phim->tenphim.' [Tập '.$taphientai.'] '.' ('.$phim->tenphim_en.') '.$phim->nam)
 @endif
 
+@section('add-meta-data')
+    <meta name="keywords" content="{{$phim->tenphim.' ('.$phim->tenphim_en.') '.$phim->nam}}" />
+    @if(isset($phim->mota))
+        <meta name="description" content="{{$phim->mota}}" />
+    @endif
+
+@endsection
+
+@section('add-og-data')
+    <meta  property="og:title" content="{{$phim->tenphim.' ('.$phim->tenphim_en.') '.$phim->nam}}" />
+    <meta property="og:image" content="{{asset('img/'.$phim->background.'')}}" />
+    @if(isset($phim->mota))
+        <meta property="og:description"  content="{{$phim->mota}}" />
+    @endif
+@endsection
+
 @section('add-css')
     <link rel="stylesheet" href="{{asset('css/trailer.css')}}" />
 @endsection

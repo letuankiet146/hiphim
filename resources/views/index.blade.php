@@ -2,6 +2,17 @@
 
 @section('title','Xem phim nhanh | Xem phim online | Xem phim miễn phí')
 
+@section('add-meta-data')
+<meta name="keywords" content="Phim, xem phim, xem phim online, phim online, xem phim hd, phim hd, hiphim, hi phim, hiphim.org" />
+<meta name="description" content="Xem phim hay online miễn phí, Tuyển tập những bộ phim online mới chất lượng cao, HiPhim.org cập nhật liên tục các bộ phim hành động thuyết minh, hàn quốc lồng tiếng, võ thuật đang HOT nhất, xem phim chất lượng HD miễn phí" />
+@endsection
+
+@section('add-og-data')
+<meta property="og:title" content="Xem phim online, xem phim VietSub, phim thuyết minh lồng tiếng mới nhất - HiPhim.org" />
+<meta property="og:description" content="Xem phim hay online miễn phí, Tuyển tập những bộ phim online mới chất lượng cao, HiPhim.org cập nhật liên tục các bộ phim hành động thuyết minh, hàn quốc lồng tiếng, võ thuật đang HOT nhất, xem phim chất lượng HD miễn phí" />
+<meta property="og:image" content="{{asset('img/homepage-bn.jpg')}}" />
+@endsection
+
 @section('content')
 <!-- <div class="khoi-trai"> -->
     <div class="slider top-slider">
