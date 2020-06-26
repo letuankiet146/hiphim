@@ -16,6 +16,14 @@
             <div class="form-group">
             <input class="form-control" type="number" step="1" min="0" name="nam"  placeholder="Năm phát hành"/>
             </div>
+
+            <div class="form-group">
+            <textarea class="form-control"  name="meta_keyword" form="insertFilmFrom" rows=4 cols=50  placeholder="Meta data Key word" required></textarea>
+            </div>
+            <div class="form-group">
+            <textarea class="form-control"  name="meta_desc" form="insertFilmFrom" rows=4 cols=50  placeholder="Meta data description" required></textarea>
+            </div>
+
             <div class="form-group">
             <textarea class="form-control"  name="mota" form="insertFilmFrom" rows=4 cols=50  placeholder="Mô tả" required></textarea>
             </div>

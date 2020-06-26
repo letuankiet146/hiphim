@@ -9,9 +9,18 @@
 @endif
 
 @section('add-meta-data')
-    <meta name="keywords" content="{{$phim->tenphim.' ('.$phim->tenphim_en.') '.$phim->nam}}" />
-    @if(isset($phim->mota))
-        <meta name="description" content="{{$phim->mota}}" />
+    @if(isset($phim->meta_keyword))
+    <meta name="keywords" content="{{$phim->meta_keyword}}" />
+    @else
+        <meta name="keywords" content="{{$phim->tenphim.' ('.$phim->tenphim_en.') '.$phim->nam}}" />
+    @endif
+
+    @if(isset($phim->meta_desc))
+        <meta name="description" content="{{$phim->meta_desc}}" />
+    @else
+        @if(isset($phim->mota))
+            <meta name="description" content="{{$phim->mota}}" />
+        @endif
     @endif
 
 @endsection
