@@ -71,7 +71,11 @@
     <h1 class="title-film-detail-1" itemprop="name">{{$phim->tenphim}}</h1>
     <h2 class="title-film-detail-2">{{$phim->tenphim_en}}({{$phim->nam}})</h2>
     <div class="imdb">IMDB {{$phim->imdb}}</div>
-    <span class="rated-text">{{$phim->luotxem}} lượt xem</span> <span class="hd">HD</span>
+    @if($phim->luotxem > 1000)
+        <span class="rated-text">{{bcdiv($phim->luotxem, 1000, 1)}}K lượt xem</span> <span class="hd">HD</span>
+    @else
+        <span class="rated-text">{{$phim->luotxem}} lượt xem</span> <span class="hd">HD</span>
+    @endif
     <br>
     <p class="custom-error" style="display: none;"></p>
     @if($phim->danhmucs_id==2)

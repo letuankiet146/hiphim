@@ -142,7 +142,12 @@
                                     <div class="info">
                                         <b class="title-film">{{$phim->tenphim}}</b>
                                         <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
-                                        <span class="luotxem">Lượt xem: {{$phim->luotxem}}</span>
+                                        @if($phim->luotxem > 1000)
+                                            <span class="luotxem">Lượt xem: {{bcdiv($phim->luotxem, 1000, 1)}}K</span>
+                                        @else
+                                            <span class="luotxem">Lượt xem: {{$phim->luotxem}}</span>
+                                        @endif
+
                                         <span class="imdb">{{$phim->imdb}}</span>
                                     </div>
                                 </a>
