@@ -17,6 +17,9 @@ Route::post('/create', 'MessageController@create');
 Route::get('/message', 'MessageController@view');
 
 Route::get('/', 'HiPhimController@ui');
+Route::get('/khong-tim-thay-trang', function(){
+    return view('notfound');
+});
 Route::get('/lien-he-quang-cao',function(){
     return view('lien-he-quang-cao');
 });
