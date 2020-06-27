@@ -203,7 +203,7 @@
             <ul>
                 <li><a hreflang="vi" href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
             </ul>
-            <div>Copyright ©2020 HiPhim. All Rights Reserved.</div>
+            <div>No Copyright. HiPhim không giữ bản quyền nội dung trên website này. Mọi VIDEO đều được tải về từ nhiều nguồn public và các site chia sẻ video khác... <br>Vấn đề bản quyền vui lòng liên hệ để chúng tôi xem xét và gỡ bỏ</div>
         </div>
     </footer>
 </body>
