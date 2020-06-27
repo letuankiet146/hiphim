@@ -35,6 +35,7 @@
 
 @section('add-css')
     <link rel="stylesheet" href="{{asset('css/trailer.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/basic-detail.css')}}" />
 @endsection
 @section('add-js')
     <script type="text/javascript" src="{{asset('js/trailer.js')}}"></script>
@@ -125,9 +126,9 @@
 </div>
 <div class="group-ndfilm-detail" itemprop="description">
     <h2 class="ndf">Nội dung phim</h2>
-    <p class="content-film">
-        {{$phim->mota}}
-    </p>
+    <div class="noi-dung-film">
+    {!!$phim->mota!!}
+    </div>
 </div>
 <div class="fbchat">
     <div class="fb-comments" data-href="https://hiphim.org/detail/{{$phim->id}}" data-numposts="10" data-width="100%" data-order-by="reverse_time" data-colorscheme="dark"></div>

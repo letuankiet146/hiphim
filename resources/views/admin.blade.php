@@ -25,8 +25,11 @@
             </div>
 
             <div class="form-group">
+            <!-- editor -->
             <textarea class="form-control"  name="mota" form="insertFilmFrom" rows=4 cols=50  placeholder="Mô tả" required></textarea>
+            <script>CKEDITOR.replace( 'mota' );</script>
             </div>
+
             <div class="form-group">
             <textarea class="form-control"  name="url" form="insertFilmFrom" rows=4 cols=50  placeholder="CODE ID (e.g: A5731D3943FE39D3!....)" required></textarea>
             </div>

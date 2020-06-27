@@ -33,5 +33,5 @@ class Phim extends Model
     public function sotaps(){
         return $this->hasMany('App\SoTap','phims_id');
     }
-    // auto resize poster, bao cao link loi,
+    // custom luot xem -> K. Dung editor cho phan mo ta
 }
