@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta http-equiv="Content-Language" content="vi-VN" />
 
+    <meta name="robots" content="noarchive,noodp,index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
     <meta name="referrer" content="always" />
     @yield("add-meta-data")
