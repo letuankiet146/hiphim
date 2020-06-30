@@ -87,9 +87,9 @@
             </div>
             <ul>
                 @foreach($sotaps as $tap) @if((!isset($taphientai) && $tap->tap == 1) || (isset($taphientai) && $tap->tap == $taphientai))
-                <li data-episode-id="BLthEcl"><a hreflang="vi" class="actived btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a></li>
+                <li data-episode-id="BLthEcl"><a hreflang="vi" class="actived btn-episode" href="/phim/{{$phim->link_id}}/tap-{{$tap->tap}}.html">{{$tap->tap}}</a></li>
                 @else
-                <li data-episode-id="BLthEcl"><a hreflang="vi" class="btn-episode" href="/detail/{{$phim->id}}/tap-{{$tap->tap}}">{{$tap->tap}}</a></li>
+                <li data-episode-id="BLthEcl"><a hreflang="vi" class="btn-episode" href="/phim/{{$phim->link_id}}/tap-{{$tap->tap}}.html">{{$tap->tap}}</a></li>
                 @endif @endforeach
             </ul>
         </div>
@@ -131,14 +131,14 @@
     </div>
 </div>
 <div class="fbchat">
-    <div class="fb-comments" data-href="https://hiphim.org/detail/{{$phim->id}}" data-numposts="10" data-width="100%" data-order-by="reverse_time" data-colorscheme="dark"></div>
+    <div class="fb-comments" data-href="https://hiphim.org/phim/{{$phim->link_id}}.html" data-numposts="10" data-width="100%" data-order-by="reverse_time" data-colorscheme="dark"></div>
 </div>
 <div class="group-film group-film-category">
     <h2>phim cùng thể loại<i class="fa fa-caret-right" aria-hidden="true"></i></h2>
     <span class="line-ngang"></span>
     <div class="group-film-small">
         @foreach($phimLienQuan as $phimlq)
-        <a hreflang="vi" href="/detail/{{$phimlq->id}}" title="{{$phimlq->tenphim}}" class="film-small">
+        <a hreflang="vi" href="/phim/{{$phimlq->link_id}}.html" title="{{$phimlq->tenphim}}" class="film-small">
             <div class="poster-film-small lazy" style="background-image:url(/img/{{$phimlq->poster}}">
                 <div class="sotap">
                     <span>

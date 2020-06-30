@@ -10,7 +10,7 @@
     <div class="group-film-small">
         @if(isset($phims))
                 @foreach($phims as $item)
-                <a title="{{$item->tenphim}}" href="../../detail/{{$item->id}}" class="film-small  1">
+                <a title="{{$item->tenphim}}" href="../../phim/{{$item->link_id}}.html" class="film-small  1">
                     <div class="poster-film-small" style="background-image:url({{asset('img/'.$item->poster.'')}})">
                     <ul class="tag-film">
                         <li>

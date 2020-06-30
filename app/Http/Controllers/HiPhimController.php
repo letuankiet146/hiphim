@@ -89,8 +89,11 @@ class HiPhimController extends Controller
         return true;
     }
 
-    public function detail ($id){
+    public function detail ($link_id){
+        $p = Phim::from('phims')
+        ->where('link_id', $link_id)->first();
 
+        $id = $p->id;
         $phim = Phim::find($id);
         $theloais = $phim->theloais;
         $dienviens = $phim->dienviens;
@@ -135,7 +138,11 @@ class HiPhimController extends Controller
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
     }
 
-    public function detailTap ($id, $tap){
+    public function detailTap ($link_id, $tap){
+        $p = Phim::from('phims')
+        ->where('link_id', $link_id)->first();
+
+        $id = $p->id;
 
         $phim = Phim::find($id);
         $theloais = $phim->theloais;

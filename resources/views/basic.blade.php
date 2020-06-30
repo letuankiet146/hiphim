@@ -138,7 +138,7 @@
                         <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y " style="position: relative; top: 0; left: 0;" dir="ltr">
                             <li>
                                 @foreach($topPhimChieuLe as $phim)
-                                <a href='/detail/{{$phim->id}}' title='{{$phim->tenphim}}'>
+                                <a href='/phim/{{$phim->link_id}}.html' title='{{$phim->tenphim}}'>
                                     <div class="image lazy" style='background-image:url(/img/{{$phim->poster}}'></div>
                                     <div class="info">
                                         <b class="title-film">{{$phim->tenphim}}</b>
@@ -167,7 +167,7 @@
                         <div id="mCSB_2_container" class="mCSB_container" style="position: relative; top: 0; left: 0;" dir="ltr">
                             @foreach($topPhimChieuBo as $phim)
                             <li>
-                                <a href='/detail/{{$phim->id}}' title='{{$phim->tenphim}}'>
+                                <a href='/phim/{{$phim->link_id}}.html' title='{{$phim->tenphim}}'>
                                     <div class="image lazy" style='background-image:url(/img/{{$phim->background}});'></div>
                                     <span class="imdb">
                                         IMDb <br />

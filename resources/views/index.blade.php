@@ -22,7 +22,7 @@
         foreach($phims as $phim){
             if($phim->danhmucs_id == 3){
                 echo "<div class='item' style='float:left'>";
-                echo"<a class='lazy' href='/detail/$phim->id' title='$phim->tenphim'><img src='/img/$phim->background' alt='' style='background-size: cover;background-repeat:no-repeat;width: inherit;height: inherit;'></a>";
+                echo"<a class='lazy' href='/phim/$phim->link_id.html' title='$phim->tenphim'><img src='/img/$phim->background' alt='' style='background-size: cover;background-repeat:no-repeat;width: inherit;height: inherit;'></a>";
                 echo"</div>";
                 if($i >= 9){
                 break;
@@ -41,7 +41,7 @@
         <div class="phimdecu-slider">
             @foreach($phimChieuRap as $phim)
             <div class='item'>
-                <a title='{{$phim->tenphim}}' href='/detail/{{$phim->id}}' style='background-image:url(/img/{{$phim->poster}}' tabindex='0'>
+                <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' style='background-image:url(/img/{{$phim->poster}}' tabindex='0'>
                     <div class='black-gradient'>
                         <b class='title-film'>{{$phim->tenphim}}</b>
                         <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
@@ -71,7 +71,7 @@
         <span class="line-ngang"></span>
         <div class="group-film-small">
             @foreach($phimChieuBo as $phim)
-            <a title='{{$phim->tenphim}}' href='/detail/{{$phim->id}}' class='film-small lazy'>
+            <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' class='film-small lazy'>
                     <div class='poster-film-small ' style='background-image:url(/img/{{$phim->poster}}'>
                         <div class='sotap'>{{count($phim->sotaps)}}/{{$phim->tongsotap}}</div>
                         <ul class='tag-film'>
@@ -102,7 +102,7 @@
         <span class="line-ngang"></span>
         <div class="group-film-small">
             @foreach($phimChieuLe as $phim)
-            <a title='{{$phim->tenphim}}' href='/detail/{{$phim->id}}' class='film-small lazy'>
+            <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' class='film-small lazy'>
                 <div class='poster-film-small ' style='background-image:url(/img/{{$phim->poster}}'>
                     <ul class='tag-film'>
                     <li><div class='hd'>{{$phim->imdb}}</div></li>
@@ -124,7 +124,7 @@
         <span class="line-ngang"></span>
         <div class="group-film-small">
             @foreach($phimTv as $phim)
-            <a title='{{$phim->tenphim}}' href='/detail/{{$phim->id}}' class='film-small lazy'>
+            <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' class='film-small lazy'>
                 <div class='poster-film-small ' style='background-image:url(/img/{{$phim->poster}}'>
                     <ul class='tag-film'>
                     <li><div class='hd'>HD</div></li>
