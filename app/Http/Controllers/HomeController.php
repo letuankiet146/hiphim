@@ -169,6 +169,7 @@ class HomeController extends Controller
         $phim = new Phim();
         $phim->tenphim = $request->tenphim;
         $phim->tenphim_en = $request->tenphim_en;
+        $phim->link_id = $request->link_id;
         $phim->nam = $request->nam;
         $phim->poster = $posterName;
         $phim->background = $bgName;

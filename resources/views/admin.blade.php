@@ -14,6 +14,9 @@
             <input class="form-control" type="text" name="tenphim_en"  placeholder="Tên Phim ENG" required/>
             </div>
             <div class="form-group">
+            <input class="form-control" type="text" name="link_id"  placeholder="URL name" required/>
+            </div>
+            <div class="form-group">
             <input class="form-control" type="number" step="1" min="0" name="nam"  placeholder="Năm phát hành"/>
             </div>
 
