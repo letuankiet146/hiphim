@@ -103,6 +103,7 @@ class HiPhimController extends Controller
         $danhmucId = $phim->danhmucs_id;
         $danhmuctitle = "phim-le";
         $sotaps = null;
+        $publicUrl = null;
         switch ($danhmucId) {
             case 1:
                 $danhmuctitle = "phim-le-theo-quoc-gia";
@@ -129,8 +130,12 @@ class HiPhimController extends Controller
                 }
             }
         }
-        $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
-        $publicUrl = $this->getPublicUrl($oriUrl);
+        if(strcasecmp($phim->url,"NA") === 0 ){
+            $publicUrl = $phim->fb_url;
+        } else {
+            $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
+            $publicUrl = $this->getPublicUrl($oriUrl);
+        }
         if($this->allowCount($id)){
             $phim->luotxem = $phim->luotxem+1;
             $phim->update();
