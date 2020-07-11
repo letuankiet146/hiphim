@@ -15,6 +15,7 @@ class CreatePhimsTable extends Migration
     {
         Schema::create('phims', function (Blueprint $table) {
             $table->id();
+            $table->string('link_id');
             $table->string('tenphim');
             $table->string('tenphim_en');
             $table->smallInteger('nam')->nullable();
@@ -33,7 +34,6 @@ class CreatePhimsTable extends Migration
             $table->integer('tongsotap')->nullable();
             $table->integer('sotaps_id');
             $table->integer('quocgias_id');
-            $table->longText('jwurl',2083);
             $table->longText('url',2083);
             $table->longText('trailer',2083);
             $table->integer('luotxem')->default(0);

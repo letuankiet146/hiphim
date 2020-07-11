@@ -218,16 +218,6 @@ class HomeController extends Controller
         return redirect('/admin');
     }
 
-    public function updateFilm(Request $request){
-        $url = $request->url;
-        $fb = $request->fb;
-        $id = $request->id;
-        DB::table('film')
-            ->where('id',$id)
-            ->update(["url"=>$url]);
-        return redirect('/testlink');
-    }
-
     public function searchFilm(Request $request){
 
         $title = $request->title;

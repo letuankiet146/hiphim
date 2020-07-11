@@ -49,7 +49,21 @@
     <a title="trailer" class="btn btn-primary video-btn btn-info btn-lg play-film" data-toggle="modal" data-src="https://www.youtube.com/embed/{{$phim->trailer}}" data-target="#myModal">
         Trailer
     </a>
-
+    <a title="trailer" class="btn btn-danger video-btn btn-info btn-lg play-film" onclick="baoloi()">
+        Báo lỗi
+    </a>
+    <script>
+        function baoloi() {
+            $.ajax({
+            type:'GET',
+            url:'/baoloi/{{$phim->id}}',
+            data:'_token = <?php echo csrf_token() ?>',
+            success:function(data) {
+                alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
+            },
+            });
+        }
+    </script>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

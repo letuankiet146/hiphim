@@ -10,6 +10,8 @@ use App\TheLoai;
 use App\QuocGia;
 use App\UserIp;
 use App\DienVien;
+use App\BaoLoi;
+
 use DB;
 
 class HiPhimController extends Controller
@@ -185,6 +187,20 @@ class HiPhimController extends Controller
         }
         $taphientai = $tap;
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
+    }
+
+    public function baoloi($id){
+        $user_ip = \Request::ip();
+        $baoloitruocdo  = BaoLoi::from('bao_lois')
+        ->where('phims_id','=' ,$id)
+        ->where('user_ip','=' ,$user_ip)
+        ->first();
+        if (!isset($baoloitruocdo)){
+            $baoloi = new BaoLoi();
+            $baoloi->phims_id = $id;
+            $baoloi->user_ip = $user_ip;
+            $baoloi->save();
+        }
     }
 
     public function more($category, $data){

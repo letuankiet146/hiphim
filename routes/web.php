@@ -28,22 +28,25 @@ Route::get('/phim-le/{data}','HiPhimController@phimLe');
 
 Route::get('/phim/{link_id}.html', 'HiPhimController@detail');
 Route::get('/phim/{link_id}/tap-{tap}.html', 'HiPhimController@detailTap');
+Route::get('/baoloi/{id}', 'HiPhimController@baoloi');
 
 Route::get('/admin', 'HomeController@admin');
 Route::get('/themphimbo/{id}', 'HomeController@themphimbo');
-
 Route::get('/dienvien','HomeController@dienvien');
 Route::post('/themdienvien','HomeController@themdienvien');
 Route::get('/reload-dien-vien','HomeController@reloadDienvien');
-
 Route::get('/live','HomeController@live');
-Route::get('/testlink', 'TestLinkController@testlink');
 Route::post("/insertFilm","HomeController@insertFilm");
 Route::post("/insertphimbo","HomeController@insertphimbo");
-Route::post("/updateFilm","HomeController@updateFilm");
+
 Route::post("/searchFilm","HomeController@searchFilm");
-Route::get('/update/{id}', 'TestLinkController@updateURL');
 Route::get('/delete/{id}', 'HomeController@deleteFilm');
+
+Route::post("/updateFilm","TestLinkController@updateFilm");
+Route::get('/updatelink/{id}', 'TestLinkController@updateLink');
+Route::get('/fixed/{id}', 'TestLinkController@fixedLink');
+Route::get('/testlink', 'TestLinkController@testLink');
+
 Route::resource('img','HomeController');
 
 // Auth::routes();
