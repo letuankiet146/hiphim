@@ -185,6 +185,7 @@ class HomeController extends Controller
             $phim->sapchieu = $request->sapchieu;
         }
         $phim->url = $request->url;
+        $phim->fb_url = $request->fb_url;
         $phim->imdb = $request->imdb;
         $phim->thoiluong = $request->thoiluong;
         $phim->quocgias_id = $request->quocgiaId;

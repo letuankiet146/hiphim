@@ -36,6 +36,11 @@
             <div class="form-group">
             <textarea class="form-control"  name="url" form="insertFilmFrom" rows=4 cols=50  placeholder="CODE ID (e.g: A5731D3943FE39D3!....)" required></textarea>
             </div>
+
+            <div class="form-group">
+            <textarea class="form-control"  name="fb_url" form="insertFilmFrom" rows=4 cols=50  placeholder="FacebookURL" required></textarea>
+            </div>
+
             <div class="form-group">
             <script>
                 function displayBoPhim(){
