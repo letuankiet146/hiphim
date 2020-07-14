@@ -58,6 +58,34 @@
         </div>
     </div>
 
+    <div class="group-film group-film-category" id="cat-phim-le" data-page="1" data-slug="">
+        <h2>
+            <a title="Phim Lẻ Mới" href="/more/danh-muc/Phim+Lẻ">phim lẻ chọn lọc<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+        </h2>
+        <ul class="phanloai">
+            <li><a href="/more/phim-le/Hành+động" title="Phim lẻ Hành động">Hành động</a></li>
+            <li><a href="/more/phim-le/Hài+Hước" title="Phim lẻ Hài">Hài hước</a></li>
+            <li><a href="/more/phim-le/Kinh+dị" title="Phim lẻ Kinh dị">Kinh dị</a></li>
+        </ul>
+        <a href="/more/danh-muc/Phim+Lẻ" class="more" ></a>
+        <span class="line-ngang"></span>
+        <div class="group-film-small">
+            @foreach($phimChieuLe as $phim)
+            <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' class='film-small lazy'>
+                <div class='poster-film-small ' style='background-image:url(/img/{{$phim->poster}}'>
+                    <ul class='tag-film'>
+                    <li><div class='hd'>{{$phim->imdb}}</div></li>
+                    </ul> <div class='play'></div>
+                </div>
+                <div class='title-film-small'>
+                    <b class='title-film'>{{$phim->tenphim}}</b>
+                    <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </div>
+
     <div class="group-film group-film-category" id="cat-phim-bo" data-page="1" data-slug="">
         <h2>
             <a title="Phim Bộ Mới" href="/more/danh-muc/Phim+Bộ">phim bộ chọn lọc<i class="fa fa-caret-right" aria-hidden="true"></i></a>
@@ -89,33 +117,7 @@
             @endforeach
         </div>
     </div>
-    <div class="group-film group-film-category" id="cat-phim-le" data-page="1" data-slug="">
-        <h2>
-            <a title="Phim Lẻ Mới" href="/more/danh-muc/Phim+Lẻ">phim lẻ chọn lọc<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-        </h2>
-        <ul class="phanloai">
-            <li><a href="/more/phim-le/Hành+động" title="Phim lẻ Hành động">Hành động</a></li>
-            <li><a href="/more/phim-le/Hài+Hước" title="Phim lẻ Hài">Hài hước</a></li>
-            <li><a href="/more/phim-le/Kinh+dị" title="Phim lẻ Kinh dị">Kinh dị</a></li>
-        </ul>
-        <a href="/more/danh-muc/Phim+Lẻ" class="more" ></a>
-        <span class="line-ngang"></span>
-        <div class="group-film-small">
-            @foreach($phimChieuLe as $phim)
-            <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' class='film-small lazy'>
-                <div class='poster-film-small ' style='background-image:url(/img/{{$phim->poster}}'>
-                    <ul class='tag-film'>
-                    <li><div class='hd'>{{$phim->imdb}}</div></li>
-                    </ul> <div class='play'></div>
-                </div>
-                <div class='title-film-small'>
-                    <b class='title-film'>{{$phim->tenphim}}</b>
-                    <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
-                </div>
-            </a>
-            @endforeach
-        </div>
-    </div>
+
     <div class="group-film" id="cat-the-loai-tv-show" data-page="1" data-slug="">
         <h2>
             <a href="/more/tv-show/all">TV Shows<i class="fa fa-caret-right" aria-hidden="true"></i></a>
