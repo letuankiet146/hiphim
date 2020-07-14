@@ -26,6 +26,7 @@ Route::get('/lien-he-quang-cao',function(){
 Route::get('/more/{category}/{data}','HiPhimController@more');
 Route::get('/phim-le/{data}','HiPhimController@phimLe');
 
+Route::get('/detail/{link_id}', 'HiPhimController@oldDetail');
 Route::get('/phim/{link_id}.html', 'HiPhimController@detail');
 Route::get('/phim/{link_id}/tap-{tap}.html', 'HiPhimController@detailTap');
 Route::get('/baoloi/{id}', 'HiPhimController@baoloi');

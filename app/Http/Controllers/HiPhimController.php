@@ -90,7 +90,14 @@ class HiPhimController extends Controller
         }
         return true;
     }
-
+    public function oldDetail ($link_id){
+        $phim = Phim::find($link_id);
+        if(isset($phim)){
+            return redirect('/phim/'.$phim->link_id.'.html');
+        }else{
+            return redirect('/');
+        }
+    }
     public function detail ($link_id){
         $p = Phim::from('phims')
         ->where('link_id', $link_id)->first();
