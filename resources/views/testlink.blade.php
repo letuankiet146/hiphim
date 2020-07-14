@@ -25,7 +25,7 @@
         @foreach($groupPhimKeys as $key)
         <tr>
             <td>{{$key}}</td>
-            <td>{{$groupPhim[$key]}}</td>
+            <td><a href="/detail/{{$key}}">{{$groupPhim[$key]}}</a></td>
             <td>{{$counts[$key]}}</td>
             <td><a title="Go to Fix" data-toggle="modal" data-target="#myModal" class="btn btn-danger " href="/updatelink/{{$key}}">Go to fix</a></td>
             <td><a title="Go to Fix" class="btn btn-success " href="/fixed/{{$key}}">Fixed</a></td>

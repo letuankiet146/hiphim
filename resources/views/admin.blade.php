@@ -40,7 +40,9 @@
             <div class="form-group">
             <textarea class="form-control"  name="fb_url" form="insertFilmFrom" rows=4 cols=50  placeholder="FacebookURL" required></textarea>
             </div>
-
+            <div class="form-group">
+            <input class="form-control" type="text" name="trailer"  placeholder="Trailer-youtube-ID" required/>
+            </div>
             <div class="form-group">
             <script>
                 function displayBoPhim(){

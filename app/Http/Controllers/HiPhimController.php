@@ -201,17 +201,33 @@ class HiPhimController extends Controller
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
     }
 
-    public function baoloi($id){
+    public function baoloi($id,$tap){
+        $phim = Phim::find($id);
         $user_ip = \Request::ip();
-        $baoloitruocdo  = BaoLoi::from('bao_lois')
-        ->where('phims_id','=' ,$id)
-        ->where('user_ip','=' ,$user_ip)
-        ->first();
-        if (!isset($baoloitruocdo)){
-            $baoloi = new BaoLoi();
-            $baoloi->phims_id = $id;
-            $baoloi->user_ip = $user_ip;
-            $baoloi->save();
+        if($phim->danhmucs_id!=2){
+            $baoloitruocdo  = BaoLoi::from('bao_lois')
+            ->where('phims_id','=' ,$id)
+            ->where('user_ip','=' ,$user_ip)
+            ->first();
+            if (!isset($baoloitruocdo)){
+                $baoloi = new BaoLoi();
+                $baoloi->phims_id = $id;
+                $baoloi->user_ip = $user_ip;
+                $baoloi->save();
+            }
+        } else {
+            $baoloitruocdo  = BaoLoi::from('bao_lois')
+            ->where('phims_id','=' ,$id)
+            ->where('tap_phim','=' ,$tap)
+            ->where('user_ip','=' ,$user_ip)
+            ->first();
+            if (!isset($baoloitruocdo)){
+                $baoloi = new BaoLoi();
+                $baoloi->phims_id = $id;
+                $baoloi->tap_phim = $tap;
+                $baoloi->user_ip = $user_ip;
+                $baoloi->save();
+            }
         }
     }
 

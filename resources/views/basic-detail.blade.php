@@ -52,11 +52,12 @@
     <a title="trailer" class="btn btn-danger video-btn btn-info btn-lg play-film" onclick="baoloi()">
         Báo lỗi
     </a>
+    @if($phim->danhmucs_id !== 2)
     <script>
         function baoloi() {
             $.ajax({
             type:'GET',
-            url:'/baoloi/{{$phim->id}}',
+            url:'/baoloi/{{$phim->id}}/2',
             data:'_token = <?php echo csrf_token() ?>',
             success:function(data) {
                 alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
@@ -64,6 +65,33 @@
             });
         }
     </script>
+    @elseif( !isset($taphientai) )
+    <script>
+        function baoloi() {
+            $.ajax({
+            type:'GET',
+            url:'/baoloi/{{$phim->id}}/1',
+            data:'_token = <?php echo csrf_token() ?>',
+            success:function(data) {
+                alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
+            },
+            });
+        }
+    </script>
+    @else
+    <script>
+        function baoloi() {
+            $.ajax({
+            type:'GET',
+            url:'/baoloi/{{$phim->id}}/{{$taphientai}}',
+            data:'_token = <?php echo csrf_token() ?>',
+            success:function(data) {
+                alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
+            },
+            });
+        }
+    </script>
+    @endif
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
