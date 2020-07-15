@@ -55,9 +55,9 @@ class HiPhimController extends Controller
         $phimChieuLe = $phimChieuLe->sortByDesc('ngaytao');
         $phimTv = $phimTv->sortByDesc('ngaytao');
 
-        $phimChieuBo = $phimChieuBo->slice(0,10);
-        $phimChieuLe = $phimChieuLe->slice(0,10);
-        $phimTv = $phimTv->slice(0,10);
+        $phimChieuBo = $phimChieuBo->slice(0,12);
+        $phimChieuLe = $phimChieuLe->slice(0,12);
+        $phimTv = $phimTv->slice(0,12);
         return view("index" ,compact('phims','phimChieuRap','phimChieuBo','phimChieuLe','phimTv'));
     }
 
