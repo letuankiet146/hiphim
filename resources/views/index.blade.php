@@ -118,7 +118,7 @@
         </div>
     </div>
 
-    <div class="group-film" id="cat-the-loai-tv-show" data-page="1" data-slug="">
+    <div class="group-film group-film-category" id="cat-the-loai-tv-show" data-page="1" data-slug="">
         <h2>
             <a href="/more/tv-show/all">TV Shows<i class="fa fa-caret-right" aria-hidden="true"></i></a>
         </h2>
