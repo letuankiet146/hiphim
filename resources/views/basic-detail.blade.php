@@ -28,7 +28,9 @@
 @section('add-og-data')
     <meta  property="og:title" content="{{$phim->tenphim.' ('.$phim->tenphim_en.') '.$phim->nam}}" />
     <meta property="og:image" content="{{asset('img/'.$phim->background.'')}}" />
-    @if(isset($phim->mota))
+    @if(isset($phim->meta_desc))
+        <meta property="og:description"  content="{{$phim->meta_desc}}" />
+    @elseif(isset($phim->mota))
         <meta property="og:description"  content="{{$phim->mota}}" />
     @endif
 @endsection
