@@ -34,7 +34,7 @@
     <link rel="icon" href="{{asset('img/favicon.png')}}">
     <link rel="alternate" href="http://hiphim.org/" hreflang="vi" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/v3_v2.min.css?v=5.0')}}">
+    <link rel="stylesheet" href="{{asset('css/v3_v3.min.css?v=5.0')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css?v=1.0')}}">
     <link rel="stylesheet" href="{{asset('css/plyr.css')}}" />
     @yield("add-css")
@@ -113,7 +113,9 @@
 							<input type="text" class="form-control" id="query_search" placeholder="Tìm kiếm có dấu" maxlength="100" autocomplete="off" />
 							<button type="submit" class="btn btn-default" id="btn-search"> <span class="glyphicon glyphicon-search"> </span> </button>
 						</div>
-						<div class="search-hint" id="search-hint"> </div>
+						<div class="search-hint" id="search-hint">
+                            <ul id="live-search"></ul>
+                        </div>
 					</form>
                     <script>
                     function makeUrl(){
@@ -121,6 +123,31 @@
                         var your_form = document.getElementById('search-block');
                         your_form.action = action_src ;
                     }
+                    </script>
+                    <script type="text/javascript">
+                        $('#query_search').on('keyup',function(){
+                            $("#live-search").empty();
+                            $value = $(this).val();
+                            $.ajax({
+                                type: 'get',
+                                url: '/search/'+$value,
+                                success:function(data){
+                                    var length = data.liveSearchResult.length;
+                                    for (var key in data.liveSearchResult) {
+                                        var phim = data.liveSearchResult[key];
+                                        $("#live-search").append("<li><a href='/phim/"+phim['link_id']+".html'><div class='image' style='background-image:url(/img/"+phim['poster']+"'></div><div class='content'><b class='title-film'>"+phim['tenphim']+"</b><p>"+phim['tenphim_en']+" ("+phim['nam']+")</p></div></a></li>");
+                                    }
+                                }
+                            });
+                        })
+                        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+                    </script>
+                    <script>
+                        $('#query_search').focusout(function() {
+                            setTimeout(function(){
+                                    $("#live-search").empty();
+                                }, 100);
+                        })
                     </script>
 				</li>
 			</ul>

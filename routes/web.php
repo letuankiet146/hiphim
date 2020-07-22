@@ -23,6 +23,10 @@ Route::get('/khong-tim-thay-trang', function(){
 Route::get('/lien-he-quang-cao',function(){
     return view('lien-he-quang-cao');
 });
+Route::get('/search/{data}','HiPhimController@liveSearch');
+Route::get('/search', function(){
+    return "not found";
+});
 Route::get('/more/{category}/{data}','HiPhimController@more');
 Route::get('/phim-le/{data}','HiPhimController@phimLe');
 

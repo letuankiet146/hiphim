@@ -396,4 +396,12 @@ class HiPhimController extends Controller
             "pageLink"=>$pageLink
         ]);
     }
+
+    public function liveSearch($data){
+        $liveSearchResult =  Phim::from('phims')
+        ->where('tenphim','LIKE',"%".urldecode($data)."%")
+        ->orwhere('tenphim_en','LIKE',"%".urldecode($data)."%")
+        ->get();
+        return response()->json(["liveSearchResult"=>$liveSearchResult],200);
+    }
 }
