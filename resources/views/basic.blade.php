@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi" dir="LTR"
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173249012-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-173249012-1');
+    </script>
+
     <title>@yield("title")</title>
     <meta property="fb:app_id" content="1551945181775918"/>
 	<meta charset="utf-8" />
