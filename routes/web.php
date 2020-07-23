@@ -23,6 +23,9 @@ Route::get('/khong-tim-thay-trang', function(){
 Route::get('/lien-he-quang-cao',function(){
     return view('lien-he-quang-cao');
 });
+Route::get('/dmca-report',function(){
+    return view('dmca-report');
+});
 Route::get('/search/{data}','HiPhimController@liveSearch');
 Route::get('/search', function(){
     return "not found";

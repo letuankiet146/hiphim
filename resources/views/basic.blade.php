@@ -128,17 +128,19 @@
                         $('#query_search').on('keyup',function(){
                             $("#live-search").empty();
                             $value = $(this).val();
-                            $.ajax({
-                                type: 'get',
-                                url: '/search/'+$value,
-                                success:function(data){
-                                    var length = data.liveSearchResult.length;
-                                    for (var key in data.liveSearchResult) {
-                                        var phim = data.liveSearchResult[key];
-                                        $("#live-search").append("<li><a href='/phim/"+phim['link_id']+".html'><div class='image' style='background-image:url(/img/"+phim['poster']+"'></div><div class='content'><b class='title-film'>"+phim['tenphim']+"</b><p>"+phim['tenphim_en']+" ("+phim['nam']+")</p></div></a></li>");
+                            if($value){
+                                $.ajax({
+                                    type: 'get',
+                                    url: '/search/'+$value,
+                                    success:function(data){
+                                        var length = data.liveSearchResult.length;
+                                        for (var key in data.liveSearchResult) {
+                                            var phim = data.liveSearchResult[key];
+                                            $("#live-search").append("<li><a href='/phim/"+phim['link_id']+".html'><div class='image' style='background-image:url(/img/"+phim['poster']+"'></div><div class='content'><b class='title-film'>"+phim['tenphim']+"</b><p>"+phim['tenphim_en']+" ("+phim['nam']+")</p></div></a></li>");
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }
                         })
                         $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                     </script>
@@ -239,9 +241,10 @@
         <div class="footer1">
             <a hreflang="vi" title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="/" style="background-image:url({{asset('img/hiphim-bottom.png')}}"></a>
             <ul>
-                <li><a hreflang="vi" href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a></li>
+                <li><a hreflang="vi" href="/lien-he-quang-cao">Liên hệ Quảng Cáo</a>
+                <li><a hreflang="vi" href="/dmca-report">Policy & DMCA</a></li>
             </ul>
-            <div>No Copyright. HiPhim không giữ bản quyền nội dung trên website này. Mọi VIDEO đều được tải về từ nhiều nguồn public và các site chia sẻ video khác... <br>Vấn đề bản quyền vui lòng liên hệ để chúng tôi xem xét và gỡ bỏ</div>
+            <div>No Copyright. HiPhim không giữ bản quyền nội dung trên website này. Mọi VIDEO đều được tải về từ nhiều nguồn public và các site chia sẻ video khác... <br>Vấn đề báo cáo bản quyền vui lòng xem thêm tại <a hreflang="vi" href="/dmca-report">Policy & DMCA</a></div>
         </div>
     </footer>
 </body>
