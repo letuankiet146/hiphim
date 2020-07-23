@@ -186,7 +186,7 @@
             <div class="poster-film-small lazy" style="background-image:url(/img/{{$phimlq->poster}}">
                 <div class="sotap">
                     <span>
-                        @if($phim->phude == 1) Phụ đề @else Thuyết minh @endif
+                        @if($phimlq->phude === 1) Phụ đề @else Thuyết minh @endif
                     </span>
                 </div>
                 <ul class="tag-film">
