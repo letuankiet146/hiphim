@@ -126,13 +126,13 @@
                     </script>
                     <script type="text/javascript">
                         $('#query_search').on('keyup',function(){
-                            $("#live-search").empty();
                             $value = $(this).val();
                             if($value){
                                 $.ajax({
                                     type: 'get',
                                     url: '/search/'+$value,
                                     success:function(data){
+                                        $("#live-search").empty();
                                         var length = data.liveSearchResult.length;
                                         for (var key in data.liveSearchResult) {
                                             var phim = data.liveSearchResult[key];
@@ -140,9 +140,10 @@
                                         }
                                     }
                                 });
+                            }else{
+                                $("#live-search").empty();
                             }
                         })
-                        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
                     </script>
                     <script>
                         $('#query_search').focusout(function() {
