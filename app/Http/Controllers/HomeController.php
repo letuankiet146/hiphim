@@ -152,6 +152,7 @@ class HomeController extends Controller
         $sotap->phims_id = $request->phimbo;
         $sotap->tap = $request->tap;
         $sotap->url = $request->url;
+        $sotap->fb_url = $request->fb_url;
         $sotap->save();
         return redirect('/themphimbo/'.$sotap->phims_id);
     }
@@ -199,6 +200,7 @@ class HomeController extends Controller
             $sotap->phims_id = $phim->id;
             $sotap->tap = 1;
             $sotap->url = $phim->url;
+            $sotap->fb_url = $phim->fb_url;
             $sotap->save();
         }
 

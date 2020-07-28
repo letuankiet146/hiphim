@@ -17,6 +17,7 @@ class CreateSoTapsTable extends Migration
             $table->integer('phims_id');
             $table->integer('tap');
             $table->longText('url',2083);
+            $table->longText('fb_url',2083);
             $table->timestamps();
             $table->primary(['phims_id','tap']);
         });
