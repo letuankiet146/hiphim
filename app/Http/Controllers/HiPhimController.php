@@ -123,12 +123,12 @@ class HiPhimController extends Controller
         $phimLienQuan = [];
         $phimIds = [];
         foreach($theloais as $theloai){
-            if(count($phimLienQuan)>=15){
+            if(count($phimLienQuan)>=12){
                 break;
             }
             $otherPhims = $theloai->phims;
             foreach($otherPhims as $otherPhim){
-                if(count($phimLienQuan)>=15){
+                if(count($phimLienQuan)>=12){
                     break;
                 }
                 if($id != $otherPhim->id && $danhmucId == $otherPhim->danhmucs_id && !in_array($otherPhim->id, $phimIds) ){
