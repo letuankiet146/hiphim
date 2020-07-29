@@ -67,6 +67,8 @@
 
         $topPhimChieuLe = $phimChieuLe->sortByDesc('luotxem')->slice(0,5);
 
+        sort($nams);
+
         $view->with('theloais', $theloais);
         $view->with('quocgias', $quocgias);
         $view->with('nams', $nams);
