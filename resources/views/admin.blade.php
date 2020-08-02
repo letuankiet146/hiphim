@@ -180,6 +180,10 @@
             </script>
 
             <div class="form-group">
+            <label for="sub">Viet sub:</label>
+            <input class="custom-file-input" id="sub" type="file" name="sub"/>
+            </div>
+            <div class="form-group">
             <label for="poster">Poster img:</label>
             <input class="custom-file-input" id="poster" type="file" name="poster" required/>
             </div>

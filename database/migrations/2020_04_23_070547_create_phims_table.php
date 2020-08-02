@@ -26,6 +26,7 @@ class CreatePhimsTable extends Migration
 
             $table->string('poster');
             $table->string('background');
+            $table->string('phude');
 
             $table->longText('meta_keyword',2083);
             $table->longText('meta_desc',2083);

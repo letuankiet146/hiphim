@@ -172,6 +172,12 @@ class HomeController extends Controller
         $phim->tenphim_en = $request->tenphim_en;
         $phim->link_id = $request->link_id;
         $phim->nam = $request->nam;
+        $sub = $request->file('sub');
+        if(isset($sub)){
+            $subName = $sub->getClientOriginalName();
+            $sub->move(public_path('sub'), $subName);
+            $phim->sub = $subName;
+        }
         $phim->poster = $posterName;
         $phim->background = $bgName;
         $phim->meta_keyword = $request->meta_keyword;
