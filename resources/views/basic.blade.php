@@ -149,7 +149,7 @@
                         $('#query_search').focusout(function() {
                             setTimeout(function(){
                                     $("#live-search").empty();
-                                }, 100);
+                                }, 500);
                         })
                     </script>
 				</li>

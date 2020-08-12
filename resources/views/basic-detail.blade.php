@@ -38,6 +38,15 @@
 @endsection
 
 @section('content')
+<div class="path-folder-film">
+    <ul>
+        <li>
+            <a title="Phim Mới, Phim Hay, Phim HD, Phim Rạp, Phim Miễn Phí" href="/"><span class="glyphicon glyphicon-home"></span> Trang chủ</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+        </li>
+        <li><a href="/more/danh-muc/{{$phim->danhmuc->tendanhmuc}}">{{$phim->danhmuc->tendanhmuc}}</a><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+        <li style="color:#eaedb9">{{$phim->tenphim}}</li>
+    </ul>
+</div>
 <div class="group-detail" itemscope itemtype="https://schema.org/Movie">
     @yield("detail")
     @if(isset($phim->trailer))
