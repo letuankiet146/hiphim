@@ -20,13 +20,12 @@ class HiPhimController extends Controller
         $phims = Phim::all();
 
         //Load phim chieu rap
-        $phimChieuRap = null;
-        $chieuRap = DanhMuc::from('danh_mucs')
-                ->where('tendanhmuc','LIKE',"%Phim Chiếu Rạp%");
-        if($chieuRap->exists()){
-            $phimChieuRap = $chieuRap->first()->phims()->get();
-        }
-
+        $phimChieuRap =  Phim::from('phims')
+                            ->where('danhmucs_id',"1")
+                            ->orwhere('danhmucs_id',"3")
+                            ->inRandomOrder()
+                            ->limit(20)
+                            ->get();
          //Load phim bo
          $phimChieuBo = null;
          $bo = DanhMuc::from('danh_mucs')
