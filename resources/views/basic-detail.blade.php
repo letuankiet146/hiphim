@@ -164,9 +164,9 @@
         </li>
         <li>
             Thể loại:
-            <?php
-            foreach($theloais as $theloai){
-                echo $theloai->tentheloai.", "; } ?>
+            @foreach($theloais as $theloai)
+                <a href="/more/the-loai/{{$theloai->tentheloai}}" title="Phim lẻ mới">{{$theloai->tentheloai}}</a>,
+            @endforeach
         </li>
         <li>Quốc gia: <a hreflang="vi" href="/more/{{$danhmuctitle}}/{{$quocgia->tenquocgia}}" title="Phim Hàn Quốc">{{$quocgia->tenquocgia}}</a></li>
     </ul>
