@@ -3,7 +3,6 @@
 @section('title','Xem phim nhanh | Xem phim online | Xem phim miễn phí')
 
 @section('add-meta-data')
-<meta name="keywords" content="Phim, xem phim, xem phim online, phim online, xem phim hd, phim hd, hiphim, hi phim, hiphim.org" />
 <meta name="description" content="Xem phim hay online miễn phí, Tuyển tập những bộ phim online mới chất lượng cao, HiPhim.org cập nhật liên tục các bộ phim hành động thuyết minh, hàn quốc lồng tiếng, võ thuật đang HOT nhất, xem phim chất lượng HD miễn phí" />
 @endsection
 

@@ -21,9 +21,6 @@
             </div>
 
             <div class="form-group">
-            <textarea class="form-control"  name="meta_keyword" form="insertFilmFrom" rows=4 cols=50  placeholder="Meta data Key word" required></textarea>
-            </div>
-            <div class="form-group">
             <textarea class="form-control"  name="meta_desc" form="insertFilmFrom" rows=4 cols=50  placeholder="Meta data description" required></textarea>
             </div>
 

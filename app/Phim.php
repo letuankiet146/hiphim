@@ -33,5 +33,5 @@ class Phim extends Model
     public function sotaps(){
         return $this->hasMany('App\SoTap','phims_id');
     }
-    // Nhac nen, Thong bao ko quang cao.
+    // Breadcumtrail; mini window hien thi phim moi
 }

@@ -180,7 +180,6 @@ class HomeController extends Controller
         }
         $phim->poster = $posterName;
         $phim->background = $bgName;
-        $phim->meta_keyword = $request->meta_keyword;
         $phim->meta_desc = $request->meta_desc;
         $phim->mota = $request->mota;
         $phim->danhmucs_id = $request->danhmucId;
