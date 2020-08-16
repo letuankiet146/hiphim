@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Sitemap\SitemapGenerator;
 use App\Phim;
 use App\SoTap;
 use App\DanhMuc;
@@ -136,15 +137,8 @@ class HomeController extends Controller
 
     public function live()
     {
-        $linkarray=[];
-        $films = Phim::all();
-        foreach($films as $film){
-            $name = $film->tenphim;
-            $url  = $film->url;
-            $linkarray[$name] = $url;
-        };
-        $keys = array_keys($linkarray);
-        return view("live",compact('linkarray','keys'));
+        SitemapGenerator::create('https://hiphim.org/')->writeToFile('sitemap.xml');
+        echo "Updated sitemap.xml";
     }
 
     public function insertphimbo(Request $request){

@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "spatie/laravel-medialibrary": "^8.2"
+        "spatie/laravel-medialibrary": "^8.2",
+        "spatie/laravel-sitemap": "^5.7"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
