@@ -49,10 +49,20 @@ class TestLinkController extends Controller
 
     public function updateFilm(Request $request){
         $url = $request->url;
-        $id = $request->id;
-        DB::table('phims')
-            ->where('id',$id)
-            ->update(["url"=>$url]);
+        if(strpos($url, 'http')  !== false){
+            echo "having http";
+            $id = $request->id;
+            DB::table('phims')
+                ->where('id',$id)
+                ->update(["fb_url"=>$url]);
+        }else{
+            echo "not having http";
+            $id = $request->id;
+            DB::table('phims')
+                ->where('id',$id)
+                ->update(["url"=>$url]);
+        }
+
         return redirect('/testlink');
     }
 }
