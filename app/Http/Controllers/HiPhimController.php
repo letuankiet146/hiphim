@@ -67,6 +67,23 @@ class HiPhimController extends Controller
         return $downloadUrl;
     }
 
+    function urlExists($url=NULL)
+    {
+        if($url == NULL) return false;
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 0.5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0.5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $data = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        if($httpcode>=200 && $httpcode<300){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private function allowCount($phimId){
         $clientIP = \Request::ip();
         $userIp  = UserIp::from('user_ips')
@@ -142,6 +159,10 @@ class HiPhimController extends Controller
             $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
             $publicUrl = $this->getPublicUrl($oriUrl);
         }
+        //check living
+        if(!$this->urlExists($publicUrl)){
+            $this->baoloi($id,null);
+        }
         if($this->allowCount($id)){
             $phim->luotxem = $phim->luotxem+1;
             $phim->update();
@@ -200,6 +221,12 @@ class HiPhimController extends Controller
                 }
             }
         }
+
+        //check living
+        if(!$this->urlExists($publicUrl)){
+            $this->baoloi($id,$tap);
+        }
+
         $taphientai = $tap;
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
     }
