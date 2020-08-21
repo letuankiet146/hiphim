@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 use App\Phim;
 use App\DanhMuc;
 use App\TheLoai;
@@ -70,13 +71,13 @@ class HiPhimController extends Controller
     function urlExists($url=NULL)
     {
         if($url == NULL) return false;
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 0.5);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0.5);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $data = curl_exec($ch);
-        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        $client = new Client();
+        try {
+            $request = $client->head($url);
+            $httpcode = $request->getStatusCode();
+        } catch (\Throwable $th) {
+            return false;
+        }
         if($httpcode>=200 && $httpcode<300){
             return true;
         } else {
