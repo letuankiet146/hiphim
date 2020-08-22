@@ -16,6 +16,29 @@ class TestLinkController extends Controller
         $this->middleware('auth');
     }
 
+    public function isAvailable(){
+        $phims = Phim::all();
+        foreach($phims as $phim){
+            if(strcasecmp($phim->url,"NA") !== 0){
+                continue;
+            }
+            if($phim->danhmucs_id !== 2){
+                if(!HiPhimController::urlExists($phim->fb_url)){
+                    HiPhimController::baoloi($phim->id,null);
+                }
+            }else{
+                $sotaps = $phim->sotaps;
+                foreach($sotaps as $tap){
+                    if(!HiPhimController::urlExists($tap->fb_url)){
+                        HiPhimController::baoloi($tap->phims_id, $tap->tap);
+                    }
+                }
+            }
+
+        }
+        return redirect('/testlink');
+    }
+
     public function testLink(){
 
         $baolois = BaoLoi::all();

@@ -13,6 +13,7 @@
 
 <div class="container">
   <h2>Danh sách các phim bị lỗi</h2>
+  <a class="btn btn-success" href="/isAvailable">Run checker</a>
   <table class="table"  id="myTable">
     <thead>
       <tr>

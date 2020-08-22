@@ -54,6 +54,7 @@ Route::post("/updateFilm","TestLinkController@updateFilm");
 Route::get('/updatelink/{id}', 'TestLinkController@updateLink');
 Route::get('/fixed/{id}', 'TestLinkController@fixedLink');
 Route::get('/testlink', 'TestLinkController@testLink');
+Route::get('/isAvailable', 'TestLinkController@isAvailable');
 
 Route::resource('img','HomeController');
 

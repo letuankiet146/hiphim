@@ -68,7 +68,7 @@ class HiPhimController extends Controller
         return $downloadUrl;
     }
 
-    function urlExists($url=NULL)
+    static function urlExists($url=NULL)
     {
         if($url == NULL) return false;
         $client = new Client();
@@ -232,7 +232,7 @@ class HiPhimController extends Controller
         return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
     }
 
-    public function baoloi($id,$tap){
+    public static function baoloi($id,$tap){
         $phim = Phim::find($id);
         $user_ip = \Request::ip();
         if($phim->danhmucs_id!=2){
