@@ -1,7 +1,7 @@
 @extends('basic')
 
 @if($phim->danhmucs_id !== 2)
-    @section('title','Xem Phim '.$phim->tenphim.' ('.$phim->tenphim_en.') '.$phim->nam)
+    @section('title','Xem Phim '.$phim->tenphim.' FULL HD Movie'.' ('.$phim->tenphim_en.') '.$phim->nam)
 @elseif( !isset($taphientai) )
     @section('title','Xem Phim '.$phim->tenphim.' [Tập 1]'.' ('.$phim->tenphim_en.') '.$phim->nam)
 @else
