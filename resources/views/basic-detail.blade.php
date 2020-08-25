@@ -130,12 +130,12 @@
                             <h1>Đã có ở hiphim.org</h1>
                             <div>
                             <ul class="no_bullet">
-                                @foreach($phimQC as $phim)
-                                <li class="star" style="background: url('/img/{{$phim->poster}}') no-repeat left top;background-size: 11%; height: 70px; padding-left: 13%; padding-top: 2%;">
-                                    <a href='/phim/{{$phim->link_id}}.html' style='background-image:url(/img/{{$phim->poster}}' title='{{$phim->tenphim}}'>
+                                @foreach($phimQC as $phimqce)
+                                <li class="star" style="background: url('/img/{{$phimqce->poster}}') no-repeat left top;background-size: 11%; height: 70px; padding-left: 13%; padding-top: 2%;">
+                                    <a href='/phim/{{$phimqce->link_id}}.html' style='background-image:url(/img/{{$phimqce->poster}}' title='{{$phimqce->tenphim}}'>
                                         <div class="info">
-                                            <b class="title-film">{{$phim->tenphim}}</b>
-                                            <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
+                                            <b class="title-film">{{$phimqce->tenphim}}</b>
+                                            <p>{{$phimqce->tenphim_en}} ({{$phimqce->nam}})</p>
                                         </div>
                                     </a>
                                     <hr >
