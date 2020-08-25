@@ -170,7 +170,15 @@ class HiPhimController extends Controller
         }
         $taphientai = 1;
 
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
+        //Load phim chieu rap QC
+        $phimQC =  Phim::from('phims')
+                            ->where('danhmucs_id',"1")
+                            ->orwhere('danhmucs_id',"3")
+                            ->orderBy('ngaytao', 'desc')
+                            ->limit(4)
+                            ->get();
+
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
     }
 
     public function detailTap ($link_id, $tap){

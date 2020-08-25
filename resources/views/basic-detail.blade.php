@@ -30,7 +30,7 @@
 @endsection
 
 @section('add-css')
-    <link rel="stylesheet" href="{{asset('css/trailer.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/modal.css')}}" />
     <link rel="stylesheet" href="{{asset('css/basic-detail.css')}}" />
 @endsection
 @section('add-js')
@@ -113,6 +113,48 @@
             </div>
         </div>
     </div>
+    <div class="modal fade auto-off"  id="demoModal"  tabindex="-1" role="dialog"
+         aria-labelledby="demoModal" aria-hidden="true">
+        <div class="modal-dialog animated zoomInDown modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row">
+                        <div class="col-md-12 m-h-20 bg-img rounded-left">
+                        </div>
+                        <div class="col-md-12 py-5 px-sm-5 ">
+                            <img src="{{asset('img/cgvlogo.png')}}" alt="CGV Cinemas" class="large">
+                            <h1>Đã có ở hiphim.org</h1>
+                            <div>
+                            <ul class="no_bullet">
+                                @foreach($phimQC as $phim)
+                                <li class="star" style="background: url('/img/{{$phim->poster}}') no-repeat left top;background-size: 11%; height: 70px; padding-left: 13%; padding-top: 2%;">
+                                    <a href='/phim/{{$phim->link_id}}.html' style='background-image:url(/img/{{$phim->poster}}' title='{{$phim->tenphim}}'>
+                                        <div class="info">
+                                            <b class="title-film">{{$phim->tenphim}}</b>
+                                            <p>{{$phim->tenphim_en}} ({{$phim->nam}})</p>
+                                        </div>
+                                    </a>
+                                    <hr >
+                                </li>
+                                @endforeach
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Ends -->
+    <script type="text/javascript">
+        $(window).on('load',function(){
+            $('#demoModal').modal('show');
+        });
+    </script>
 
     @endif
 
