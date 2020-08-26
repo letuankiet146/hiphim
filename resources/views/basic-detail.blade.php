@@ -118,10 +118,10 @@
         <div class="modal-dialog animated zoomInDown modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="container-fluid">
-                    <button type="button" class="close" data-dismiss="modal"
+                    <!-- <button type="button" class="close" data-dismiss="modal"
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button> -->
                     <div class="row">
                         <div class="col-md-12 m-h-20 bg-img rounded-left">
                         </div>
