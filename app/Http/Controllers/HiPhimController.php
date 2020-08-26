@@ -172,8 +172,7 @@ class HiPhimController extends Controller
 
         //Load phim chieu rap QC
         $phimQC =  Phim::from('phims')
-                            ->where('danhmucs_id',"1")
-                            ->orwhere('danhmucs_id',"3")
+                            ->where('danhmucs_id',"3")
                             ->orderBy('ngaytao', 'desc')
                             ->limit(4)
                             ->get();
@@ -237,7 +236,14 @@ class HiPhimController extends Controller
         }
 
         $taphientai = $tap;
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','publicUrl','sotaps','taphientai'));
+
+         //Load phim chieu rap QC
+         $phimQC =  Phim::from('phims')
+         ->where('danhmucs_id',"3")
+         ->orderBy('ngaytao', 'desc')
+         ->limit(4)
+         ->get();
+        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
     }
 
     public static function baoloi($id,$tap){
