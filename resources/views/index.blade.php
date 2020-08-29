@@ -15,21 +15,13 @@
 @section('content')
 <!-- <div class="khoi-trai"> -->
     <div class="slider top-slider">
-        <?php
-            $phims = $phims->sortByDesc('ngaytao');
-            $i = 0;
-        foreach($phims as $phim){
-            if($phim->danhmucs_id == 3){
-                echo "<div class='item' style='float:left'>";
-                echo"<a class='lazy' href='/phim/$phim->link_id.html' title='$phim->tenphim'><img src='/img/$phim->background' alt='' style='background-size: cover;background-repeat:no-repeat;width: inherit;height: inherit;'></a>";
-                echo"</div>";
-                if($i >= 9){
-                break;
-                }
-                $i++;
-            }
-        }
-        ?>
+        @foreach($phimChieuRap as $phim)
+        <div class='item' style='float:left'>
+            <a class='lazy' href='/phim/{{$phim->link_id}}.html' title="{{$phim->tenphim}}">
+                <img src="/img/{{$phim->background}}" alt="Phim {{$phim->tenphim}}" style='background-size: cover;background-repeat:no-repeat;width: inherit;height: inherit;'>
+            </a>
+        </div>
+        @endforeach
     </div>
     <div class="group-film group-film-category" id="cat-phim-chieu-rap" data-page="2" data-slug="">
         <h2>
@@ -38,7 +30,7 @@
         <a href="/more/danh-muc/Phim+Chiếu+Rạp" class="more" ></a>
         <span class="line-ngang"></span>
         <div class="phimdecu-slider">
-            @foreach($phimChieuRap as $phim)
+            @foreach($phimNgauNhien as $phim)
             <div class='item'>
                 <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' style='background-image:url(/img/{{$phim->poster}}' tabindex='0'>
                     <div class='black-gradient'>

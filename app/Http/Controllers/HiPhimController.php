@@ -20,45 +20,42 @@ class HiPhimController extends Controller
     public function ui(){
         $phims = Phim::all();
 
-        //Load phim chieu rap
+        // Load phim chieu rap
         $phimChieuRap =  Phim::from('phims')
+                            ->where('danhmucs_id',"3")
+                            ->orderBy('ngaytao','desc')
+                            ->limit(10)
+                            ->get();
+
+        //Load phim ngau nhien
+        $phimNgauNhien =  Phim::from('phims')
                             ->where('danhmucs_id',"1")
                             ->orwhere('danhmucs_id',"3")
                             ->inRandomOrder()
                             ->limit(20)
                             ->get();
          //Load phim bo
-         $phimChieuBo = null;
-         $bo = DanhMuc::from('danh_mucs')
-                 ->where('tendanhmuc','LIKE',"%Phim Bộ%");
-         if($bo->exists()){
-             $phimChieuBo = $bo->first()->phims()->get();
-         }
+        $phimChieuBo =  Phim::from('phims')
+                            ->where('danhmucs_id',"2")
+                            ->orderBy('ngaytao','desc')
+                            ->limit(6)
+                            ->get();
 
-          //Load phim le
-          $phimChieuLe = null;
-          $le = DanhMuc::from('danh_mucs')
-                  ->where('tendanhmuc','LIKE',"%Phim Lẻ%");
-          if($le->exists()){
-              $phimChieuLe = $le->first()->phims()->get();
-          }
+        //Load phim le
+        $phimChieuLe =  Phim::from('phims')
+                            ->where('danhmucs_id',"1")
+                            ->orderBy('ngaytao','desc')
+                            ->limit(12)
+                            ->get();
 
-           //Load phim tv
-           $phimTv = null;
-           $tv = DanhMuc::from('danh_mucs')
-                   ->where('tendanhmuc','LIKE',"%Phim Truyền Hình%");
-           if($tv->exists()){
-               $phimTv = $tv->first()->phims()->get();
-           }
+        //Load phim tv
+        $phimTv =  Phim::from('phims')
+                            ->where('danhmucs_id',"4")
+                            ->orderBy('ngaytao','desc')
+                            ->limit(6)
+                            ->get();
 
-        $phimChieuBo = $phimChieuBo->sortByDesc('ngaytao');
-        $phimChieuLe = $phimChieuLe->sortByDesc('ngaytao');
-        $phimTv = $phimTv->sortByDesc('ngaytao');
-
-        $phimChieuBo = $phimChieuBo->slice(0,6);
-        $phimChieuLe = $phimChieuLe->slice(0,12);
-        $phimTv = $phimTv->slice(0,6);
-        return view("index" ,compact('phims','phimChieuRap','phimChieuBo','phimChieuLe','phimTv'));
+        return view("index" ,compact('phimChieuRap','phimNgauNhien','phimChieuBo','phimChieuLe','phimTv'));
     }
 
     private function getPublicUrl($oriUrl) {
@@ -107,6 +104,7 @@ class HiPhimController extends Controller
         }
         return true;
     }
+
     public function oldDetail ($link_id){
         $phim = Phim::find($link_id);
         if(isset($phim)){
@@ -115,6 +113,7 @@ class HiPhimController extends Controller
             return redirect('/');
         }
     }
+
     public function detail ($link_id){
         $p = Phim::from('phims')
         ->where('link_id', $link_id)->first();
