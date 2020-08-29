@@ -160,8 +160,11 @@ class HiPhimController extends Controller
             $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
             $publicUrl = $this->getPublicUrl($oriUrl);
         }
+
         //check living
+        $isErrorUrl = false;
         if(!$this->urlExists($publicUrl)){
+            $isErrorUrl = true;
             $this->baoloi($id,null);
         }
         if($this->allowCount($id)){
@@ -177,7 +180,7 @@ class HiPhimController extends Controller
                             ->limit(4)
                             ->get();
 
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
+        return view("detail",compact('isErrorUrl','phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
     }
 
     public function detailTap ($link_id, $tap){
@@ -231,7 +234,9 @@ class HiPhimController extends Controller
         }
 
         //check living
+        $isErrorUrl = false;
         if(!$this->urlExists($publicUrl)){
+            $isErrorUrl = true;
             $this->baoloi($id,$tap);
         }
 
@@ -243,7 +248,7 @@ class HiPhimController extends Controller
          ->orderBy('ngaytao', 'desc')
          ->limit(4)
          ->get();
-        return view("detail",compact('phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
+        return view("detail",compact('isErrorUrl','phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
     }
 
     public static function baoloi($id,$tap){

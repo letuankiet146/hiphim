@@ -34,7 +34,8 @@
     <link rel="stylesheet" href="{{asset('css/basic-detail.css')}}" />
 @endsection
 @section('add-js')
-    <script type="text/javascript" src="{{asset('js/trailer.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/basic-detail.js')}}"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 @endsection
 
 @section('content')
@@ -50,112 +51,54 @@
 <div class="group-detail" itemscope itemtype="https://schema.org/Movie">
     @yield("detail")
     @if(isset($phim->trailer))
-    <!-- Button trigger modal -->
-    <a title="trailer" class="btn btn-primary video-btn btn-info btn-lg play-film" data-toggle="modal" data-src="https://www.youtube.com/embed/{{$phim->trailer}}" data-target="#myModal">
-        Trailer
-    </a>
-    <a title="trailer" class="btn btn-danger video-btn btn-info btn-lg play-film" onclick="baoloi()">
-        Báo lỗi
-    </a>
-    @if($phim->danhmucs_id !== 2)
-    <script>
-        function baoloi() {
-            $.ajax({
-            type:'GET',
-            url:'/baoloi/{{$phim->id}}/2',
-            data:'_token = <?php echo csrf_token() ?>',
-            success:function(data) {
-                alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
-            },
-            });
-        }
-    </script>
-    @elseif( !isset($taphientai) )
-    <script>
-        function baoloi() {
-            $.ajax({
-            type:'GET',
-            url:'/baoloi/{{$phim->id}}/1',
-            data:'_token = <?php echo csrf_token() ?>',
-            success:function(data) {
-                alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
-            },
-            });
-        }
-    </script>
-    @else
-    <script>
-        function baoloi() {
-            $.ajax({
-            type:'GET',
-            url:'/baoloi/{{$phim->id}}/{{$taphientai}}',
-            data:'_token = <?php echo csrf_token() ?>',
-            success:function(data) {
-                alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
-            },
-            });
-        }
-    </script>
-    @endif
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <!-- 16:9 aspect ratio -->
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe width="100%" height="379" class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade auto-off"  id="demoModal"  tabindex="-1" role="dialog"
-         aria-labelledby="demoModal" aria-hidden="true">
-        <div class="modal-dialog animated zoomInDown modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="container-fluid">
-                    <!-- <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
-                    <div class="row">
-                        <div class="col-md-12 m-h-20 bg-img rounded-left">
-                        </div>
-                        <div class="col-md-12 py-5 px-sm-5 ">
-                            <img src="{{asset('img/cgvlogo.png')}}" alt="CGV Cinemas" class="large">
-                            <h1>Đã có ở hiphim.org</h1>
-                            <div>
-                            <ul class="no_bullet">
-                                @foreach($phimQC as $phimqce)
-                                <li class="star" style="background: url('/img/{{$phimqce->poster}}') no-repeat left top;background-size: 11%; height: 70px; padding-left: 13%; padding-top: 2%;">
-                                    <a href='/phim/{{$phimqce->link_id}}.html' style='background-image:url(/img/{{$phimqce->poster}}' title='{{$phimqce->tenphim}}'>
-                                        <div class="info">
-                                            <b class="title-film">{{$phimqce->tenphim}}</b>
-                                            <p>{{$phimqce->tenphim_en}} ({{$phimqce->nam}})</p>
-                                        </div>
-                                    </a>
-                                    <hr >
-                                </li>
-                                @endforeach
-                            </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Ends -->
-    <script type="text/javascript">
-        $(window).on('load',function(){
-            $('#demoModal').modal('show');
-        });
-    </script>
-
+        <!-- Button trigger modal -->
+        <a title="trailer" class="btn btn-primary video-btn btn-info btn-lg play-film" data-toggle="modal" data-src="https://www.youtube.com/embed/{{$phim->trailer}}" data-target="#myModal">
+            Trailer
+        </a>
+        <a title="trailer" class="btn btn-danger video-btn btn-info btn-lg play-film" onclick="baoloi()">
+            Báo lỗi
+        </a>
+        @if($phim->danhmucs_id !== 2)
+        <script>
+            function baoloi() {
+                $.ajax({
+                type:'GET',
+                url:'/baoloi/{{$phim->id}}/2',
+                data:'_token = <?php echo csrf_token() ?>',
+                success:function(data) {
+                    alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
+                },
+                });
+            }
+        </script>
+        @elseif( !isset($taphientai) )
+        <script>
+            function baoloi() {
+                $.ajax({
+                type:'GET',
+                url:'/baoloi/{{$phim->id}}/1',
+                data:'_token = <?php echo csrf_token() ?>',
+                success:function(data) {
+                    alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
+                },
+                });
+            }
+        </script>
+        @else
+        <script>
+            function baoloi() {
+                $.ajax({
+                type:'GET',
+                url:'/baoloi/{{$phim->id}}/{{$taphientai}}',
+                data:'_token = <?php echo csrf_token() ?>',
+                success:function(data) {
+                    alert('Cảm ơn bạn đã cho chúng tôi biết điều này');
+                },
+                });
+            }
+        </script>
+        @endif
+        @yield("modal-dialog")
     @endif
 
     <h1 class="title-film-detail-1" itemprop="name">{{$phim->tenphim}}</h1>
