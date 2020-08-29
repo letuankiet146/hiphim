@@ -4,7 +4,12 @@
 
 @section('content')
 <div class="container">
+    <hr>
+    <a class="btn btn-success"  href="/testlink"><b>Danh sách link chết</b></a>
+    <a class="btn btn-success" href="/live"><b>Update SiteMap</b></a>
+    <hr>
     <div class="form">
+        <h1>Thêm phim mới</h1>
         <form  action="/insertFilm" id="insertFilmFrom" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group">
@@ -189,29 +194,8 @@
             <input class="custom-file-input" id="bg" type="file" name="bg" required/>
             </div>
             <button class="btn btn-danger"  type="submit">Save</button>
+            <hr>
         </form>
     </div>
-
-
-    <hr>
-    <a class="btn btn-primary"  href="/testlink">Test link</a>
-
-    <a class="btn btn-primary" href="/live">Review all</a>
-
-
-    <form  action="/searchFilm" id="searchFilmFrom" method="post">
-        {{csrf_field()}}
-        <input  class="form-control" type="text" name="title"  placeholder="Search film name"/>
-        <button class="btn btn-success" type="submit">Search</button>
-    </form>
-
-    <?php
-
-        if(isset($films)){
-            foreach($films as $film){
-                echo "<p><a href='/delete/{$film->id}'>Delete</a> <a href='/update/{$film->id}'>Update</a> # $film->tenphim </p>";
-            };
-        };
-    ?>
 </div>
 @endsection

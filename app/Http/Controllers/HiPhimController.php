@@ -174,8 +174,8 @@ class HiPhimController extends Controller
 
         //Load phim chieu rap QC
         $phimQC =  Phim::from('phims')
-                            ->where('danhmucs_id',"3")
-                            ->orderBy('ngaytao', 'desc')
+                            ->where('danhmucs_id',"5")
+                            ->orderBy('ngaytao','desc')
                             ->limit(4)
                             ->get();
 
@@ -241,12 +241,12 @@ class HiPhimController extends Controller
 
         $taphientai = $tap;
 
-         //Load phim chieu rap QC
-         $phimQC =  Phim::from('phims')
-         ->where('danhmucs_id',"3")
-         ->orderBy('ngaytao', 'desc')
-         ->limit(4)
-         ->get();
+        //Load phim chieu rap QC
+        $phimQC =  Phim::from('phims')
+                    ->where('danhmucs_id',"5")
+                    ->orderBy('ngaytao','desc')
+                    ->limit(4)
+                    ->get();
         return view("detail",compact('isErrorUrl','phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
     }
 

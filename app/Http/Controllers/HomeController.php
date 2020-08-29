@@ -221,28 +221,6 @@ class HomeController extends Controller
         return redirect('/admin');
     }
 
-    public function searchFilm(Request $request){
-
-        $title = $request->title;
-        if(strcmp($title ,"*")==0){
-            $films = Phim::all();
-        } else {
-            $films = DB::table('phims')
-            ->where('tenphim', 'LIKE', "%".$title."%")
-            ->get();
-        }
-
-        return view('admin',[
-            'films'=>$films
-        ]);
-    }
-
-    public function deleteFilm($id){
-        $film = Phim::find($id);
-        $film->delete();
-        return redirect('/admin');
-    }
-
     public function ui(){
         return view("index");
     }
