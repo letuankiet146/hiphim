@@ -163,8 +163,10 @@ class HiPhimController extends Controller
         //check living
         $isErrorUrl = false;
         if(!$this->urlExists($publicUrl)){
-            $isErrorUrl = true;
-            $this->baoloi($id,null);
+            if($id!==120){
+                $isErrorUrl = true;
+                $this->baoloi($id,null);
+            }
         }
         if($this->allowCount($id)){
             $phim->luotxem = $phim->luotxem+1;
