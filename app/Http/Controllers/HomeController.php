@@ -244,9 +244,23 @@ class HomeController extends Controller
     }
 
     public function themdienvien(Request $request){
-        $newDienVien = new DienVien();
-        $newDienVien->tendienvien = trim($request->tendienvien);
-        $newDienVien->save();
+
+        $dienvienInput = trim($request->tendienvien);
+        if(strpos($dienvienInput, ',')  !== false){
+            $newDienVienArr = explode(",",$dienvienInput);
+            foreach($newDienVienArr as $dienvien){
+                if(empty($dienvien)){
+                    continue;
+                }
+                $newDienVien = new DienVien();
+                $newDienVien->tendienvien = $dienvien;
+                $newDienVien->save();
+            }
+        }else{
+            $newDienVien = new DienVien();
+            $newDienVien->tendienvien = $dienvienInput;
+            $newDienVien->save();
+        }
         return redirect('/dienvien');
     }
 
