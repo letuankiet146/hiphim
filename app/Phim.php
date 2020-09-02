@@ -33,5 +33,5 @@ class Phim extends Model
     public function sotaps(){
         return $this->hasMany('App\SoTap','phims_id');
     }
-    //  loading icon
+    //  chinh mau sub tren remote
 }
