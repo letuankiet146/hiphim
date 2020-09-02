@@ -25,7 +25,7 @@
     </div>
     <div class="group-film group-film-category" id="cat-phim-chieu-rap" data-page="2" data-slug="">
         <h2>
-            <a title="Phim Đang Chiếu Rạp" href="/more/danh-muc/Phim+Chiếu+Rạp">Mới cập nhật<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+            <a title="Phim Đang Chiếu Rạp" href="/more/danh-muc/Phim+Chiếu+Rạp">Ngẫu nhiên<i class="fa fa-caret-right" aria-hidden="true"></i></a>
         </h2>
         <a href="/more/danh-muc/Phim+Chiếu+Rạp" class="more" ></a>
         <span class="line-ngang"></span>
@@ -51,7 +51,7 @@
 
     <div class="group-film group-film-category" id="cat-phim-le" data-page="1" data-slug="">
         <h2>
-            <a title="Phim Lẻ Mới" href="/more/danh-muc/Phim+Lẻ">phim lẻ chọn lọc<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+            <a title="Phim Lẻ Mới" href="/more/danh-muc/Phim+Lẻ">phim lẻ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
         </h2>
         <ul class="phanloai">
             <li><a href="/more/phim-le/Hành+động" title="Phim lẻ Hành động">Hành động</a></li>
@@ -79,7 +79,7 @@
 
     <div class="group-film group-film-category" id="cat-phim-bo" data-page="1" data-slug="">
         <h2>
-            <a title="Phim Bộ Mới" href="/more/danh-muc/Phim+Bộ">phim bộ chọn lọc<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+            <a title="Phim Bộ Mới" href="/more/danh-muc/Phim+Bộ">phim bộ<i class="fa fa-caret-right" aria-hidden="true"></i></a>
         </h2>
         <ul class="phanloai">
             <li><a href="/more/phim-bo/Trung+Quốc" title="Phim bộ Trung Quốc">Trung Quốc</a></li>
@@ -111,7 +111,7 @@
 
     <div class="group-film group-film-category" id="cat-the-loai-tv-show" data-page="1" data-slug="">
         <h2>
-            <a href="/more/tv-show/all">TV Shows<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+            <a href="/more/tv-show/all">Phim Hoạt Hình<i class="fa fa-caret-right" aria-hidden="true"></i></a>
         </h2>
         <a href="/more/tv-show/all" class="more" ></a>
         <span class="line-ngang"></span>
