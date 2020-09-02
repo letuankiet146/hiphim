@@ -36,7 +36,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/v3_v3.min.css?v=5.0')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css?v=1.0')}}">
-    <link rel="stylesheet" href="{{asset('css/plyr.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/plyr_v2.css')}}" />
     @yield("add-css")
 	<script>
 		var isRealUser=!1;setTimeout(function(){isRealUser=!0},1e4);var async=async||[];function loadScript(i){var e=btoa(i);if(document.getElementById(e)||document.write('<script id="'.concat(e,'"><\/script>')),!isRealUser)return setTimeout(function(){loadScript(i)},100),!0;console.log(i),setTimeout(function(){!function(e,t){var n,r=e.getElementById(t);if(r&&r.src)return;(n=e.createElement("script")).id=t,n.src=i,n.setAttribute("defer","defer"),n.setAttribute("async","async"),r.parentNode.replaceChild(n,r)}(document,e)},0)}async.push(["ready",function(){$(document).on("scroll mousemove",function(){if(isRealUser)return!0;setTimeout(function(){isRealUser=!0},500)})}]);
