@@ -21227,7 +21227,8 @@ ul#blog1 {
 
 .khoi-trai .fbchat {
     z-index: 3;
-    position: relative
+    position: relative;
+    background: #ffffff;
 }
 
 div.ads-fix-bottom {
@@ -21280,7 +21281,8 @@ div.ads-fix-bottom {
 
 .khoi-trai .fbchat {
     z-index: 3;
-    position: relative
+    position: relative;
+    background: #ffffff;
 }
 
 div.ads-fix-bottom {
