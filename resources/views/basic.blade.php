@@ -172,12 +172,12 @@
                 </ul>
             </div> -->
             <div class="topphim-doc">
-                <h3>top phim</h3>
+                <h3>Mới Cập Nhật</h3>
                 <ul class="film mCustomScrollbar _mCS_1 ">
                     <div id="mCSB_1" class="mCustomScrollBox mCS-inset-2-dark mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
                         <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y " style="position: relative; top: 0; left: 0;" dir="ltr">
                             <li>
-                                @foreach($topPhimChieuLe as $phim)
+                                @foreach($phimMoiCapNhat as $phim)
                                 <a href='/phim/{{$phim->link_id}}.html' title='{{$phim->tenphim}}'>
                                     <div class="image lazy" style='background-image:url(/img/{{$phim->poster}}'></div>
                                     <div class="info">

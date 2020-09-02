@@ -28,11 +28,12 @@
      {
         define('PHIM_LE',1);
         define('PHIM_BO',2);
+        define('PHIM_RAP',3);
+
         $theloais = TheLoai::all();
         $quocgias = QuocGia::all();
-        $danhMucPhimLe = DanhMuc::find(PHIM_LE);
-        $danhMucPhimBo = Danhmuc::find(PHIM_BO);
 
+        $danhMucPhimLe = DanhMuc::find(PHIM_LE);
         $phimsLe = $danhMucPhimLe->phims;
         $nams = [];
         foreach($phimsLe as $phimLe){
@@ -41,6 +42,7 @@
             }
         }
 
+        $danhMucPhimBo = Danhmuc::find(PHIM_BO);
         $phimsBo = $danhMucPhimBo->phims;
         $phimsBoQuocGia = [];
         foreach($phimsBo as $phimBo){;
@@ -50,22 +52,18 @@
         }
 
         //Load phim bo
-        $phimChieuBo = null;
-        $bo = DanhMuc::from('danh_mucs')
-                ->where('tendanhmuc','LIKE',"%Phim Bộ%");
-        if($bo->exists()){
-            $phimChieuBo = $bo->first()->phims()->get();
-        }
-        $topPhimChieuBo = $phimChieuBo->sortByDesc('luotxem')->slice(0,10);
+        $topPhimChieuBo =  Phim::from('phims')
+                        ->where('danhmucs_id',PHIM_BO)
+                        ->orderBy('luotxem','desc')
+                        ->limit(10)
+                        ->get();
 
-         //Load phim le
-         $phimChieuLe = null;
-         $phimChieuLe = Phim::from('phims')
-                ->where('danhmucs_id',1)
-                ->orwhere('danhmucs_id',3)
-                ->get();
-
-        $topPhimChieuLe = $phimChieuLe->sortByDesc('luotxem')->slice(0,5);
+        $phimMoiCapNhat =  Phim::from('phims')
+                        ->where('danhmucs_id',PHIM_LE)
+                        ->orwhere('danhmucs_id',PHIM_RAP)
+                        ->orderBy('ngaytao','desc')
+                        ->limit(5)
+                        ->get();
 
         sort($nams);
 
@@ -73,7 +71,7 @@
         $view->with('quocgias', $quocgias);
         $view->with('nams', $nams);
         $view->with('phimsBoQuocGia', $phimsBoQuocGia);
-        $view->with('topPhimChieuLe', $topPhimChieuLe);
+        $view->with('phimMoiCapNhat', $phimMoiCapNhat);
         $view->with('topPhimChieuBo', $topPhimChieuBo);
      }
  }

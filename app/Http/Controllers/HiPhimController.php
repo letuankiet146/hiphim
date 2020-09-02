@@ -32,7 +32,7 @@ class HiPhimController extends Controller
                             ->where('danhmucs_id',"1")
                             ->orwhere('danhmucs_id',"3")
                             ->inRandomOrder()
-                            ->limit(20)
+                            ->limit(15)
                             ->get();
          //Load phim bo
         $phimChieuBo =  Phim::from('phims')
@@ -44,7 +44,7 @@ class HiPhimController extends Controller
         //Load phim le
         $phimChieuLe =  Phim::from('phims')
                             ->where('danhmucs_id',"1")
-                            ->orderBy('ngaytao','desc')
+                            ->inRandomOrder()
                             ->limit(12)
                             ->get();
 
