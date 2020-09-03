@@ -53,6 +53,9 @@ Route::get('/fixed/{id}', 'TestLinkController@fixedLink');
 Route::get('/testlink', 'TestLinkController@testLink');
 Route::get('/isAvailable', 'TestLinkController@isAvailable');
 
+Route::get('/demo',function(){
+    return view('live');
+});
 
 Route::resource('img','HomeController');
 
