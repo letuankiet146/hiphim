@@ -58,10 +58,10 @@
                         ->limit(10)
                         ->get();
 
-        $phimMoiCapNhat =  Phim::from('phims')
+        $phimNgauNhien =  Phim::from('phims')
                         ->where('danhmucs_id',PHIM_LE)
                         ->orwhere('danhmucs_id',PHIM_RAP)
-                        ->orderBy('ngaytao','desc')
+                        ->inRandomOrder()
                         ->limit(5)
                         ->get();
 
@@ -71,7 +71,7 @@
         $view->with('quocgias', $quocgias);
         $view->with('nams', $nams);
         $view->with('phimsBoQuocGia', $phimsBoQuocGia);
-        $view->with('phimMoiCapNhat', $phimMoiCapNhat);
+        $view->with('phimNgauNhien', $phimNgauNhien);
         $view->with('topPhimChieuBo', $topPhimChieuBo);
      }
  }

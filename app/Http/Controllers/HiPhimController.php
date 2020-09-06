@@ -27,11 +27,10 @@ class HiPhimController extends Controller
                             ->limit(10)
                             ->get();
 
-        //Load phim ngau nhien
-        $phimNgauNhien =  Phim::from('phims')
+        //Load phim mới cập nhật
+        $phimMoiCapNhat =  Phim::from('phims')
                             ->where('danhmucs_id',"1")
-                            ->orwhere('danhmucs_id',"3")
-                            ->inRandomOrder()
+                            ->orderBy('ngaytao','desc')
                             ->limit(15)
                             ->get();
          //Load phim bo
@@ -55,7 +54,7 @@ class HiPhimController extends Controller
                             ->limit(6)
                             ->get();
 
-        return view("index" ,compact('phimChieuRap','phimNgauNhien','phimChieuBo','phimChieuLe','phimTv'));
+        return view("index" ,compact('phimChieuRap','phimMoiCapNhat','phimChieuBo','phimChieuLe','phimTv'));
     }
 
     private function getPublicUrl($oriUrl) {

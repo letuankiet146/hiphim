@@ -24,13 +24,13 @@
         @endforeach
     </div>
     <div class="group-film group-film-category" id="cat-phim-chieu-rap" data-page="2" data-slug="">
-        <h2>
-            <a title="Phim Đang Chiếu Rạp" href="/more/danh-muc/Phim+Chiếu+Rạp">Ngẫu nhiên<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-        </h2>
-        <a href="/more/danh-muc/Phim+Chiếu+Rạp" class="more" ></a>
+        <!-- <h2>
+            <a title="Phim Đang Chiếu Rạp" href="/more/danh-muc/Phim+Chiếu+Rạp">Mới cập nhật<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+        </h2> -->
+        <h2>Mới cập nhật</h2>
         <span class="line-ngang"></span>
         <div class="phimdecu-slider">
-            @foreach($phimNgauNhien as $phim)
+            @foreach($phimMoiCapNhat as $phim)
             <div class='item'>
                 <a title='{{$phim->tenphim}}' href='/phim/{{$phim->link_id}}.html' style='background-image:url(/img/{{$phim->poster}}' tabindex='0'>
                     <div class='black-gradient'>
