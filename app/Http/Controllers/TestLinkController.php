@@ -88,4 +88,20 @@ class TestLinkController extends Controller
 
         return redirect('/testlink');
     }
+
+    public function demo(){
+        $rawUrl = 'http://www.mediafire.com/file/34j6iqah9ud1ubr/file';
+        $rawUrlData = file_get_contents($rawUrl);
+        $doc = new \DomDocument;
+
+        libxml_use_internal_errors(true);
+
+        htmlspecialchars($rawUrlData);
+        $doc->loadHTMLFile($rawUrl);
+        $links = array();
+        $urlStream = null;
+        $mediaUrl = $doc->getElementsByTagName('a')[7]->getAttribute('href');
+        echo $mediaUrl;
+        return view('live',compact('mediaUrl'));
+    }
 }
