@@ -12,7 +12,6 @@
     </script>
 
     <title>@yield("title")</title>
-    <meta property="fb:app_id" content="1551945181775918"/>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta http-equiv="Content-Language" content="vi-VN" />
@@ -47,9 +46,7 @@
 
 </head>
 <body class="body-page ">
-<div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=882563695542362&autoLogAppEvents=1" nonce="rk5UZyWo"></script>
-	<nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid navbar-top">
 
 			<div class="navbar-header">

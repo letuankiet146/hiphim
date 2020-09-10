@@ -33,5 +33,5 @@ class Phim extends Model
     public function sotaps(){
         return $this->hasMany('App\SoTap','phims_id');
     }
-    // find backup link phim
+    // find backup link phim; DISQUS; peer torrent to stream mp4
 }

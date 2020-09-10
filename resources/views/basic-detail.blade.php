@@ -162,9 +162,6 @@
     {!!$phim->mota!!}
     </div>
 </div>
-<div class="fbchat">
-    <div class="fb-comments" data-href="https://hiphim.org/phim/{{$phim->link_id}}.html" data-numposts="10" data-width="100%" data-order-by="reverse_time" data-colorscheme="dark"></div>
-</div>
 <div class="group-film group-film-category">
     <h2>cùng thể loại<i class="fa fa-caret-right" aria-hidden="true"></i></h2>
     <span class="line-ngang"></span>
