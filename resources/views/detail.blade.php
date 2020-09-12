@@ -8,6 +8,11 @@
     <p style="font-size: 90%; ">Chúng tôi sẽ sớm cập nhật<p>
     </div>
     @endif
+    <div id="linkhongId" class="alert alert-danger text-monospace" role="alert" style="text-align: center; display:none">
+    <i class='fas fa-sad-cry'></i><strong id="alertContentId" style="font-size: 110%; "> Link hỏng! </strong><i class='fas fa-sad-cry'></i>
+    <br>
+    <p style="font-size: 90%; ">Chúng tôi sẽ sớm cập nhật<p>
+    </div>
     <video id="phimContainId" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
             <source src="{{$publicUrl}}" type="video/mp4" size="576">
             @if(isset($phim->sub))

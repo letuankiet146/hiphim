@@ -1,9 +1,6 @@
-$(window).on('load', function() {
-    $('#demoModal').modal('show');
-});
+$(window).on('load', function() {});
 
 $(document).ready(function() {
-
     // Gets the video src from the data-src on each button
     var $videoSrc;
     $('.video-btn').click(function() {
@@ -27,6 +24,7 @@ $(document).ready(function() {
 
 
 function changeStreamServer(phimId, serverNumber) {
+    $('#linkhongId').hide();
     svid = 'db_' + serverNumber;
     $.ajax({
         beforeSend: function() {
@@ -36,15 +34,21 @@ function changeStreamServer(phimId, serverNumber) {
         url: '/change-sever/' + phimId + '/' + serverNumber,
         success: function(data) {
             $('#loading_logo_container').hide();
-            $('#phimContainId').attr('src', data.newUrl);
-            $("#phimContainId")[0].play();
             document.getElementById('serverId').lastChild.classList.remove('actived');
             document.getElementById(svid).lastChild.classList.add('actived');
+            $('#phimContainId').attr('src', data.newUrl);
+            if (data.isErrorUrl) {
+                $('#linkhongId').show();
+                $('#alertContentId')[0].textContent = "     Server " + serverNumber + " hỏng    ";
+            } else {
+                $("#phimContainId")[0].play();
+            }
         },
     });
 }
 
 function backToMainServer(publicUrl) {
+    $('#linkhongId').hide();
     $('#phimContainId').attr('src', publicUrl);
     var episodes = document.getElementsByClassName('btn-episode');
     for (episode of episodes) {

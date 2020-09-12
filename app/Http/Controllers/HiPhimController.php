@@ -83,18 +83,22 @@ class HiPhimController extends Controller
     }
 
     private function getMediaFireUrl($fileId){
-        $rawUrl = 'http://www.mediafire.com/file/'.$fileId.'/file';
-        $rawUrlData = file_get_contents($rawUrl);
-        $doc = new \DomDocument;
+       try {
+            $rawUrl = 'http://www.mediafire.com/file/'.$fileId.'/file';
+            $rawUrlData = file_get_contents($rawUrl);
+            $doc = new \DomDocument;
 
-        libxml_use_internal_errors(true);
+            libxml_use_internal_errors(true);
 
-        htmlspecialchars($rawUrlData);
-        $doc->loadHTMLFile($rawUrl);
-        $links = array();
-        $urlStream = null;
-        $mediaUrl = $doc->getElementsByTagName('a')[7]->getAttribute('href');
-        return $mediaUrl;
+            htmlspecialchars($rawUrlData);
+            $doc->loadHTMLFile($rawUrl);
+            $links = array();
+            $urlStream = null;
+            $mediaUrl = $doc->getElementsByTagName('a')[7]->getAttribute('href');
+            return $mediaUrl;
+       } catch (\Throwable $th) {
+           return "";
+       }
     }
 
     private function allowCount($phimId){
@@ -489,6 +493,12 @@ class HiPhimController extends Controller
                             -> where ('servers_id',$serverId)
                             -> first();
         $newUrl = $this->getMediaFireUrl($server->url);
-        return response()->json(["newUrl"=>$newUrl],200);
+        //check living
+        $isErrorUrl = false;
+        if(strcasecmp($newUrl,"")===0 ||  !$this->urlExists($newUrl)){
+            $isErrorUrl = true;
+            $this->baoloi($phimId,null);
+        }
+        return response()->json(["newUrl"=>$newUrl,"isErrorUrl"=>$isErrorUrl],200);
     }
 }
