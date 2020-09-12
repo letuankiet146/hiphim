@@ -33,7 +33,7 @@
     <link rel="icon" href="{{asset('img/favicon.png')}}">
     <link rel="alternate" href="http://hiphim.org/" hreflang="vi" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/v3_v3.min.css?v=5.0')}}">
+    <link rel="stylesheet" href="{{asset('css/v3_v4.min.css?v=5.0')}}">
     <link rel="stylesheet" href="{{asset('css/custom.css?v=1.0')}}">
     <link rel="stylesheet" href="{{asset('css/plyr_v2.css')}}" />
     <link rel="stylesheet" href="{{asset('css/basic.css')}}" />
