@@ -26,21 +26,29 @@ $(document).ready(function() {
 });
 
 
-function changeStreamServer(phimId, serverId) {
+function changeStreamServer(phimId, serverNumber) {
+    svid = 'db_' + serverNumber;
     $.ajax({
         beforeSend: function() {
             $('#loading_logo_container').show();
         },
         type: 'GET',
-        url: '/change-sever/' + phimId + '/' + serverId,
+        url: '/change-sever/' + phimId + '/' + serverNumber,
         success: function(data) {
             $('#loading_logo_container').hide();
             $('#phimContainId').attr('src', data.newUrl);
             $("#phimContainId")[0].play();
+            document.getElementById('serverId').lastChild.classList.remove('actived');
+            document.getElementById(svid).lastChild.classList.add('actived');
         },
     });
 }
 
 function backToMainServer(publicUrl) {
     $('#phimContainId').attr('src', publicUrl);
+    var episodes = document.getElementsByClassName('btn-episode');
+    for (episode of episodes) {
+        episode.classList.remove('actived');
+    }
+    document.getElementById('serverId').lastChild.classList.add('actived');
 }

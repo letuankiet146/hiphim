@@ -197,7 +197,19 @@ class HiPhimController extends Controller
                             ->limit(4)
                             ->get();
 
-        return view("detail",compact('isErrorUrl','phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','servers','taphientai'));
+        return view("detail",
+        compact('isErrorUrl',
+                'phim',
+                'theloais',
+                'dienviens',
+                'quocgia',
+                'danhmuctitle',
+                'phimLienQuan',
+                'phimQC',
+                'publicUrl',
+                'sotaps',
+                'servers',
+                'taphientai'));
     }
 
     public function detailTap ($link_id, $tap){
