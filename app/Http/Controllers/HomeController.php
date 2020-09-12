@@ -12,6 +12,7 @@ use App\QuocGia;
 use App\DienVien;
 use App\TagDienVien;
 use App\TagTheLoai;
+use App\Server;
 use DB;
 
 class HomeController extends Controller
@@ -192,6 +193,13 @@ class HomeController extends Controller
         $phim->quocgias_id = $request->quocgiaId;
         $phim->ngaytao=date("yy-m-d");
         $phim->save();
+
+        $server = new Server();
+        $server->phims_id = $phim->id;
+        $server->servers_id = 1 ;
+        $server->servers_type = "MEDIA";
+        $server->url = $request->fb_url;
+        $server->save();
 
         //tao phim bo
         if( $request->danhmucId == 2){
