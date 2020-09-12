@@ -24,3 +24,23 @@ $(document).ready(function() {
         })
         // document ready
 });
+
+
+function changeStreamServer(phimId, serverId) {
+    $.ajax({
+        beforeSend: function() {
+            $('#loading_logo_container').show();
+        },
+        type: 'GET',
+        url: '/change-sever/' + phimId + '/' + serverId,
+        success: function(data) {
+            $('#loading_logo_container').hide();
+            $('#phimContainId').attr('src', data.newUrl);
+            $("#phimContainId")[0].play();
+        },
+    });
+}
+
+function backToMainServer(publicUrl) {
+    $('#phimContainId').attr('src', publicUrl);
+}

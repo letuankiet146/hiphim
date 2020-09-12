@@ -37,6 +37,7 @@ Route::get('/detail/{link_id}', 'HiPhimController@oldDetail');
 Route::get('/phim/{link_id}.html', 'HiPhimController@detail');
 Route::get('/phim/{link_id}/tap-{tap}.html', 'HiPhimController@detailTap');
 Route::get('/baoloi/{id}/{tap}', 'HiPhimController@baoloi');
+Route::get('/change-sever/{phimId}/{serverId}','HiPhimController@changeServer');
 
 Route::get('/admin', 'HomeController@admin');
 Route::get('/themphimbo/{id}', 'HomeController@themphimbo');

@@ -12,6 +12,7 @@ use App\QuocGia;
 use App\UserIp;
 use App\DienVien;
 use App\BaoLoi;
+use App\Server;
 
 use DB;
 
@@ -81,6 +82,21 @@ class HiPhimController extends Controller
         }
     }
 
+    private function getMediaFireUrl($fileId){
+        $rawUrl = 'http://www.mediafire.com/file/'.$fileId.'/file';
+        $rawUrlData = file_get_contents($rawUrl);
+        $doc = new \DomDocument;
+
+        libxml_use_internal_errors(true);
+
+        htmlspecialchars($rawUrlData);
+        $doc->loadHTMLFile($rawUrl);
+        $links = array();
+        $urlStream = null;
+        $mediaUrl = $doc->getElementsByTagName('a')[7]->getAttribute('href');
+        return $mediaUrl;
+    }
+
     private function allowCount($phimId){
         $clientIP = \Request::ip();
         $userIp  = UserIp::from('user_ips')
@@ -125,6 +141,7 @@ class HiPhimController extends Controller
         $danhmucId = $phim->danhmucs_id;
         $danhmuctitle = "phim-le";
         $sotaps = null;
+        $servers = $phim->servers;
         $publicUrl = null;
         switch ($danhmucId) {
             case 1:
@@ -180,7 +197,7 @@ class HiPhimController extends Controller
                             ->limit(4)
                             ->get();
 
-        return view("detail",compact('isErrorUrl','phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
+        return view("detail",compact('isErrorUrl','phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','servers','taphientai'));
     }
 
     public function detailTap ($link_id, $tap){
@@ -453,5 +470,13 @@ class HiPhimController extends Controller
         ->orwhere('tenphim_en','LIKE',"%".urldecode($data)."%")
         ->get();
         return response()->json(["liveSearchResult"=>$liveSearchResult],200);
+    }
+
+    public function changeServer($phimId, $serverId){
+        $server =  Server::where('phims_id',$phimId)
+                            -> where ('servers_id',$serverId)
+                            -> first();
+        $newUrl = $this->getMediaFireUrl($server->url);
+        return response()->json(["newUrl"=>$newUrl],200);
     }
 }

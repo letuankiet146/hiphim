@@ -8,7 +8,7 @@
     <p style="font-size: 90%; ">Chúng tôi sẽ sớm cập nhật<p>
     </div>
     @endif
-    <video controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}">
+    <video id="phimContainId" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
             <source src="{{$publicUrl}}" type="video/mp4" size="576">
             @if(isset($phim->sub))
             <track kind="captions" label="Vietsub" src="/sub/{{$phim->sub}}" srclang="vi" default />
@@ -18,6 +18,7 @@
     <script src="{{asset('js/plyr.js')}}"></script>
     <script>
         const player = new Plyr('video', {captions: {active: true}});
+        player.autoplay=true;
         window.player = player;
     </script>
 @endsection
