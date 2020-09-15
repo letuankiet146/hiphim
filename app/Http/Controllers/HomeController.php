@@ -198,7 +198,7 @@ class HomeController extends Controller
         $server->phims_id = $phim->id;
         $server->servers_id = 1 ;
         $server->servers_type = "MEDIA";
-        $server->url = $request->fb_url;
+        $server->url = $request->media_url;
         $server->save();
 
         //tao phim bo

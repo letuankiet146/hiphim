@@ -410,7 +410,16 @@ class HiPhimController extends Controller
                                 })
                                 ->where('nam','=',$data);
                     $title = "Phim lẻ năm ".$data;
-                }else{
+                }else if(strcasecmp(urldecode($data),'Trước năm 2014')===0){
+                    $phims = Phim::from('phims')
+                                ->orWhere(function($query) {
+                                    $query->where('danhmucs_id', '1')
+                                        ->orwhere('danhmucs_id', '3');
+                                })
+                                ->where('nam','<',2014);
+                    $title = "Phim lẻ ".$data;
+                }
+                else{
                     $danhmuc = DanhMuc::from('danh_mucs')
                                 ->where('tendanhmuc','LIKE',"Phim Lẻ")
                                 ->first();

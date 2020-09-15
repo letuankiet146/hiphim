@@ -36,11 +36,13 @@
         $danhMucPhimLe = DanhMuc::find(PHIM_LE);
         $phimsLe = $danhMucPhimLe->phims;
         $nams = [];
+        array_push($nams,'Trước năm 2014');
         foreach($phimsLe as $phimLe){
-            if(!in_array($phimLe->nam, $nams)){
+            if(($phimLe->nam >= 2014) &&!in_array($phimLe->nam, $nams)){
                 array_push($nams,$phimLe->nam);
             }
         }
+        sort($nams);
 
         $danhMucPhimBo = Danhmuc::find(PHIM_BO);
         $phimsBo = $danhMucPhimBo->phims;
@@ -65,7 +67,7 @@
                         ->limit(5)
                         ->get();
 
-        sort($nams);
+
 
         $view->with('theloais', $theloais);
         $view->with('quocgias', $quocgias);

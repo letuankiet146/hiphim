@@ -37,5 +37,5 @@ class Phim extends Model
     public function servers(){
         return $this->hasMany('App\Server','phims_id');
     }
-    // find backup link phim; DISQUS; peer torrent to stream mp4; toi gian css va js
+    // DISQUS; peer torrent to stream mp4; toi gian css va js; group phim le theo nam < 2000
 }
