@@ -194,12 +194,14 @@ class HomeController extends Controller
         $phim->ngaytao=date("yy-m-d");
         $phim->save();
 
-        $server = new Server();
-        $server->phims_id = $phim->id;
-        $server->servers_id = 1 ;
-        $server->servers_type = "MEDIA";
-        $server->url = $request->media_url;
-        $server->save();
+        if(isset($request->media_url) && $request->media_url !== null){
+            $server = new Server();
+            $server->phims_id = $phim->id;
+            $server->servers_id = 1 ;
+            $server->servers_type = "MEDIA";
+            $server->url = $request->media_url;
+            $server->save();
+        }
 
         //tao phim bo
         if( $request->danhmucId == 2){
