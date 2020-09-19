@@ -187,6 +187,7 @@ class HomeController extends Controller
         }
         $phim->url = $request->url;
         $phim->fb_url = $request->fb_url;
+        $phim->original_url = $request->original_url;
         $phim->trailer=$request->trailer;
         $phim->imdb = $request->imdb;
         $phim->thoiluong = $request->thoiluong;

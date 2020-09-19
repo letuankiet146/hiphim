@@ -14,22 +14,25 @@
 <div class="container">
   <h2>Danh sách các phim bị lỗi</h2>
   <a class="btn btn-success" href="/isAvailable">Run checker</a>
+  <a class="btn btn-info" href="/admin">Back to ADMIN</a>
   <table class="table"  id="myTable">
     <thead>
       <tr>
-        <th>ID</th>
+        <th>Original Link</th>
         <th>Tên phim</th>
-        <th>Số người báo lỗi</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($groupPhimKeys as $key)
+        @foreach($phims as $phim)
         <tr>
-            <td>{{$key}}</td>
-            <td><a href="/detail/{{$key}}">{{$groupPhim[$key]}}</a></td>
-            <td>{{$counts[$key]}}</td>
-            <td><a title="Go to Fix" data-toggle="modal" data-target="#myModal" class="btn btn-danger " href="/updatelink/{{$key}}">Go to fix</a></td>
-            <td><a title="Go to Fix" class="btn btn-success " href="/fixed/{{$key}}">Fixed</a></td>
+            @if(isset($phim->original_url) && strcasecmp($phim->original_url,'')!==0)
+            <td><a href="{{$phim->original_url}}">original</a></td>
+            @else
+            <td></td>
+            @endif
+            <td><a href="/detail/{{$phim->id}}">{{$phim->tenphim}}</a></td>
+            <td><a title="Go to Fix" data-toggle="modal" data-target="#myModal" class="btn btn-danger " href="/updatelink/{{$phim->id}}">Go to fix</a></td>
+            <td><a title="Go to Fix" class="btn btn-success " href="/fixed/{{$phim->id}}">Fixed</a></td>
         </tr>
         @endforeach
     </tbody>

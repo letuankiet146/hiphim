@@ -42,20 +42,14 @@ class TestLinkController extends Controller
     public function testLink(){
 
         $baolois = BaoLoi::all();
-        $countphim = [];
-        $groupPhim = [];
-        $groupPhimKeys = [];
-        foreach($baolois as $baoloi){
-            array_push($countphim,$baoloi->phims_id);
-            if(!in_array($baoloi->phims_id,$groupPhim)){
-                $phim = $baoloi->phim;
-                $groupPhim[$baoloi->phims_id] = $phim->tenphim;
-            }
+        $phims = [];
 
+        foreach($baolois as $baoloi){
+            $phim = $baoloi->phim;
+            array_push($phims,$phim);
         }
-        $counts = array_count_values($countphim);
-        $groupPhimKeys = array_keys($groupPhim);
-        return view ("testlink",compact('groupPhim','counts','groupPhimKeys'));
+        $phims =  array_unique($phims);
+        return view ("testlink",compact('phims'));
     }
 
     public function updateLink($id){

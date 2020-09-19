@@ -36,15 +36,17 @@
             </div>
 
             <div class="form-group">
-            <textarea class="form-control"  name="url" form="insertFilmFrom" rows=4 cols=50  placeholder="CODE ID (e.g: A5731D3943FE39D3!....)" required></textarea>
+            <input class="form-control" type="text" name="url"  placeholder="CODE(e.g: A5731D3943FE39D3!....)" required value="na"/>
             </div>
 
             <div class="form-group">
             <textarea class="form-control"  name="fb_url" form="insertFilmFrom" rows=4 cols=50  placeholder="FacebookURL" required></textarea>
+            <input class="p-3 mb-2 bg-success text-white" type="text" name="original_url"  placeholder="Original link" required/>
             </div>
 
             <div class="form-group">
-            <textarea class="form-control"  name="media_url" form="insertFilmFrom" rows=4 cols=50  placeholder="MediaFire URL" ></textarea>
+            <input class="form-control" type="text" name="media_url"  placeholder="MediaFire CODE" />
+
             </div>
 
             <div class="form-group">
