@@ -1,5 +1,0 @@
-WEBA -> MP3
-ffmpeg -i input.wav -vn -ar 44100 -ac 2 -b:a 192k output.mp3
-
-AUDIO + VIDEO
-ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a mp3 output.mp4
