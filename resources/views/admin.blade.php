@@ -200,6 +200,7 @@
             <label for="bg">Background img:</label>
             <input class="custom-file-input" id="bg" type="file" name="bg" required/>
             </div>
+            <textarea class="form-control"  name="ghichu" form="insertFilmFrom" rows=3 cols=50  placeholder="Ghi chú" required></textarea>
             <button class="btn btn-danger"  type="submit">Save</button>
             <hr>
         </form>

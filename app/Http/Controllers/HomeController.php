@@ -182,9 +182,7 @@ class HomeController extends Controller
         if(isset($request->phude)){
             $phim->phude = $request->phude;
         }
-        if(isset($request->sapchieu)){
-            $phim->sapchieu = $request->sapchieu;
-        }
+        $phim->ghichu = $request->ghichu;
         $phim->url = $request->url;
         $phim->fb_url = $request->fb_url;
         $phim->original_url = $request->original_url;

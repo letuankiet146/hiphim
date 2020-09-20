@@ -25,6 +25,7 @@
         const player = new Plyr('video', {captions: {active: true}});
         player.autoplay=true;
         window.player = player;
+        document.getElementById("phimContainId").addEventListener('webkitfullscreenchange', onFullScreen);
     </script>
 @endsection
 

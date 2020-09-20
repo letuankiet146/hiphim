@@ -50,6 +50,9 @@
 </div>
 <div class="group-detail" itemscope itemtype="https://schema.org/Movie">
     @yield("detail")
+    @if(isset($phim->ghichu) && strcasecmp($phim->ghichu,"")!==0)
+    <p class="custom-success"><strong>{{$phim->ghichu}}</strong></p>
+    @endif
     @if(isset($phim->trailer))
         <!-- Button trigger modal -->
         <a title="trailer" class="btn btn-primary video-btn btn-info btn-lg play-film" data-toggle="modal" data-src="https://www.youtube.com/embed/{{$phim->trailer}}" data-target="#myModal">
@@ -110,7 +113,6 @@
         <span class="rated-text">{{$phim->luotxem}} lượt xem</span> <span class="hd">HD</span>
     @endif
     <br>
-    <p class="custom-error" style="display: none;"></p>
     @if($phim->danhmucs_id==2)
     <div class="episode-film">
         <div id="episode-all" class="episode-main">
