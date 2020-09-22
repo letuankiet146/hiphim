@@ -135,7 +135,7 @@
                Link dự phòng
             </div>
             <ul>
-                <li id="serverId"><a hreflang="vi" class="btn actived btn-episode" onclick="backToMainServer('{{$publicUrl}}')">Server</a></li>
+                <li id="serverId"><a hreflang="vi" class="btn actived btn-episode" onclick="backToMainServer('{{$publicUrl}}','{{$isErrorUrl}}')">Server</a></li>
                 @foreach($servers as $server)
                 <li id="db_{{$server->servers_id}}"><a hreflang="vi" class="btn btn-episode"  onclick="changeStreamServer({{$phim->id}},{{$server->servers_id}})">Dự phòng {{$server->servers_id}}</a></li>
                 @endforeach

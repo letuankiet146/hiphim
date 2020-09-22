@@ -8,6 +8,7 @@ $(document).ready(function() {
 
 function changeStreamServer(phimId, serverNumber) {
     $('#linkhongId').hide();
+    $('#mainLinkhongId').hide();
     svid = 'db_' + serverNumber;
     $.ajax({
         beforeSend: function() { $('#loading_logo_container').show() },
@@ -26,7 +27,10 @@ function changeStreamServer(phimId, serverNumber) {
     })
 }
 
-function backToMainServer(publicUrl) {
+function backToMainServer(publicUrl, isErrorUrl) {
+    if (isErrorUrl == 1) {
+        $('#mainLinkhongId').show();
+    }
     $('#linkhongId').hide();
     $('#phimContainId').attr('src', publicUrl);
     var episodes = document.getElementsByClassName('btn-episode');

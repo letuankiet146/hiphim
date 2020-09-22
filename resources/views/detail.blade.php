@@ -2,10 +2,10 @@
 
 @section('detail')
     @if(isset($isErrorUrl) && $isErrorUrl)
-    <div class="alert alert-danger text-monospace" role="alert" style="text-align: center">
+    <div id="mainLinkhongId" class="alert alert-danger text-monospace" role="alert" style="text-align: center">
     <i class='fas fa-sad-cry'></i><strong style="font-size: 110%; "> Link hỏng! </strong><i class='fas fa-sad-cry'></i>
     <br>
-    <p style="font-size: 90%; ">Chúng tôi sẽ sớm cập nhật<p>
+    <p style="font-size: 90%; ">Hãy chọn server khác(nếu có). Chúng tôi sẽ sớm cập nhật<p>
     </div>
     @endif
     <div id="linkhongId" class="alert alert-danger text-monospace" role="alert" style="text-align: center; display:none">
