@@ -20,6 +20,7 @@
       <tr>
         <th>Original Link</th>
         <th>Tên phim</th>
+        <th>Tập</th>
       </tr>
     </thead>
     <tbody>
@@ -30,9 +31,17 @@
             @else
             <td></td>
             @endif
+            @if($phim->danhmucs_id == 2)
+            <td><a href="/phim/{{$phim->link_id}}/tap-{{$phim->ghichu}}.html">{{$phim->tenphim}}</a></td>
+            <td>{{$phim->ghichu}}</td>
+            <td><a title="Go to Fix" data-toggle="modal" data-target="#myModal" class="btn btn-danger " href="/updatelink/{{$phim->id}}/{{$phim->ghichu}}">Go to fix</a></td>
+            <td><a title="Go to Fix" class="btn btn-success " href="/fixed/{{$phim->id}}/{{$phim->ghichu}}">Fixed</a></td>
+            @else
             <td><a href="/detail/{{$phim->id}}">{{$phim->tenphim}}</a></td>
+            <td></td>
             <td><a title="Go to Fix" data-toggle="modal" data-target="#myModal" class="btn btn-danger " href="/updatelink/{{$phim->id}}">Go to fix</a></td>
             <td><a title="Go to Fix" class="btn btn-success " href="/fixed/{{$phim->id}}">Fixed</a></td>
+            @endif
         </tr>
         @endforeach
     </tbody>

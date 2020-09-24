@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use App\Phim;
 use App\BaoLoi;
+use App\SoTap;
+
 use DB;
 
 class TestLinkController extends Controller
@@ -43,9 +45,13 @@ class TestLinkController extends Controller
 
         $baolois = BaoLoi::all();
         $phims = [];
+        $tapBiLoi=[];
 
         foreach($baolois as $baoloi){
             $phim = $baoloi->phim;
+            if(isset($baoloi->tap_phim)){
+                $phim->ghichu = $baoloi->tap_phim;
+            }
             array_push($phims,$phim);
         }
         $phims =  array_unique($phims);
@@ -64,20 +70,52 @@ class TestLinkController extends Controller
         return redirect('/testlink');
     }
 
+    public function updateLinkTap($id, $tap){
+        $film = Phim::find($id);
+        $sotap = SoTap::from('so_taps')
+        ->where('phims_id',$id)
+        ->where('tap',$tap)
+        ->first();
+        return view("updateurl",[
+            'film'=>$film,
+            'sotap'=>$sotap
+        ]);
+    }
+
+    public function fixedLinkTap($id, $tap){
+        DB::table('bao_lois')
+        ->where('phims_id', '=', $id)
+        ->where('tap_phim', '=', $tap)
+        ->delete();
+        return redirect('/testlink');
+    }
+
     public function updateFilm(Request $request){
+        $id = $request->id;
         $url = $request->url;
-        if(strpos($url, 'http')  !== false){
-            echo "having http";
-            $id = $request->id;
-            DB::table('phims')
-                ->where('id',$id)
-                ->update(["fb_url"=>$url]);
+        $sotap = $request->sotap;
+        if(isset($sotap)){
+            if(strpos($url, 'http')  !== false){
+                DB::table('so_taps')
+                    ->where('phims_id',$id)
+                    ->where('tap',$sotap)
+                    ->update(["fb_url"=>$url]);
+            }else{
+                DB::table('so_taps')
+                    ->where('phims_id',$id)
+                    ->where('tap',$sotap)
+                    ->update(["url"=>$url]);
+            }
         }else{
-            echo "not having http";
-            $id = $request->id;
-            DB::table('phims')
-                ->where('id',$id)
-                ->update(["url"=>$url]);
+            if(strpos($url, 'http')  !== false){
+                DB::table('phims')
+                    ->where('id',$id)
+                    ->update(["fb_url"=>$url]);
+            }else{
+                DB::table('phims')
+                    ->where('id',$id)
+                    ->update(["url"=>$url]);
+            }
         }
 
         return redirect('/testlink');

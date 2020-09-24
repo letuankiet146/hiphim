@@ -255,7 +255,7 @@ class HiPhimController extends Controller
         foreach($sotaps as $sotap){
             $tapdangxem = $sotap["tap"];
             if($tap == $tapdangxem){
-                if(strcasecmp($phim->url,"NA") === 0 ){
+                if(strcasecmp($sotap->url,"NA") === 0 ){
                     $publicUrl = $sotap->fb_url;
                 } else {
                     $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$sotap->url."?select=id%2C%40content.downloadUrl";

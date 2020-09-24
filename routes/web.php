@@ -51,6 +51,8 @@ Route::post("/insertphimbo","HomeController@insertphimbo");
 Route::post("/updateFilm","TestLinkController@updateFilm");
 Route::get('/updatelink/{id}', 'TestLinkController@updateLink');
 Route::get('/fixed/{id}', 'TestLinkController@fixedLink');
+Route::get('/updatelink/{id}/{tap}', 'TestLinkController@updateLinkTap');
+Route::get('/fixed/{id}/{tap}', 'TestLinkController@fixedLinkTap');
 Route::get('/testlink', 'TestLinkController@testLink');
 Route::get('/isAvailable', 'TestLinkController@isAvailable');
 
