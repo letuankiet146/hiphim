@@ -37,12 +37,3 @@ function backToMainServer(publicUrl, isErrorUrl) {
     for (episode of episodes) { episode.classList.remove('actived') }
     document.getElementById('serverId').lastChild.classList.add('actived')
 }
-
-
-function onFullScreen() {
-    // if (screen.orientation && screen.orientation.lock) {
-    //     screen.orientation.lock('landscape');
-    // }
-    alert('AB123');
-}
-document.getElementById("phimContainId").addEventListener('onwebkitfullscreenchange', onFullScreen);
