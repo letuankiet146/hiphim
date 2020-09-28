@@ -1,10 +1,25 @@
-$(window).on('load', function() { $('#demoModal').modal('show') });
+$(window)
+    .ready(function() {
+        // $('#demoModal').modal('show');
+        $('#loading_logo_container').show();
+    })
+    .load(function() {
+        $('#loading_logo_container').hide();
+    });
 $(document).ready(function() {
     var $videoSrc;
     $('.video-btn').click(function() { $videoSrc = $(this).data("src") });
-    $('#myModal').on('shown.bs.modal', function(e) { $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0") })
-    $('#myModal').on('hide.bs.modal', function(e) { $("#video").attr('src', $videoSrc) })
+    $('#myModal').on('shown.bs.modal', function(e) { $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0") });
+    $('#myModal').on('hide.bs.modal', function(e) { $("#video").attr('src', $videoSrc) });
+    $('#demoModal').modal('show');
 });
+
+
+
+// function loadVideoStart() {
+//     alert('OK');
+//     $('#loading_logo_container').show();
+// }
 
 function changeStreamServer(phimId, serverNumber) {
     $('#linkhongId').hide();
