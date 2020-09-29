@@ -13,7 +13,7 @@
     <br>
     <p style="font-size: 90%; ">Chúng tôi sẽ sớm cập nhật<p>
     </div>
-    <video id="phimContainId" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
+    <video id="phimContainId" onloadstart="loadVideoStart()" oncanplay="canplayVideo()" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
             <source src="{{$publicUrl}}" type="video/mp4" size="576">
             @if(isset($phim->sub))
             <track kind="captions" label="Vietsub" src="/sub/{{$phim->sub}}" srclang="vi" default />

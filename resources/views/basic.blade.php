@@ -154,7 +154,7 @@
 	<div class="container khoi-body">
 
         <div class="khoi-trai">
-            <img id='loading_logo_container' src="{{asset('/img/loading-logo.gif')}}" alt="loading-log.gif">
+            <img id='loading_logo_container' src="{{asset('/img/loading-logo2v2.gif')}}" alt="loading-log.gif">
             @yield('content')
         </div>
         <div class="khoi-phai">
