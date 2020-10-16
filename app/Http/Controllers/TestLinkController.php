@@ -122,18 +122,10 @@ class TestLinkController extends Controller
     }
 
     public function demo(){
-        $rawUrl = 'http://www.mediafire.com/file/34j6iqah9ud1ubr/file';
-        $rawUrlData = file_get_contents($rawUrl);
-        $doc = new \DomDocument;
+        // $rawLink = "https://lh3.googleusercontent.com/YVhuFnB_dsUaHawzoVMR2aPdrENvZFgLsnf-RnPlEOuTzlIj95xTtaSImI3HDc4q5Z4nWQMTySFUhDqYiXqkfadqs0J9bJy6-EbyNZC7LCwRJf7NyfLZAJ0zSYq65PISzdJ_KDqfZtM1B_XuPjcQtCL9a_6_YsgOBPW5o_fxkGA6I71MRZW1c5W-SP_oa7J2NvK-Kp4woGwnHkfNBjwtMp7iS1DT7mrSKnOX--ozrFWcb2ItpqGCiWjbB-tL2uT-dZiWseihgmnB3Re3NHKMoBT5XXEoYh0-27AZq-JFTPgbaI3XAiO455tT9PFnfSh-M9k6GSJa5mVgqWdnB7XPmjTFDGFVaIwmylxvXk-smlZE6qZt3xVS-dP1irb7zI1xY1gUIOCjXSV9tlraPs03sjTBpC0rT-ub414YyzdZwhejwFhMiGpezDru5cQai9riRBnJzQ7ud1YmZ3sXt1zqcB3Jj4Bsj1ZqiM9CnqKkHtiZa865Ll1XAglEM2y9_t7yOYArcpstCvwQm4p19c822BJZlK__AsCnC5xFQGMV0jLscIVzMguC23o3v3PadzQG-X6xqPvIRDw4CZc-pOyAgkXYEW1q12qJBKqxu0ZPgmcWaij5N5MNzZSASmwP4Vts7V_EPH2mC4TqKT0lUv7oZ3rlHarfHbg6W54KlZfc_WEapKtAci_jW-MecPSJQQ=m37";
 
-        libxml_use_internal_errors(true);
-
-        htmlspecialchars($rawUrlData);
-        $doc->loadHTMLFile($rawUrl);
-        $links = array();
-        $urlStream = null;
-        $mediaUrl = $doc->getElementsByTagName('a')[7]->getAttribute('href');
-        echo $mediaUrl;
-        return view('live',compact('mediaUrl'));
+        // $rawUrlData = file_get_contents($rawLink);
+        // var_dump($rawUrlData);
+        return view('live');
     }
 }
