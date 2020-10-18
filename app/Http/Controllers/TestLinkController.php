@@ -109,27 +109,30 @@ class TestLinkController extends Controller
         $id = $request->id;
         $url = $request->url;
         $sotap = $request->sotap;
+        $original_url = isset($request->original_url) ? $request->original_url : "";
+        $arr1 =  ["fb_url"=>$url, "original_url"=>$original_url];
+        $arr2 =  ["url"=>$url, "original_url"=>$original_url];
         if(isset($sotap)){
             if(strpos($url, 'http')  !== false){
                 DB::table('so_taps')
                     ->where('phims_id',$id)
                     ->where('tap',$sotap)
-                    ->update(["fb_url"=>$url]);
+                    ->update( $arr1);
             }else{
                 DB::table('so_taps')
                     ->where('phims_id',$id)
                     ->where('tap',$sotap)
-                    ->update(["url"=>$url]);
+                    ->update( $arr2);
             }
         }else{
             if(strpos($url, 'http')  !== false){
                 DB::table('phims')
                     ->where('id',$id)
-                    ->update(["fb_url"=>$url]);
+                    ->update( $arr1);
             }else{
                 DB::table('phims')
                     ->where('id',$id)
-                    ->update(["url"=>$url]);
+                    ->update( $arr2);
             }
         }
 

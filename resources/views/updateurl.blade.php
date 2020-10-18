@@ -10,6 +10,7 @@
             <input hidden="true" value={{$film->id}} type="text" name="id"  placeholder="Film name"/><br>
 
             <h1>{{$film->title}}</h1><br>
+            <input value="{{$film->original_url}}" type="text" name="original_url" placeholder="Original url"/><br>
             <div class="form-group">
                 @if(isset($sotap))
                 <input type="text" name="sotap" value={{$sotap->tap}} readonly>
