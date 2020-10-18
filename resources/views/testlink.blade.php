@@ -40,7 +40,8 @@
             <td><a href="/detail/{{$phim->id}}">{{$phim->tenphim}}</a></td>
             <td></td>
             <td><a title="Go to Fix" data-toggle="modal" data-target="#myModal" class="btn btn-danger " href="/updatelink/{{$phim->id}}">Go to fix</a></td>
-            <td><a title="Go to Fix" class="btn btn-success " href="/fixed/{{$phim->id}}">Fixed</a></td>
+            <td><a title="Fix" class="btn btn-success " href="/fixed/{{$phim->id}}">Fixed</a></td>
+            <td><a title="Add server" data-toggle="modal" data-target="#myModal" class="btn btn-info " href="/addserver/{{$phim->id}}">Servers</a></td>
             @endif
         </tr>
         @endforeach

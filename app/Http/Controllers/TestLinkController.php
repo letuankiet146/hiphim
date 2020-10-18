@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Phim;
 use App\BaoLoi;
 use App\SoTap;
+use App\Server;
 
 use DB;
 
@@ -65,6 +66,20 @@ class TestLinkController extends Controller
         ]);
     }
 
+    public function addServer($id){
+        $phim = Phim::find($id);
+        $servers = $phim->servers;
+        $serverIds = [];
+        foreach($servers as $server){
+            array_push($serverIds,$server->servers_id);
+        }
+        $newServerId = max($serverIds)+1;
+        return view("addserver",[
+            'phim'=>$phim,
+            'newServerId'=>$newServerId
+        ]);
+    }
+
     public function fixedLink($id){
         DB::table('bao_lois')->where('phims_id', '=', $id)->delete();
         return redirect('/testlink');
@@ -117,6 +132,16 @@ class TestLinkController extends Controller
                     ->update(["url"=>$url]);
             }
         }
+
+        return redirect('/testlink');
+    }
+    public function insertServer(Request $request){
+        $server = new Server();
+        $server->phims_id = $request->id;
+        $server->servers_id = $request->new_server_id ;
+        $server->servers_type =  $request->server_type ;
+        $server->url = $request->url;
+        $server->save();
 
         return redirect('/testlink');
     }

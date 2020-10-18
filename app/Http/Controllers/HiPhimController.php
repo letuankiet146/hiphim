@@ -506,7 +506,11 @@ class HiPhimController extends Controller
         $server =  Server::where('phims_id',$phimId)
                             -> where ('servers_id',$serverId)
                             -> first();
-        $newUrl = $this->getMediaFireUrl($server->url);
+        if(strcasecmp($server->servers_type,'MEDIA')===0){
+            $newUrl = $this->getMediaFireUrl($server->url);
+        }else{
+            $newUrl = $server->url;
+        }
         //check living
         $isErrorUrl = false;
         if(strcasecmp($newUrl,"")===0 ||  !$this->urlExists($newUrl)){
