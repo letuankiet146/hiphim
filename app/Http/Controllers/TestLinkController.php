@@ -69,7 +69,7 @@ class TestLinkController extends Controller
     public function addServer($id){
         $phim = Phim::find($id);
         $servers = $phim->servers;
-        $serverIds = [];
+        $serverIds = [0];
         foreach($servers as $server){
             array_push($serverIds,$server->servers_id);
         }
