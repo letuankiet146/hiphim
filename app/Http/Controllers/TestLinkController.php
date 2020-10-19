@@ -117,12 +117,12 @@ class TestLinkController extends Controller
                 DB::table('so_taps')
                     ->where('phims_id',$id)
                     ->where('tap',$sotap)
-                    ->update( $arr1);
+                    ->update( ["fb_url"=>$url]);
             }else{
                 DB::table('so_taps')
                     ->where('phims_id',$id)
                     ->where('tap',$sotap)
-                    ->update( $arr2);
+                    ->update(["url"=>$url]);
             }
         }else{
             if(strpos($url, 'http')  !== false){
