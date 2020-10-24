@@ -145,7 +145,19 @@ class HiPhimController extends Controller
         $danhmucId = $phim->danhmucs_id;
         $danhmuctitle = "phim-le";
         $sotaps = null;
+
         $servers = $phim->servers;
+        $mediaServers = [];
+        $hyUrls = [];
+        foreach($servers as $server){
+            if(strcasecmp($server->servers_type,"MEDIA")===0){
+                array_push($mediaServers,$server);
+            }
+            if(strcasecmp($server->servers_type,"HY")===0){
+                array_push($hyUrls,$server->url);
+            }
+        }
+
         $publicUrl = null;
         switch ($danhmucId) {
             case 1:
@@ -210,7 +222,8 @@ class HiPhimController extends Controller
                 'phimQC',
                 'publicUrl',
                 'sotaps',
-                'servers',
+                'mediaServers',
+                'hyUrls',
                 'taphientai'));
     }
 
@@ -279,7 +292,17 @@ class HiPhimController extends Controller
                     ->orderBy('ngaytao','desc')
                     ->limit(4)
                     ->get();
-        return view("detail",compact('isErrorUrl','phim','theloais','dienviens','quocgia','danhmuctitle','phimLienQuan','phimQC','publicUrl','sotaps','taphientai'));
+        return view("detail",compact('isErrorUrl',
+        'phim',
+        'theloais',
+        'dienviens',
+        'quocgia',
+        'danhmuctitle',
+        'phimLienQuan',
+        'phimQC',
+        'publicUrl',
+        'sotaps',
+        'taphientai'));
     }
 
     public static function baoloi($id,$tap){

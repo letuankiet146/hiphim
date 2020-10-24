@@ -11,6 +11,8 @@
             <input hidden="true" type="number" name="new_server_id" value={{$newServerId}}>
             <h1>{{$phim->title}}</h1>
             <select name="server_type" form="addserverForm" style="background-color: yellow">
+                <option value="HY">HY</option>
+                <option value="OK">OK</option>
                 <option value="MEDIA">MEDIA</option>
                 <option value="NORMAL">NORMAL</option>
             </select> <br>

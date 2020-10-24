@@ -1,7 +1,7 @@
 @extends('basic-detail')
 
 @section('detail')
-    @if(isset($isErrorUrl) && $isErrorUrl)
+    @if(!isset($hyUrls[0]) && isset($isErrorUrl) && $isErrorUrl)
     <div id="mainLinkhongId" class="alert alert-danger text-monospace" role="alert" style="text-align: center">
     <i class='fas fa-sad-cry'></i><strong style="font-size: 110%; "> Link hỏng! </strong><i class='fas fa-sad-cry'></i>
     <br>
@@ -13,12 +13,17 @@
     <br>
     <p style="font-size: 90%; ">Chúng tôi sẽ sớm cập nhật<p>
     </div>
+
+    @if($isErrorUrl && isset($hyUrls[0]))
+    <iframe width="980" height="410" src="https://playhydrax.com/?v={{$hyUrls[0]}}" frameborder="0" scrolling="0" allowfullscreen></iframe>
+    @else
     <video id="phimContainId" onloadstart="loadVideoStart()" oncanplay="canplayVideo()" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
             <source src="{{$publicUrl}}" type="video/mp4" size="576">
             @if(isset($phim->sub))
             <track kind="captions" label="Vietsub" src="/sub/{{$phim->sub}}" srclang="vi" default />
             @endif
     </video>
+    @endif
 
     <script src="{{asset('js/plyr.js')}}"></script>
     <script>
