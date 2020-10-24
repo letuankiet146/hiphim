@@ -138,13 +138,6 @@ class HiPhimController extends Controller
         ->where('link_id', $link_id)->first();
         $id = $p->id;
 
-        $abusiveIds = [113, 43];
-        foreach($abusiveIds as $abusiveId){
-            if( $id  === $abusiveId){
-                return redirect('/');
-            }
-        }
-
         $phim = Phim::find($id);
         $theloais = $phim->theloais;
         $dienviens = $phim->dienviens;
