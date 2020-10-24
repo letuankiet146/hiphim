@@ -27,7 +27,12 @@ class TestLinkController extends Controller
             }
             if($phim->danhmucs_id !== 2){
                 if(!HiPhimController::urlExists($phim->fb_url)){
-                    HiPhimController::baoloi($phim->id,null);
+                    $isExistBkUrl = Server::where('phims_id', '=', $phim->id)
+                                            ->wherein('servers_type', ['OK','HY'])
+                                            ->first();
+                    if($isExistBkUrl === null){
+                        HiPhimController::baoloi($phim->id,null);
+                    }
                 }
             }else{
                 $sotaps = $phim->sotaps;

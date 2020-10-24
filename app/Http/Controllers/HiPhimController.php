@@ -148,10 +148,14 @@ class HiPhimController extends Controller
 
         $servers = $phim->servers;
         $mediaServers = [];
+        $okUrls = [];
         $hyUrls = [];
         foreach($servers as $server){
             if(strcasecmp($server->servers_type,"MEDIA")===0){
                 array_push($mediaServers,$server);
+            }
+            if(strcasecmp($server->servers_type,"OK")===0){
+                array_push($okUrls,$server->url);
             }
             if(strcasecmp($server->servers_type,"HY")===0){
                 array_push($hyUrls,$server->url);
@@ -223,6 +227,7 @@ class HiPhimController extends Controller
                 'publicUrl',
                 'sotaps',
                 'mediaServers',
+                'okUrls',
                 'hyUrls',
                 'taphientai'));
     }
