@@ -31,7 +31,7 @@
 
 @section('add-css')
     <link rel="stylesheet" href="{{asset('css/modal.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/basic-detail.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/basic-detail-v1.css')}}" />
 @endsection
 @section('add-js')
     <script type="text/javascript" src="{{asset('js/basic-detail.js')}}"></script>

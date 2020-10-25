@@ -200,7 +200,12 @@ class HiPhimController extends Controller
         $isErrorUrl = false;
         if(!$this->urlExists($publicUrl)){
             $isErrorUrl = true;
-            $this->baoloi($id,null);
+            $isExistBkUrl = Server::where('phims_id', '=', $phim->id)
+                                            ->wherein('servers_type', ['OK','HY'])
+                                            ->first();
+                    if($isExistBkUrl === null){
+                        $this->baoloi($id,null);
+                    }
         }
         if($this->allowCount($id)){
             $phim->luotxem = $phim->luotxem+1;
@@ -536,7 +541,12 @@ class HiPhimController extends Controller
         $isErrorUrl = false;
         if(strcasecmp($newUrl,"")===0 ||  !$this->urlExists($newUrl)){
             $isErrorUrl = true;
-            $this->baoloi($phimId,null);
+            $isExistBkUrl = Server::where('phims_id', '=', $phim->id)
+                                            ->wherein('servers_type', ['OK','HY'])
+                                            ->first();
+                    if($isExistBkUrl === null){
+                        $this->baoloi($phimId,null);
+                    }
         }
         return response()->json(["newUrl"=>$newUrl,"isErrorUrl"=>$isErrorUrl],200);
     }
