@@ -16,9 +16,13 @@
 
     @if($isErrorUrl)
         @if( isset($okUrls[0]))
-            <iframe width="980" height="410" src="//ok.ru/videoembed/{{$okUrls[0]}}?autoplay=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        <div class="container">
+            <iframe class="responsive-iframe" src="//ok.ru/videoembed/{{$okUrls[0]}}?autoplay=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+        </div>
         @elseif( isset($hyUrls[0]))
-            <iframe width="980" height="410" src="https://playhydrax.com/?v={{$hyUrls[0]}}" frameborder="0" scrolling="0" allowfullscreen></iframe>
+        <div class="container">
+            <iframe class="responsive-iframe" width="980" height="410" src="https://playhydrax.com/?v={{$hyUrls[0]}}" frameborder="0" scrolling="0" allowfullscreen></iframe>
+        </div>
         @else
         <video id="phimContainId" onloadstart="loadVideoStart()" oncanplay="canplayVideo()" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
             <source src="{{$publicUrl}}" type="video/mp4" size="576">
