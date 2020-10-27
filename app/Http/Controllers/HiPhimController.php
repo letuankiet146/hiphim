@@ -58,7 +58,7 @@ class HiPhimController extends Controller
         return view("index" ,compact('phimChieuRap','phimMoiCapNhat','phimChieuBo','phimChieuLe','phimTv'));
     }
 
-    private function getPublicUrl($oriUrl) {
+    public static function getPublicUrl($oriUrl) {
         $serverResponse = Http::get($oriUrl);
         $serverJson = $serverResponse->json();
         $downloadUrl = $serverJson["@content.downloadUrl"];

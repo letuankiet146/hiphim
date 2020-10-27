@@ -26,7 +26,14 @@ class TestLinkController extends Controller
                 continue;
             }
             if($phim->danhmucs_id !== 2){
-                if(!HiPhimController::urlExists($phim->fb_url)){
+                $publicUrl=null;
+                if(strcasecmp($phim->url,"NA") === 0 ){
+                    $publicUrl = $phim->fb_url;
+                } else {
+                    $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
+                    $publicUrl = HiPhimController::getPublicUrl($oriUrl);
+                }
+                if(!HiPhimController::urlExists($publicUrl)){
                     $isExistBkUrl = Server::where('phims_id', '=', $phim->id)
                                             ->wherein('servers_type', ['OK','HY'])
                                             ->first();
@@ -37,7 +44,14 @@ class TestLinkController extends Controller
             }else{
                 $sotaps = $phim->sotaps;
                 foreach($sotaps as $tap){
-                    if(!HiPhimController::urlExists($tap->fb_url)){
+                    $publicUrl=null;
+                    if(strcasecmp($tap->url,"NA") === 0 ){
+                        $publicUrl = $tap->fb_url;
+                    } else {
+                        $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$tap->url."?select=id%2C%40content.downloadUrl";
+                        $publicUrl = HiPhimController::getPublicUrl($oriUrl);
+                    }
+                    if(!HiPhimController::urlExists($publicUrl)){
                         HiPhimController::baoloi($tap->phims_id, $tap->tap);
                     }
                 }
