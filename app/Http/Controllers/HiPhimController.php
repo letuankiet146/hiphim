@@ -70,14 +70,14 @@ class HiPhimController extends Controller
         if($url == NULL) return false;
         $client = new Client();
         try {
-            $request = $client->head($url);
-            $httpcode = $request->getStatusCode();
+            $httpResponse = get_headers($url)[0];
+            $strCode = substr($httpResponse,9,3);
+            if($strCode>=200 && $strCode<=302){
+                return true;
+            } else {
+                return false;
+            }
         } catch (\Throwable $th) {
-            return false;
-        }
-        if($httpcode>=200 && $httpcode<300){
-            return true;
-        } else {
             return false;
         }
     }

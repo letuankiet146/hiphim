@@ -132,7 +132,7 @@ class TestLinkController extends Controller
         $arr1 =  ["fb_url"=>$url, "original_url"=>$original_url];
         $arr2 =  ["url"=>$url, "original_url"=>$original_url];
         if(isset($sotap)){
-            if(strpos($url, 'http')  !== false){
+            if(strpos($url, 'http')  !== false || strpos($url, '//')  !== false){
                 DB::table('so_taps')
                     ->where('phims_id',$id)
                     ->where('tap',$sotap)
@@ -144,7 +144,7 @@ class TestLinkController extends Controller
                     ->update(["url"=>$url]);
             }
         }else{
-            if(strpos($url, 'http')  !== false){
+            if(strpos($url, 'http')  !== false || strpos($url, '//')  !== false){
                 DB::table('phims')
                     ->where('id',$id)
                     ->update( $arr1);
