@@ -37,5 +37,5 @@ class Phim extends Model
     public function servers(){
         return $this->hasMany('App\Server','phims_id');
     }
-    // peer torrent to stream mp4;
+    // replace by iframe, try to add more and more server; disable CORS
 }

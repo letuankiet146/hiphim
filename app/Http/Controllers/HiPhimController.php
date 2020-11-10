@@ -72,7 +72,7 @@ class HiPhimController extends Controller
         try {
             $httpResponse = get_headers($url)[0];
             $strCode = substr($httpResponse,9,3);
-            if($strCode>=200 && $strCode<=302){
+            if($strCode==200 || $strCode==302){
                 return true;
             } else {
                 return false;
@@ -96,6 +96,38 @@ class HiPhimController extends Controller
             $urlStream = null;
             $mediaUrl = $doc->getElementsByTagName('a')[7]->getAttribute('href');
             return $mediaUrl;
+       } catch (\Throwable $th) {
+           return "";
+       }
+    }
+
+    private function getStreamUrl($rawUrl){
+        try {
+            $rawUrlData = file_get_contents($rawUrl);
+            $doc = new \DomDocument;
+
+            libxml_use_internal_errors(true);
+
+            htmlspecialchars($rawUrlData);
+            $doc->loadHTMLFile($rawUrl);
+            $streamUrl = '';
+            foreach($doc->getElementsByTagName('script') as $script){
+                $textContent = $script->textContent;
+                if(strpos($textContent, 'document.getElementById("videolink").innerHTML')  !== false ){
+                    $startPos = strpos($textContent,'//streamtape');
+                    $endPos = strpos($textContent,'";');
+                    $streamUrl = substr($textContent, $startPos, $endPos-$startPos);
+                }
+
+            }
+
+            $url='https:'.$streamUrl;
+            $response = get_headers($url);
+
+            $mp4UrlText = $response[7];
+            $startPos = strpos($mp4UrlText,'https://');
+            $mp4Url =  substr($mp4UrlText, $startPos);
+            return $mp4Url;
        } catch (\Throwable $th) {
            return "";
        }
@@ -191,7 +223,9 @@ class HiPhimController extends Controller
         }
         if(strcasecmp($phim->url,"NA") === 0 ){
             $publicUrl = $phim->fb_url;
-        } else {
+        }elseif (strcasecmp($phim->url,"ST") === 0) {
+            $publicUrl = $this->getStreamUrl($phim->fb_url);
+        }else {
             $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
             $publicUrl = $this->getPublicUrl($oriUrl);
         }
@@ -532,10 +566,18 @@ class HiPhimController extends Controller
         $server =  Server::where('phims_id',$phimId)
                             -> where ('servers_id',$serverId)
                             -> first();
-        if(strcasecmp($server->servers_type,'MEDIA')===0){
-            $newUrl = $this->getMediaFireUrl($server->url);
-        }else{
-            $newUrl = $server->url;
+        // if(strcasecmp($server->servers_type,'MEDIA')===0){
+        //     $newUrl = $this->getMediaFireUrl($server->url);
+        // }else{
+        //     $newUrl = $server->url;
+        // }
+        switch ($server->servers_type) {
+            case 'MEDIA':
+                $newUrl = $this->getMediaFireUrl($server->url);
+                break;
+            default:
+                $newUrl = $server->url;
+                break;
         }
         //check living
         $isErrorUrl = false;
