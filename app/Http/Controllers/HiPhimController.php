@@ -92,42 +92,8 @@ class HiPhimController extends Controller
 
             htmlspecialchars($rawUrlData);
             $doc->loadHTMLFile($rawUrl);
-            $links = array();
-            $urlStream = null;
             $mediaUrl = $doc->getElementsByTagName('a')[7]->getAttribute('href');
             return $mediaUrl;
-       } catch (\Throwable $th) {
-           return "";
-       }
-    }
-
-    private function getStreamUrl($rawUrl){
-        try {
-            $rawUrlData = file_get_contents($rawUrl);
-            $doc = new \DomDocument;
-
-            libxml_use_internal_errors(true);
-
-            htmlspecialchars($rawUrlData);
-            $doc->loadHTMLFile($rawUrl);
-            $streamUrl = '';
-            foreach($doc->getElementsByTagName('script') as $script){
-                $textContent = $script->textContent;
-                if(strpos($textContent, 'document.getElementById("videolink").innerHTML')  !== false ){
-                    $startPos = strpos($textContent,'//streamtape');
-                    $endPos = strpos($textContent,'";');
-                    $streamUrl = substr($textContent, $startPos, $endPos-$startPos);
-                }
-
-            }
-
-            $url='https:'.$streamUrl;
-            $response = get_headers($url);
-
-            $mp4UrlText = $response[7];
-            $startPos = strpos($mp4UrlText,'https://');
-            $mp4Url =  substr($mp4UrlText, $startPos);
-            return $mp4Url;
        } catch (\Throwable $th) {
            return "";
        }
@@ -187,10 +153,10 @@ class HiPhimController extends Controller
                 array_push($mediaServers,$server);
             }
             if(strcasecmp($server->servers_type,"OK")===0){
-                array_push($okUrls,$server->url);
+                array_push($okUrls,$server);
             }
             if(strcasecmp($server->servers_type,"HY")===0){
-                array_push($hyUrls,$server->url);
+                array_push($hyUrls,$server);
             }
         }
 
@@ -223,8 +189,6 @@ class HiPhimController extends Controller
         }
         if(strcasecmp($phim->url,"NA") === 0 ){
             $publicUrl = $phim->fb_url;
-        }elseif (strcasecmp($phim->url,"ST") === 0) {
-            $publicUrl = $this->getStreamUrl($phim->fb_url);
         }else {
             $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
             $publicUrl = $this->getPublicUrl($oriUrl);

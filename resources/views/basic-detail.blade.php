@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="{{asset('css/basic-detail-v1.css')}}" />
 @endsection
 @section('add-js')
-    <script type="text/javascript" src="{{asset('js/basic-detail.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/basic-detail_v1.js')}}"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 @endsection
 
@@ -134,10 +134,17 @@
             <div class="episode-server-name">
                Link dự phòng
             </div>
-            <ul>
+            <ul class='ul-ds-du-phong'>
                 <li id="serverId"><a hreflang="vi" class="btn actived btn-episode" onclick="backToMainServer('{{$publicUrl}}','{{$isErrorUrl}}')">Server</a></li>
+
+                @foreach($okUrls as $okUrl)
+                <li id="db_{{$okUrl->servers_id}}"><a hreflang="vi" class="btn btn-episode"  onclick="changeFrame('okframe','{{$okUrl->url}}',{{$okUrl->servers_id}})">K{{$okUrl->servers_id}}</a></li>
+                @endforeach
+                @foreach($hyUrls as $hyUrl)
+                <li id="db_{{$hyUrl->servers_id}}"><a hreflang="vi" class="btn btn-episode"  onclick="changeFrame('hyframe','{{$hyUrl->url}}',{{$hyUrl->servers_id}})">Y{{$hyUrl->servers_id}}</a></li>
+                @endforeach
                 @foreach($mediaServers as $mediaServer)
-                <li id="db_{{$mediaServer->servers_id}}"><a hreflang="vi" class="btn btn-episode"  onclick="changeStreamServer({{$phim->id}},{{$mediaServer->servers_id}})">Dự phòng {{$mediaServer->servers_id}}</a></li>
+                <li id="db_{{$mediaServer->servers_id}}"><a hreflang="vi" class="btn btn-episode"  onclick="changeStreamServer({{$phim->id}},{{$mediaServer->servers_id}})">G{{$mediaServer->servers_id}}</a></li>
                 @endforeach
             </ul>
         </div>

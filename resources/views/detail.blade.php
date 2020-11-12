@@ -1,11 +1,11 @@
 @extends('basic-detail')
 
 @section('detail')
-    @if(!isset($hyUrls[0]) && isset($isErrorUrl) && $isErrorUrl && !isset($okUrls[0]))
+    @if(isset($isErrorUrl) && $isErrorUrl)
     <div id="mainLinkhongId" class="alert alert-danger text-monospace" role="alert" style="text-align: center">
     <i class='fas fa-sad-cry'></i><strong style="font-size: 110%; "> Link hỏng! </strong><i class='fas fa-sad-cry'></i>
     <br>
-    <p style="font-size: 90%; ">Hãy chọn server khác(nếu có). Chúng tôi sẽ sớm cập nhật<p>
+    <p style="font-size: 100%; ">Hãy dùng server dự phòng bên dưới<p>
     </div>
     @endif
     <div id="linkhongId" class="alert alert-danger text-monospace" role="alert" style="text-align: center; display:none">
@@ -15,22 +15,21 @@
     </div>
 
     @if($isErrorUrl)
-        @if( isset($okUrls[0]))
-        <div class="container">
-            <iframe class="responsive-iframe" src="//ok.ru/videoembed/{{$okUrls[0]}}?autoplay=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+
+        <div class="container" id="ok_container" style="display: none">
+            <iframe id="okframe" class="responsive-iframe" src="#" frameborder="0" allow="autoplay" allowfullscreen></iframe>
         </div>
-        @elseif( isset($hyUrls[0]))
-        <div class="container">
-            <iframe class="responsive-iframe" width="980" height="410" src="https://playhydrax.com/?v={{$hyUrls[0]}}" frameborder="0" scrolling="0" allowfullscreen></iframe>
+
+        <div class="container" id="hy_container" style="display: none">
+            <iframe id="hyframe" class="responsive-iframe" width="980" height="410" src="#" frameborder="0" scrolling="0" allowfullscreen></iframe>
         </div>
-        @else
-        <video id="phimContainId" onloadstart="loadVideoStart()" oncanplay="canplayVideo()" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
+
+        <video id="phimContainId" onloadstart="loadVideoStart()" oncanplay="canplayVideo()" onerror="errorVideo()" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
             <source src="{{$publicUrl}}" type="video/mp4" size="576">
             @if(isset($phim->sub))
             <track kind="captions" label="Vietsub" src="/sub/{{$phim->sub}}" srclang="vi" default />
             @endif
         </video>
-        @endif
     @else
     <video id="phimContainId" onloadstart="loadVideoStart()" oncanplay="canplayVideo()" controls crossorigin playsinline poster="{{asset('img/'.$phim->background.'')}}" autoplay>
             <source src="{{$publicUrl}}" type="video/mp4" size="576">
