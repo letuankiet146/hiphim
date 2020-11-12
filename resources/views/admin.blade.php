@@ -36,22 +36,20 @@
             </div>
 
             <div class="form-group">
-            <input class="form-control" type="text" name="url"  placeholder="CODE(e.g: A5731D3943FE39D3!....)" required value="na"/>
+            <input class="form-control" type="text" name="url"  placeholder="CODE(e.g: A5731D3943FE39D3!....)" required/>
+            <input class="p-3 mb-2 bg-success text-white" type="text" name="ok"  placeholder="OK code"/>
+            <input class="p-3 mb-2 bg-success text-white" type="text" name="hy"  placeholder="HY code"/>
+            <input class="p-3 mb-2 bg-success text-white" type="text" name="media_url"  placeholder="MediaFire CODE" />
             </div>
 
-            <div class="form-group">
-            <textarea class="form-control"  name="fb_url" form="insertFilmFrom" rows=4 cols=50  placeholder="FacebookURL" required></textarea>
-            <input class="p-3 mb-2 bg-success text-white" type="text" name="original_url"  placeholder="Original link" required/>
-            </div>
-
-            <div class="form-group">
-            <input class="form-control" type="text" name="media_url"  placeholder="MediaFire CODE" />
-
+            <div class="form-group" style="display:none">
+            <textarea class="form-control"  name="fb_url" form="insertFilmFrom" rows=4 cols=50  placeholder="FacebookURL"></textarea>
             </div>
 
             <div class="form-group">
             <input class="form-control" type="text" name="trailer"  placeholder="Trailer-youtube-ID" required/>
             </div>
+
             <div class="form-group">
             <script>
                 function displayBoPhim(){

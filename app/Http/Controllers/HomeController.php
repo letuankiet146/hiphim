@@ -183,22 +183,40 @@ class HomeController extends Controller
             $phim->phude = $request->phude;
         }
         $phim->ghichu = $request->ghichu;
+
         $phim->url = $request->url;
         $phim->fb_url = $request->fb_url;
-        $phim->original_url = $request->original_url;
+        $phim->original_url = "";
+
         $phim->trailer=$request->trailer;
         $phim->imdb = $request->imdb;
         $phim->thoiluong = $request->thoiluong;
         $phim->quocgias_id = $request->quocgiaId;
         $phim->ngaytao=date("yy-m-d");
         $phim->save();
-
+        $serverId = 0;
         if(isset($request->media_url) && $request->media_url !== null){
             $server = new Server();
             $server->phims_id = $phim->id;
-            $server->servers_id = 1 ;
+            $server->servers_id = ++$serverId;
             $server->servers_type = "MEDIA";
             $server->url = $request->media_url;
+            $server->save();
+        }
+        if(isset($request->ok) && $request->ok !== null){
+            $server = new Server();
+            $server->phims_id = $phim->id;
+            $server->servers_id = ++$serverId;
+            $server->servers_type = "OK";
+            $server->url = $request->ok;
+            $server->save();
+        }
+        if(isset($request->hy) && $request->hy !== null){
+            $server = new Server();
+            $server->phims_id = $phim->id;
+            $server->servers_id = ++$serverId ;
+            $server->servers_type = "HY";
+            $server->url = $request->hy;
             $server->save();
         }
 
