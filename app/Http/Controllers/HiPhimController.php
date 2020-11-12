@@ -143,7 +143,7 @@ class HiPhimController extends Controller
         $danhmucId = $phim->danhmucs_id;
         $danhmuctitle = "phim-le";
         $sotaps = null;
-
+        $isErrorUrl = false;
         $servers = $phim->servers;
         $mediaServers = [];
         $okUrls = [];
@@ -187,16 +187,21 @@ class HiPhimController extends Controller
                 }
             }
         }
+
         if(strcasecmp($phim->url,"NA") === 0 ){
             $publicUrl = $phim->fb_url;
         }else {
             $oriUrl = "https://api.onedrive.com/v1.0/drives/A5731D3943FE39D3/items/".$phim->url."?select=id%2C%40content.downloadUrl";
-            $publicUrl = $this->getPublicUrl($oriUrl);
+            try {
+                $publicUrl = $this->getPublicUrl($oriUrl);
+            } catch (\Throwable $th) {
+                $publicUrl = null;
+                $isErrorUrl = true;
+            }
         }
 
-        //check living
-        $isErrorUrl = false;
-        if(!$this->urlExists($publicUrl)){
+
+        if(isset($publicUrl) && !$this->urlExists($publicUrl)){
             $isErrorUrl = true;
             $isExistBkUrl = Server::where('phims_id', '=', $phim->id)
                                             ->wherein('servers_type', ['OK','HY'])
